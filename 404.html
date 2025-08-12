@@ -18,14 +18,17 @@
     const path = window.location.pathname;
     const baseTag = document.createElement('base');
 
-    if (path.includes(`/${repoName}/`)) {
-      // We are on GitHub Pages, set the base to the repo name
-      baseTag.href = `/${repoName}/`;
-    } else {
-      // We are running locally, set the base to the root
-      baseTag.href = '/';
-    }
+    let basePath; // <-- Correctly declared here
 
+    if (path.includes(`/${repoName}/`)) {
+      // We are on GitHub Pages, the base path is the repo name
+      basePath = `/${repoName}/`;
+      baseTag.href = basePath;
+    } else {
+      // We are running locally, the base path is the root
+      basePath = '/';
+      baseTag.href = basePath;
+    }
     // Add the base tag to the head of the document
     document.head.prepend(baseTag);
 
@@ -46,6 +49,7 @@
         // We assume the original path was '/static/logo.png'
         logoImg.src = `${basePath}static/logo.png`;
       }
+  })
   </script>
 
 
@@ -629,7 +633,7 @@
             
             try {
                 // Construct the path to the markdown file dynamically
-                const response = await fetch(`/posts/${postSlug}/contents.md`);
+                const response = await fetch(`${basePath}posts/${postSlug}/contents.md`);
                 
                 if (response.ok) {
                     // If the file is found, get the text and parse it as Markdown
@@ -703,7 +707,7 @@
 
             try {
                 // Fetch the central posts.json file from the root
-                const postsResponse = await fetch('/posts.json');
+                const postsResponse = await fetch(`${basePath}posts.json`);
                 if (!postsResponse.ok) {
                     throw new Error('Failed to fetch central posts.json');
                 }

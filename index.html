@@ -13,38 +13,43 @@
     before the browser attempts to fetch any other relative resources.
   -->
   <script>
-    const repoName = 'templepages'; // 🚨 IMPORTANT: Change this to your repository name
-    const path = window.location.pathname;
-    const baseTag = document.createElement('base');
+        const repoName = 'templepages'; // MPORTANT: Change this to your repository name
+        const path = window.location.pathname;
+        const baseTag = document.createElement('base');
 
-    if (path.includes(`/${repoName}/`)) {
-      // We are on GitHub Pages, set the base to the repo name
-      baseTag.href = `/${repoName}/`;
-    } else {
-      // We are running locally, set the base to the root
-      baseTag.href = '/';
-    }
+        let basePath; // <-- Correctly declared here
 
-    // Add the base tag to the head of the document
-    document.head.prepend(baseTag);
+        if (path.includes(`/${repoName}/`)) {
+          // We are on GitHub Pages, the base path is the repo name
+          basePath = `/${repoName}/`;
+          baseTag.href = basePath;
+        } else {
+          // We are running locally, the base path is the root
+          basePath = '/';
+          baseTag.href = basePath;
+        }
 
-        // --- Fix specific ABSOLUTE paths ---
-    // Now, we must fix elements with paths that start with a '/'.
-    // We get the elements and prepend the basePath.
-    
-    document.addEventListener('DOMContentLoaded', () => {
-      // Find the navbar brand link and fix its href.
-      const navbarBrand = document.querySelector('.navbar-brand');
-      if (navbarBrand) {
-        navbarBrand.href = basePath;
-      }
-      
-      // Find the logo image inside the navbar brand and fix its src.
-      const logoImg = document.querySelector('.navbar-logo');
-      if (logoImg) {
-        // We assume the original path was '/static/logo.png'
-        logoImg.src = `${basePath}static/logo.png`;
-      }
+        // Add the base tag to the head of the document
+        document.head.prepend(baseTag);
+
+            // --- Fix specific ABSOLUTE paths ---
+        // Now, we must fix elements with paths that start with a '/'.
+        // We get the elements and prepend the basePath.
+        
+        document.addEventListener('DOMContentLoaded', () => {
+          // Find the navbar brand link and fix its href.
+          const navbarBrand = document.querySelector('.navbar-brand');
+          if (navbarBrand) {
+            navbarBrand.href = basePath;
+          }
+          
+          // Find the logo image inside the navbar brand and fix its src.
+          const logoImg = document.querySelector('.navbar-logo');
+          if (logoImg) {
+            // We assume the original path was '/static/logo.png'
+            logoImg.src = `${basePath}static/logo.png`;
+          }
+      })
   </script>
 
     <!-- Using the standard Bootstrap CDN for dark/light themes -->
@@ -711,7 +716,7 @@
         // Global variables
         let POSTS_DATA = [];
         let currentPosts = [];
-        const POSTS_JSON_URL = './posts.json'; // The URL for the JSON file
+        const POSTS_JSON_URL = './posts.json'; // The URL for the JSON file , the . is all important
 
         const CONFIG = {
             recentPostsCount: 5
@@ -767,7 +772,7 @@
                 // Filter out posts with hide: true
                 POSTS_DATA = allPosts.filter(post => !post.hide);
 
-                console.log("Posts data loaded successfully:", POSTS_DATA);
+                // console.log("Posts data loaded successfully:", POSTS_DATA);
                 
                 // Now that the data is loaded, initialize the page
                 initializePage();
