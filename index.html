@@ -959,8 +959,13 @@
         // }
 
         //  we dont need to use /posts/$(slug) because since we use 404 , it will not find the /slug url and will go there anyway. how intelligent
+        // function getSlugUrl(slug) {
+        //     return `/${slug}/`;
+        // }
+
+        // for this to work with both git and local , we sud do a basePath check as weall
         function getSlugUrl(slug) {
-            return `/${slug}/`;
+            return ``${basePath}${slug}/`;
         }
 
 
