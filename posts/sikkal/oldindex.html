@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Blog Post</title>
+    <!-- Bootstrap CSS and Font Awesome for icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the blog post page */
+        :root, [data-bs-theme="dark"] {
+            --theme-bg: #0d0c1d;
+            --theme-bg-secondary: #1a1a2e;
+            --theme-card-bg: #1a1a2e;
+            --theme-text: #f0f0f0;
+            --theme-text-muted: #b0b0b0;
+            --theme-border: rgba(255, 255, 255, 0.1);
+        }
+        [data-bs-theme="light"] {
+            --theme-bg: #f8f6f0;
+            --theme-bg-secondary: #ede8dc;
+            --theme-card-bg: #fff;
+            --theme-text: #2c3e50;
+            --theme-text-muted: #7f8c8d;
+            --theme-border: rgba(0, 0, 0, 0.1);
+        }
+        body {
+            background-color: var(--theme-bg);
+            color: var(--theme-text);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .header-title {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            font-size: 2rem;
+            color: var(--theme-text);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            transition: color 0.3s ease;
+        }
+        .header-title:hover {
+            color: #ffcc00;
+        }
+        .navbar {
+            background-color: var(--theme-bg-secondary) !important;
+            border-bottom: 1px solid var(--theme-border);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1030;
+        }
+        .nav-link {
+            color: var(--theme-text) !important;
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #ffcc00 !important;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .post-header {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--theme-border);
+        }
+        .post-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .post-meta {
+            color: var(--theme-text-muted);
+            font-size: 0.9rem;
+        }
+        .tag-link {
+            display: inline-block;
+            margin-right: 8px;
+            margin-top: 8px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background-color: var(--theme-bg-secondary);
+            color: var(--theme-text);
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+        .tag-link:hover {
+            background-color: #ffcc00;
+            color: #0d0c1d;
+        }
+        .image-gallery .row > div {
+            padding: 5px;
+        }
+        .image-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            transition: transform 0.2s ease-in-out;
+        }
+        .image-gallery img:hover {
+            transform: scale(1.03);
+            z-index: 10;
+        }
+        .post-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--theme-text-muted);
+        }
+        .floating-action-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .floating-action-buttons .btn {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            margin-bottom: 10px;
+            transition: all 0.2s ease;
+        }
+        .floating-action-buttons .btn:hover {
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .post-title {
+                font-size: 2rem;
+            }
+            .post-content {
+                font-size: 1rem;
+            }
+            .floating-action-buttons {
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand header-title" href="#">Discover Treasures of India</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tags</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-action-buttons">
+        <button class="btn btn-outline-secondary" id="themeToggle">
+            <i class="fas fa-sun me-2"></i><span id="themeText">Light Theme</span>
+        </button>
+        <!-- The back button is disabled here as there is no index page defined -->
+        <!-- <a href="#" class="btn btn-outline-secondary d-block"><i class="fas fa-arrow-left"></i></a> -->
+    </div>
+
+    <div class="container my-4">
+        <!-- Post Header -->
+        <div class="post-header">
+            <h1 class="post-title" id="postTitle">Loading...</h1>
+            <p class="post-meta" id="postMeta">
+                <span id="postAuthor">Loading...</span> | <span id="postDate">Loading...</span>
+            </p>
+            <div id="postTags" class="d-flex flex-wrap">
+                <!-- Tags will be dynamically inserted here -->
+            </div>
+        </div>
+
+        <!-- Image Gallery -->
+        <div class="image-gallery" id="imageGallery">
+            <div class="loading" id="loadingImages">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p class="mt-2">Loading images...</p>
+            </div>
+            <!-- Images will be dynamically inserted here -->
+        </div>
+
+        <!-- Post Content -->
+        <div class="post-content" id="postContent">
+            <div class="loading" id="loadingContent">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p class="mt-2">Loading content...</p>
+            </div>
+            <!-- Content from contents.md will be inserted here -->
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and marked.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        /**
+         * The main logic for the blog post page.
+         * This script fetches post metadata from post.json, renders images,
+         * and loads the main content from contents.md.
+         */
+
+        let currentPost = null;
+
+        // Function to display post details from a post data object
+        function displayPostDetails() {
+            if (!currentPost) {
+                console.error("Post data is not available.");
+                return;
+            }
+
+            // Update title and meta information
+            document.getElementById('pageTitle').textContent = currentPost.title;
+            document.getElementById('postTitle').textContent = currentPost.title;
+            document.getElementById('postAuthor').textContent = currentPost.author;
+            document.getElementById('postDate').textContent = new Date(currentPost.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            
+            // Render tags
+            const tagsContainer = document.getElementById('postTags');
+            tagsContainer.innerHTML = '';
+            currentPost.tags.forEach(tag => {
+                const tagLink = document.createElement('a');
+                tagLink.href = `#`; // Placeholder link for tags
+                tagLink.textContent = tag;
+                tagLink.className = 'tag-link';
+                tagsContainer.appendChild(tagLink);
+            });
+        }
+
+        // Function to render the image gallery
+        function displayImages() {
+            const gallery = document.getElementById('imageGallery');
+            const loadingIndicator = document.getElementById('loadingImages');
+            
+            if (!currentPost || !currentPost.images || currentPost.images.length === 0) {
+                if (loadingIndicator) loadingIndicator.remove();
+                gallery.innerHTML = `
+                    <div class="alert alert-warning text-center" role="alert">
+                        No images were found for this post.
+                    </div>
+                `;
+                return;
+            }
+            
+            if (loadingIndicator) loadingIndicator.remove();
+            
+            // Create the image gallery grid
+            let galleryHTML = '<div class="row">';
+            let bootstrapColClasses = ['col-12', 'col-md-6', 'col-lg-4', 'col-xl-3'];
+            let colIndex = Math.min(currentPost.images.length - 1, bootstrapColClasses.length - 1);
+            let colClass = bootstrapColClasses[colIndex];
+            
+            currentPost.images.forEach(imageFilename => {
+                const imageUrl = `./${imageFilename}`;
+                galleryHTML += `<div class="${colClass}"><img src="${imageUrl}" alt="Post image" class="img-fluid"></div>`;
+            });
+            galleryHTML += '</div>';
+            
+            gallery.innerHTML = galleryHTML;
+        }
+
+        // Function to load and display Markdown content
+        async function displayContent() {
+            const contentContainer = document.getElementById('postContent');
+            const loadingIndicator = document.getElementById('loadingContent');
+            let markdownText = '';
+            
+            try {
+                const response = await fetch('contents.md');
+                if (response.ok) {
+                    markdownText = await response.text();
+                } else {
+                    markdownText = `
+# Welcome!
+This is a placeholder for your post content. To customize this, create a **\`contents.md\`** file in the same directory as this HTML file.
+
+This page is designed to work with a \`post.json\` file that provides all the metadata (title, author, date, images, tags).
+
+- **Headings**
+- **Bold** and *Italic* text
+- Lists
+                    `;
+                    console.warn('contents.md not found, using placeholder content.');
+                }
+            } catch (e) {
+                console.error('Error fetching contents.md:', e);
+                markdownText = `<p class="text-danger">Error loading post content.</p>`;
+            } finally {
+                if (loadingIndicator) loadingIndicator.remove();
+                contentContainer.innerHTML = marked.parse(markdownText);
+            }
+        }
+
+        // Function to initialize the theme toggle
+        function initializeThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeText = document.getElementById('themeText');
+            if (!themeToggle || !themeText) return;
+
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            setTheme(savedTheme);
+
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = document.documentElement.getAttribute('data-bs-theme') || 'dark';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                setTheme(newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+
+            function setTheme(theme) {
+                document.documentElement.setAttribute('data-bs-theme', theme);
+                if (theme === 'light') {
+                    themeText.textContent = 'Dark Theme';
+                    themeToggle.querySelector('i').className = 'fas fa-moon me-2';
+                } else {
+                    themeText.textContent = 'Light Theme';
+                    themeToggle.querySelector('i').className = 'fas fa-sun me-2';
+                }
+            }
+        }
+
+        // Main initialization function
+        async function initializePage() {
+            try {
+                const response = await fetch('post.json');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch post.json');
+                }
+                currentPost = await response.json();
+                
+                // Now that we have the data, we can render the page
+                displayPostDetails();
+                displayImages();
+                displayContent();
+
+            } catch (e) {
+                console.error("Error during page initialization:", e);
+                document.getElementById('postTitle').textContent = "Error Loading Post";
+                document.getElementById('postContent').innerHTML = "<p>There was an error loading the blog post data. Please ensure 'post.json' and 'contents.md' exist in the same directory.</p>";
+            } finally {
+                initializeThemeToggle();
+            }
+        }
+
+        // Start initialization when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>

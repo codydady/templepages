@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Blog Post</title>
+    <!-- Bootstrap CSS and Font Awesome for icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+            font-size: 1.0rem; /* This makes the text 10% larger than the default */
+        }
+
+        /* Custom styles for the blog post page */
+        :root, [data-bs-theme="dark"] {
+            --theme-bg: #0d0c1d;
+            --theme-bg-secondary: #1a1a2e;
+            --theme-card-bg: #1a1a2e;
+            --theme-text: #f0f0f0;
+            --theme-text-muted: #b0b0b0;
+            --theme-border: rgba(255, 255, 255, 0.1);
+        }
+        [data-bs-theme="light"] {
+            --theme-bg: #f8f6f0;
+            --theme-bg-secondary: #ede8dc;
+            --theme-card-bg: #fff;
+            --theme-text: #2c3e50;
+            --theme-text-muted: #7f8c8d;
+            --theme-border: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background-color: var(--theme-bg);
+            color: var(--theme-text);
+            transition: background-color 0.3s, color 0.3s;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .header-title {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--theme-text);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            transition: color 0.3s ease;
+        }
+
+        .header-title:hover {
+            color: #ffcc00;
+        }
+
+        /* This rule ensures the navbar container has the same max-width as the post content */
+        .navbar .container,
+        .container {
+            max-width: none;
+        }
+
+        /* UPDATED: Added rounded corners, spacing, and removed the bottom border */
+        .navbar {
+            background-color: var(--theme-bg-secondary) !important;
+            border-bottom: none; /* Removed the bottom border for a cleaner look */
+            position: sticky;
+            top: 1rem; /* Makes the navbar stick 1rem from the top */
+            z-index: 1020;
+            border-radius: 12px; /* Adds curvy edges */
+        }
+        .nav-link {
+            color: var(--theme-text) !important;
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #ffcc00 !important;
+        }
+
+        /* New styling for the logo to create the "squircle" effect */
+        .navbar-logo {
+            width: 32px;
+            height: 32px;
+            object-fit: cover;
+            border-radius: 20%; /* Creates the "squircle" shape */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar-logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Enhanced logo styling */
+        .navbar-brand {
+            font-size: 1.25rem !important;
+            font-weight: 700 !important;
+        }
+
+        .post-header {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--theme-border);
+        }
+        .post-title {
+            font-size: 2.0rem;
+            font-weight: 700;
+        }
+        .post-meta {
+            color: var(--theme-text-muted);
+            font-size: 0.9rem;
+        }
+        .tag-link {
+            display: inline-block;
+            margin-right: 8px;
+            margin-top: 8px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background-color: var(--theme-bg-secondary);
+            color: var(--theme-text);
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+        .tag-link:hover {
+            background-color: #ffcc00;
+            color: #0d0c1d;
+        }
+        .image-gallery .row > div {
+            padding: 5px;
+        }
+        .image-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            transition: transform 0.2s ease-in-out;
+        }
+        .image-gallery img:hover {
+            transform: scale(1.03);
+            z-index: 10;
+        }
+        .post-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--theme-text-muted);
+        }
+        .floating-action-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .floating-action-buttons .btn {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            margin-bottom: 10px;
+            transition: all 0.2s ease;
+        }
+        .floating-action-buttons .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .post-title {
+                font-size: 2rem;
+            }
+            .post-content {
+                font-size: 1rem;
+            }
+            .floating-action-buttons {
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+
+.floating-nav {
+    position: fixed;
+    top: 60px; /* Adjusted position to be below the navbar */
+    right: 20px;
+    z-index: 1030;
+    background: var(--theme-card-bg);
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid var(--theme-border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    min-width: 200px;
+    max-height: 70vh;
+    overflow-y: auto;
+    transform: translateX(120%);
+    transition: transform 0.3s ease;
+}
+
+.floating-nav.show {
+    transform: translateX(0);
+}
+
+.floating-nav .nav-link {
+    color: var(--theme-text);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: block;
+}
+
+.floating-nav .nav-link:hover {
+    background: var(--theme-bg-secondary);
+    color: var(--bs-primary);
+}
+
+        /* Floating menu toggle button */
+        .menu-toggle {
+            position: fixed; /* Makes the button float relative to the viewport */
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--theme-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+         .menu-toggle:hover {
+            transform: scale(1.3);
+        }
+
+        .action-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1025;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-end;
+        }
+
+        .action-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .action-btn i {
+            color: white;
+            font-size: 1.2rem;
+        }
+
+       .burger-btn {
+            background: linear-gradient(135deg, #c28b00, #966d00);
+            color: white;
+        }
+
+    /* Custom styles for the image collage layout */
+    .image-collage {
+        display: grid;
+        gap: 0.5rem; /* Small gap between images */
+        border-radius: 12px;
+        overflow: hidden;
+        /* Using auto-fit to create a responsive grid based on image count */
+        /* minmax(100px, 1fr) ensures images are at least 100px wide and fill the available space */
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+    .image-collage img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures images fill their container without stretching */
+        aspect-ratio: 1; /* Maintains a square aspect ratio for a uniform grid look */
+        border-radius: 8px;
+    }
+</style>
+</head>
+
+<body class="bg-body-tertiary">
+    <!-- Navigation Bar -->
+    <div class="container">
+            <!-- The navbar-brand now wraps both the logo and the text -->
+        <nav class="navbar navbar-expand-lg mt-1 mb-1 rounded-3">
+            <a class="navbar-brand ps-3 d-flex align-items-center  flex-wrap" href="/">
+                <img src="/static/logo.png" alt="My Logo" class="navbar-logo me-2 rounded-circle" />
+                <span class="header-title">Temples - The Heart of Sanathana dharma</span>
+            </a>
+        </nav>
+
+        <div class="container my-4">
+                <!-- Post Header -->
+                <div class="post-header">
+                    <h1 class="post-title" id="postTitle">Loading...</h1>
+                    <p class="post-meta" id="postMeta">
+                        <span id="postAuthor">Loading...</span> | <span id="postDate">Loading...</span>
+                    </p>
+                    <div id="postTags" class="d-flex flex-wrap">
+                        <!-- Tags will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <!-- Image Gallery -->
+                <div class="image-gallery" id="imageGallery">
+                    <div class="loading" id="loadingImages">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p class="mt-2">Loading images...</p>
+                    </div>
+                    <!-- Images will be dynamically inserted here -->
+                </div>
+
+                <!-- Post Content -->
+                <div class="post-content" id="postContent">
+                    <div class="loading" id="loadingContent">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p class="mt-2">Loading content...</p>
+                    </div>
+                    <!-- Content from contents.md will be inserted here -->
+                </div>
+        </div>
+    </div>
+
+    <!-- Menu Toggle Button -->
+    <div class="action-buttons">
+        <button class="menu-toggle action-btn burger-btn" onclick="toggleFloatingNav()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Floating Navigation Menu -->
+    <nav class="floating-nav" id="floatingNav">
+        <div class="mb-3">
+            <h6 class="text-muted mb-2">Navigation</h6>
+            <div id="dynamicNav">
+                <!-- Dynamic navigation items will be inserted here -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-action-buttons">
+        <button class="btn btn-outline-secondary" id="themeToggle">
+            <i class="fas fa-sun me-2"></i><span id="themeText">Light Theme</span>
+        </button>
+        <!-- <a href="/" class="btn btn-outline-secondary d-block"><i class="fas fa-arrow-left"></i></a> -->
+    </div>
+
+    
+
+    <!-- Bootstrap JS and marked.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        /**
+         * The main logic for the blog post page.
+         * This script fetches post metadata from posts.json, renders images,
+         * and loads the main content from contents.md based on the URL slug.
+         */
+
+        let currentPost = null;
+        let postSlug = '';
+        let postsData = [];
+        
+        // Function to display a custom alert message
+        // This version is now configurable for color and position
+        function showCustomAlert(message, alertType = 'success') {
+            const alertBox = document.createElement('div');
+            // Use position-fixed, top-0, end-0, and margin-top (mt-3)
+            // to position the alert in the top-right, below the title bar.
+            // 'alertType' makes the color configurable. 'success' is light green.
+            alertBox.className = `alert alert-${alertType} alert-dismissible fade show position-fixed top-0 end-0 mt-5 me-3`;
+            alertBox.style.maxWidth = '400px';
+            alertBox.style.zIndex = '1100';
+            alertBox.role = 'alert';
+            alertBox.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            `;
+            document.body.appendChild(alertBox);
+
+            setTimeout(() => {
+                const bootstrapAlert = bootstrap.Alert.getInstance(alertBox);
+                if (bootstrapAlert) {
+                    bootstrapAlert.close();
+                } else {
+                    alertBox.remove();
+                }
+            }, 3000);
+
+            return false;
+        }
+         // Function to handle tag clicks
+        function handleTagClick(tag) {
+            event.stopPropagation();
+
+            // console.log("handleTagClick called for :", tag);
+
+            const postsWithTag = postsData.filter(post => post.tags.includes(tag));
+            const count = postsWithTag.length;
+            const message = `There are ${count} posts with the tag: #${tag}.`;
+            showCustomAlert(message);
+        }
+
+        // Function to toggle the floating navigation menu
+        function toggleFloatingNav() {
+            const nav = document.getElementById('floatingNav');
+            const isShown = nav.classList.toggle('show');
+
+            // Add or remove a class to the body to prevent scrolling when the menu is open
+            document.body.classList.toggle('no-scroll', isShown);
+        }
+
+        // Generate dynamic navigation from static posts
+        function generateNavigation() {
+            const staticPosts = postsData.filter(post => post.type === 'static' && !post.hide);
+            const navContainer = document.getElementById('dynamicNav');
+            
+            let navHTML = '';
+            
+            staticPosts.forEach(post => {
+                const icon = post.slug === 'about' ? 'info-circle' : 'envelope';
+                navHTML += `<a class="nav-link" href="${getSlugUrl(post.slug)}"><i class="fas fa-${icon} me-2"></i>${post.title}</a>`;
+            });
+            
+            navContainer.innerHTML = navHTML;
+        }
+
+        // Function to extract the slug from the URL
+        function getPostSlugFromUrl() {
+            // Get the pathname, e.g., "/posts/sikkal/"
+            const path = window.location.pathname;
+            // Split by '/', filter out empty strings, and get the last part
+            const parts = path.split('/').filter(p => p);
+            return parts.length > 0 ? parts[parts.length - 1] : null;
+        }
+
+        // Function to display post details from a post data object
+        function displayPostDetails(postData) {
+            if (!postData) {
+                console.error("Post data is not available.");
+                document.getElementById('postTitle').textContent = "Post Not Found";
+                document.getElementById('postContent').innerHTML = "<p>The post you are looking for does not exist.</p>";
+                return;
+            }
+
+            // Update title and meta information
+            document.getElementById('pageTitle').textContent = postData.title;
+            document.getElementById('postTitle').textContent = postData.title;
+            document.getElementById('postAuthor').textContent = postData.author;
+            document.getElementById('postDate').textContent = new Date(postData.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            
+            // Render tags
+            const tagsContainer = document.getElementById('postTags');
+            tagsContainer.innerHTML = '';
+
+            if (postData.tags && postData.tags.length > 0) {
+                postData.tags.forEach(tag => {
+                    const tagLink = document.createElement('a');
+                    tagLink.textContent = tag;
+                    tagLink.className = 'tag-link';
+
+                    // Add a click event listener instead of a href attribute
+                    tagLink.addEventListener('click', (event) => {
+                        // Prevents the default action of the link (navigating to a new page)
+                        event.preventDefault();
+                        // Call the handleTagClick function with the tag name
+                        handleTagClick(tag);
+                    });
+                    tagsContainer.appendChild(tagLink);
+                });
+            }
+        }
+
+        // Function to render the image gallery
+        async function findAndDisplayImages(postData) {
+            // Select the HTML elements for the gallery and loading indicator
+            const gallery = document.getElementById('imageGallery');
+            const loadingIndicator = document.getElementById('loadingImages');
+
+            // Array to store found image filenames
+            const postImages = [];
+            let foundImages = false;
+
+            // Check a range of images concurrently
+            const promises = [];
+            for (let i = 1; i <= 10; i++) {
+                promises.push(fetch(`/posts/${postSlug}/img${i}.jpg`, { method: 'HEAD', cache: 'no-store' }));
+            }
+
+            try {
+                const responses = await Promise.all(promises);
+                responses.forEach((response, index) => {
+                    if (response.ok) {
+                        postImages.push(`/posts/${postSlug}/img${index + 1}.jpg`);
+                        foundImages = true;
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching images:', error);
+            }
+
+            // Handle cases where there are no images in the post data
+            if (!postData || !foundImages) {
+                if (loadingIndicator) loadingIndicator.remove();
+                gallery.innerHTML = `
+                    <div class="alert alert-warning text-center" role="alert">
+                        No images were found for this post.
+                    </div>
+                `;
+                return;
+            }
+
+            // Remove the loading indicator once we have the image data
+            if (loadingIndicator) loadingIndicator.remove();
+
+            // Get the total number of images to determine the best layout
+            const imageCount = postImages.length;
+            let colClass = 'col-12'; // Default to a single column for safety
+            
+            // --- Picstitch-like layout logic based on image count ---
+            if (imageCount === 1) {
+                colClass = 'col-12'; // Single, full-width image
+            } else if (imageCount === 2) {
+                // Two images side-by-side on medium screens and up
+                colClass = 'col-12 col-md-6';
+            } else if (imageCount === 3) {
+                // Three images in a row on medium screens and up
+                colClass = 'col-12 col-md-4';
+            } else if (imageCount === 4) {
+                // A 2x2 grid on small screens and up
+                colClass = 'col-12 col-sm-6';
+            } else if (imageCount === 5) {
+                // Two rows with 3 and 2 images on medium screens and up
+                colClass = 'col-12 col-md-4';
+            } else if (imageCount >= 6) {
+                // A consistent grid of 3 or 4 columns on larger screens
+                colClass = 'col-12 col-sm-6 col-md-4 col-lg-3';
+            }
+
+            // Start building the gallery HTML with a Bootstrap row
+            let galleryHTML = '<div class="row g-3">'; // g-3 adds a small gap between images
+
+            postImages.forEach(imageUrl => {
+                // Correct the image path by removing the redundant 'images/' prefix if it exists
+                // const cleanedFilename = imageFilename.startsWith('images/') ? imageFilename.substring('images/'.length) : imageFilename;
+                // const imageUrl = `/posts/${postSlug}/${cleanedFilename}`;
+                
+                // Add each image to the gallery with the determined column class
+                galleryHTML += `
+                    <div class="${colClass}">
+                        <div class="card h-100 overflow-hidden shadow-sm">
+                            <img src="${imageUrl}" class="card-img-top h-100 object-fit-cover" alt="Post image" loading="lazy">
+                        </div>
+                    </div>
+                `;
+            });
+
+            galleryHTML += '</div>';
+            
+            // Insert the generated HTML into the gallery container
+            gallery.innerHTML = galleryHTML;
+        }
+
+        // Function to load and display Markdown content
+        async function displayContent() {
+            const contentContainer = document.getElementById('postContent');
+            const loadingIndicator = document.getElementById('loadingContent');
+
+            // Remove the loading indicator as soon as we start
+            if (loadingIndicator) {
+                loadingIndicator.remove();
+            }
+            
+            try {
+                // Construct the path to the markdown file dynamically
+                const response = await fetch(`/posts/${postSlug}/contents.md`);
+                
+                if (response.ok) {
+                    // If the file is found, get the text and parse it as Markdown
+                    const markdownText = await response.text();
+                    contentContainer.innerHTML = marked.parse(markdownText);
+                } else {
+                    // If the file is not found, display a clear HTML alert
+                    contentContainer.innerHTML = `
+                        <div class="alert alert-warning text-center" role="alert">
+                            No content was found for this post.
+                        </div>
+                    `;
+                    console.warn(`contents.md not found for slug: ${postSlug}, using placeholder content.`);
+                }
+            } catch (e) {
+                // Handle network errors or other exceptions
+                console.error(`Error fetching contents.md for slug: ${postSlug}`, e);
+                contentContainer.innerHTML = `
+                    <div class="alert alert-danger text-center" role="alert">
+                        An error occurred while loading the post content.
+                    </div>
+                `;
+            }
+        }
+
+        // Function to initialize the theme toggle
+        function initializeThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeText = document.getElementById('themeText');
+            if (!themeToggle || !themeText) return;
+
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            setTheme(savedTheme);
+
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = document.documentElement.getAttribute('data-bs-theme') || 'dark';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                setTheme(newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+
+            function setTheme(theme) {
+                document.documentElement.setAttribute('data-bs-theme', theme);
+                if (theme === 'light') {
+                    themeText.textContent = 'Dark Theme';
+                    themeToggle.querySelector('i').className = 'fas fa-moon me-2';
+                } else {
+                    themeText.textContent = 'Light Theme';
+                    themeToggle.querySelector('i').className = 'fas fa-sun me-2';
+                }
+            }
+        }
+
+        // Main initialization function
+        async function initializePage() {
+            generateNavigation() 
+
+            postSlug = getPostSlugFromUrl();
+
+            if (!postSlug) {
+                // This page is likely being accessed directly or incorrectly.
+                // We'll show a friendly error message and stop further execution.
+                document.getElementById('postTitle').textContent = "Invalid URL";
+                document.getElementById('postContent').innerHTML = "<p>Please navigate to a valid blog post page.</p>";
+                // Remove loading indicators
+                document.getElementById('loadingImages').remove();
+                document.getElementById('loadingContent').remove();
+                initializeThemeToggle();
+                return;
+            }
+
+            try {
+                // Fetch the central posts.json file from the root
+                const postsResponse = await fetch('/posts.json');
+                if (!postsResponse.ok) {
+                    throw new Error('Failed to fetch central posts.json');
+                }
+                postsData = await postsResponse.json();
+                
+                // Find the post that matches the current slug
+                const post = postsData.find(p => p.slug === postSlug);
+
+                if (post) {
+                    currentPost = post;
+                    // Now that we have the data, we can render the page
+                    displayPostDetails(currentPost);
+                    // displayImages(currentPost);
+                    
+                    // Call within an async IIFE
+                    (async () => {
+                        try {
+                            await findAndDisplayImages(currentPost);
+                        } catch (error) {
+                            console.error('Error loading images:', error);
+                        }
+                    })();
+
+                    displayContent(currentPost);
+                } else {
+                    // Handle case where post is not found in the JSON data
+                    document.getElementById('postTitle').textContent = "Post Not Found";
+                    document.getElementById('postContent').innerHTML = "<p>The post you are looking for does not exist. Please check the URL and try again.</p>";
+                    // Remove loading indicators and image gallery to prevent empty placeholders
+                    document.getElementById('loadingImages').remove();
+                    document.getElementById('imageGallery').innerHTML = '';
+                    document.getElementById('loadingContent').remove();
+                }
+
+            } catch (e) {
+                console.error("Error during page initialization:", e);
+                document.getElementById('postTitle').textContent = "Error Loading Post";
+                document.getElementById('postContent').innerHTML = "<p>There was an error loading the blog post data. Please check the console for details.</p>";
+                document.getElementById('loadingImages').remove();
+                document.getElementById('loadingContent').remove();
+            } finally {
+                initializeThemeToggle();
+            }
+        }
+
+        // Start initialization when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>

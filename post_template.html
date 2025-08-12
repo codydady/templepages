@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Blog Post</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Theme Variables */
+        :root {
+            --theme-bg: var(--bs-dark);
+            --theme-bg-secondary: var(--bs-dark);
+            --theme-card-bg: var(--bs-dark);
+            --theme-text: var(--bs-light);
+            --theme-text-muted: var(--bs-secondary);
+            --theme-border: rgba(255, 255, 255, 0.1);
+            --theme-overlay: rgba(0, 0, 0, 0.7);
+            --theme-gradient: linear-gradient(135deg, var(--bs-dark) 0%, #1a1a2e 50%, var(--bs-dark) 100%);
+        }
+
+        /* Light/Ivory Theme */
+        [data-theme="light"] {
+            --theme-bg: #f8f6f0;
+            --theme-bg-secondary: #ede8dc;
+            --theme-card-bg: #ffffff;
+            --theme-text: #2c3e50;
+            --theme-text-muted: #6c757d;
+            --theme-border: rgba(0, 0, 0, 0.1);
+            --theme-overlay: rgba(255, 255, 255, 0.9);
+            --theme-gradient: linear-gradient(135deg, #f8f6f0 0%, #ede8dc 50%, #f8f6f0 100%);
+        }
+
+        [data-theme="light"] .navbar-dark {
+            background-color: var(--theme-bg-secondary) !important;
+            border-bottom: 1px solid var(--theme-border);
+        }
+
+        [data-theme="light"] .navbar-dark .navbar-brand,
+        [data-theme="light"] .navbar-dark .nav-link {
+            color: var(--theme-text) !important;
+        }
+
+        body {
+            background: var(--theme-gradient);
+            color: var(--theme-text);
+            min-height: 100vh;
+        }
+
+        /* Header with title bar */
+        .post-header {
+            background: var(--theme-card-bg);
+            border-bottom: 1px solid var(--theme-border);
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .post-title {
+            color: var(--theme-text);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .post-meta {
+            color: var(--theme-text-muted);
+            font-size: 1.1rem;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        /* Image slideshow container */
+        .image-slideshow {
+            background: var(--theme-card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--theme-border);
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+        }
+
+        .slide {
+            display: none;
+            position: relative;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* Navigation arrows */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            user-select: none;
+            transition: background-color 0.3s;
+        }
+
+        .next {
+            right: 0;
+        }
+
+        .prev:hover, .next:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Slide indicators */
+        .dots-container {
+            text-align: center;
+            padding: 20px 0;
+            background: var(--theme-card-bg);
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: var(--theme-text-muted);
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .dot.active, .dot:hover {
+            background-color: var(--bs-primary);
+        }
+
+        /* Image count display */
+        .image-count {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* Content area */
+        .post-content {
+            background: var(--theme-card-bg);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid var(--theme-border);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .post-content p {
+            margin-bottom: 1.5rem;
+            color: var(--theme-text);
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--theme-text);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Loading state */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--theme-text-muted);
+        }
+
+        .loading i {
+            font-size: 2rem;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Back button */
+        .back-button {
+            margin-bottom: 2rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .post-title {
+                font-size: 2rem;
+            }
+            
+            .post-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: flex-start;
+            }
+            
+            .slide img {
+                height: 250px;
+            }
+            
+            .post-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <div class="back-button">
+                <a href="../" class="btn btn-outline-primary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Posts
+                </a>
+            </div>
+            
+            <div class="ms-auto">
+                <button class="btn btn-outline-secondary me-2" id="themeToggle">
+                    <i class="fas fa-sun me-2"></i><span id="themeText">Light Theme</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <!-- Post Header -->
+        <div class="post-header">
+            <div class="container">
+                <h1 class="post-title" id="postTitle">Loading...</h1>
+                <div class="post-meta" id="postMeta">
+                    <span><i class="fas fa-user me-2"></i><span id="postAuthor">Loading...</span></span>
+                    <span><i class="fas fa-calendar me-2"></i><span id="postDate">Loading...</span></span>
+                    <span><i class="fas fa-images me-2"></i><span id="imageCountText">Loading images...</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Slideshow -->
+        <div class="image-slideshow">
+            <div class="slideshow-container" id="slideshowContainer">
+                <!-- Loading state -->
+                <div class="loading" id="loadingState">
+                    <i class="fas fa-spinner"></i>
+                    <p>Loading images...</p>
+                </div>
+            </div>
+            
+            <!-- Dots container -->
+            <div class="dots-container" id="dotsContainer">
+                <!-- Dots will be generated dynamically -->
+            </div>
+        </div>
+
+        <!-- Post Content -->
+        <div class="post-content" id="postContent">
+            <div class="loading">
+                <i class="fas fa-spinner"></i>
+                <p>Loading content...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        let currentSlide = 0;
+        let images = [];
+        let postData = {};
+
+        // Get slug from URL path
+        function getSlug() {
+            const path = window.location.pathname;
+            const pathParts = path.split('/').filter(part => part.length > 0);
+            return pathParts[pathParts.length - 1] || 'default';
+        }
+
+        // Load post metadata (you can customize this based on your data source)
+        async function loadPostMetadata() {
+            const slug = getSlug();
+            
+            // This is a sample data structure - replace with your actual data source
+            const samplePosts = {
+                'sacred-temple-rituals': {
+                    title: 'Sacred Temple Rituals and Their Deep Meanings',
+                    author: 'Guru Anandamaya',
+                    date: '2025-07-30'
+                },
+                'puja-essentials-guide': {
+                    title: 'Essential Puja Products for Your Home Temple',
+                    author: 'Pandit Raghavan', 
+                    date: '2025-07-29'
+                },
+                'nithyadharma-mobile-app': {
+                    title: 'Nithyadharma Mobile App: Your Pocket Temple',
+                    author: 'Tech Team',
+                    date: '2025-07-28'
+                }
+            };
+
+            return samplePosts[slug] || {
+                title: slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+                author: 'Author',
+                date: new Date().toISOString().split('T')[0]
+            };
+        }
+
+        // Discover images in the current folder
+        async function discoverImages() {
+            const slug = getSlug();
+            const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+            const discoveredImages = [];
+            
+            // Try common image naming patterns
+            const commonNames = [
+                'hero', 'main', 'cover', 'featured',
+                'image1', 'image2', 'image3', 'image4', 'image5',
+                'img1', 'img2', 'img3', 'img4', 'img5',
+                'photo1', 'photo2', 'photo3', 'photo4', 'photo5',
+                '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'
+            ];
+
+            // Check for each combination
+            for (const name of commonNames) {
+                for (const ext of imageExtensions) {
+                    try {
+                        const imagePath = `${name}.${ext}`;
+                        // Test if image exists by attempting to load it
+                        const exists = await checkImageExists(imagePath);
+                        if (exists) {
+                            discoveredImages.push(imagePath);
+                        }
+                    } catch (e) {
+                        // Image doesn't exist, continue
+                    }
+                }
+            }
+
+            // If no images found, use placeholder
+            if (discoveredImages.length === 0) {
+                discoveredImages.push(`https://images.unsplash.com/photo-1564769625905-50e93615e769?w=800&h=400&fit=crop&t=${Date.now()}`);
+            }
+
+            return discoveredImages;
+        }
+
+        // Check if image exists
+        function checkImageExists(imagePath) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = imagePath;
+                
+                // Timeout after 2 seconds
+                setTimeout(() => resolve(false), 2000);
+            });
+        }
+
+        // Load content from content.txt file
+        async function loadContent() {
+            try {
+                const response = await fetch('content.txt');
+                if (response.ok) {
+                    return await response.text();
+                }
+            } catch (e) {
+                console.log('Content file not found, using default content');
+            }
+
+            // Default content if file doesn't exist
+            const slug = getSlug();
+            return `
+                <h2>Welcome to ${slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</h2>
+                
+                <p>This is a sample blog post about ${slug.replace(/-/g, ' ')}. To customize this content, create a <strong>content.txt</strong> file in this directory.</p>
+                
+                <p>The content.txt file can contain HTML markup and will be displayed exactly as written. You can include:</p>
+                
+                <ul>
+                    <li>Paragraphs and headings</li>
+                    <li>Lists and formatting</li>
+                    <li>Links and emphasis</li>
+                    <li>Any other HTML content</li>
+                </ul>
+                
+                <p>Images in this folder (JPG, PNG, etc.) will automatically appear in the slideshow above.</p>
+                
+                <h3>How to Customize This Post</h3>
+                
+                <p>1. Add your images (JPG/PNG) to this folder with names like: hero.jpg, image1.png, photo2.jpg, etc.</p>
+                <p>2. Create a content.txt file with your blog post content</p>
+                <p>3. The page will automatically load and display everything!</p>
+            `;
+        }
+
+        // Create slideshow HTML
+        function createSlideshow(images) {
+            const container = document.getElementById('slideshowContainer');
+            
+            let slidesHTML = '';
+            images.forEach((image, index) => {
+                slidesHTML += `
+                    <div class="slide ${index === 0 ? 'active' : ''}">
+                        <img src="${image}" alt="Slide ${index + 1}">
+                        <div class="image-count">${index + 1} / ${images.length}</div>
+                    </div>
+                `;
+            });
+
+            if (images.length > 1) {
+                slidesHTML += `
+                    <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                    <button class="next" onclick="changeSlide(1)">&#10095;</button>
+                `;
+            }
+
+            container.innerHTML = slidesHTML;
+
+            // Create dots if more than one image
+            if (images.length > 1) {
+                const dotsContainer = document.getElementById('dotsContainer');
+                let dotsHTML = '';
+                images.forEach((_, index) => {
+                    dotsHTML += `<span class="dot ${index === 0 ? 'active' : ''}" onclick="currentSlideGoto(${index + 1})"></span>`;
+                });
+                dotsContainer.innerHTML = dotsHTML;
+            }
+        }
+
+        // Slideshow navigation
+        function changeSlide(n) {
+            showSlide(currentSlide + n);
+        }
+
+        function currentSlideGoto(n) {
+            showSlide(n - 1);
+        }
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            
+            if (n >= slides.length) currentSlide = 0;
+            if (n < 0) currentSlide = slides.length - 1;
+            else currentSlide = n;
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            if (slides[currentSlide]) {
+                slides[currentSlide].classList.add('active');
+            }
+            if (dots[currentSlide]) {
+                dots[currentSlide].classList.add('active');
+            }
+        }
+
+        // Auto-advance slideshow
+        function startAutoSlideshow() {
+            if (images.length > 1) {
+                setInterval(() => {
+                    changeSlide(1);
+                }, 5000); // Change slide every 5 seconds
+            }
+        }
+
+        // Initialize theme toggle
+        function initializeThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeText = document.getElementById('themeText');
+            
+            if (!themeToggle || !themeText) return;
+            
+            // Load saved theme or default to dark
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            setTheme(savedTheme);
+            
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                setTheme(newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+            
+            function setTheme(theme) {
+                if (theme === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    themeText.textContent = 'Dark Theme';
+                    themeToggle.querySelector('i').className = 'fas fa-moon me-2';
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                    themeText.textContent = 'Light Theme';
+                    themeToggle.querySelector('i').className = 'fas fa-sun me-2';
+                }
+            }
+        }
+
+        // Initialize everything
+        async function initializePage() {
+            // Load post metadata
+            postData = await loadPostMetadata();
+            
+            // Update page title and meta information
+            document.getElementById('pageTitle').textContent = postData.title;
+            document.getElementById('postTitle').textContent = postData.title;
+            document.getElementById('postAuthor').textContent = postData.author;
+            document.getElementById('postDate').textContent = postData.date;
+            document.title = postData.title;
+
+            // Discover and load images
+            try {
+                images = await discoverImages();
+                document.getElementById('imageCountText').textContent = `${images.length} image${images.length !== 1 ? 's' : ''}`;
+                
+                createSlideshow(images);
+                startAutoSlideshow();
+            } catch (e) {
+                console.error('Error loading images:', e);
+                document.getElementById('imageCountText').textContent = 'No images found';
+            }
+
+            // Load and display content
+            try {
+                const content = await loadContent();
+                document.getElementById('postContent').innerHTML = content;
+            } catch (e) {
+                console.error('Error loading content:', e);
+                document.getElementById('postContent').innerHTML = '<p>Error loading content.</p>';
+            }
+
+            // Initialize theme toggle
+            initializeThemeToggle();
+        }
+
+        // Start initialization when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>

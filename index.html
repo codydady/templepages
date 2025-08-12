@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temples, the Heart of Sanathana Dharma</title>
+    <!-- Using the standard Bootstrap CDN for dark/light themes -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for Dynamic Blog */
+
+        /* Imports for all the fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+        * {
+            font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+            font-size: 1.0rem; /* This makes the text 10% larger than the default */
+        }
+
+        .custom-title-text {
+            line-height: 1.2;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: font-family 0.5s ease, color 0.5s ease;
+        }
+
+        /* Configuration Variables */
+        /* Theme Variables */
+        :root, [data-bs-theme="dark"] {
+            /* Default to dark theme variables if not specified */
+            --theme-bg: var(--bs-dark);
+            --theme-bg-secondary: var(--bs-dark);
+            --theme-card-bg: var(--bs-dark);
+            --theme-text: var(--bs-light);
+            --theme-text-muted: var(--bs-secondary);
+            --theme-border: rgba(255, 255, 255, 0.1);
+            --theme-overlay: rgba(0, 0, 0, 0.7);
+            --theme-gradient: linear-gradient(135deg, var(--bs-dark) 0%, #1a1a2e 50%, var(--bs-dark) 100%);
+        }
+        [data-bs-theme="light"] {
+            --theme-bg: #f8f6f0;
+            --theme-bg-secondary: #ede8dc;
+            --theme-card-bg: #fff;
+            --theme-text: #2c3e50;
+            --theme-text-muted: #7f8c8d;
+            --theme-border: rgba(0, 0, 0, 0.1);
+        }
+
+
+        /* The main fix: applying the theme background to the body */
+       body {
+            background-color: var(--theme-bg);
+            color: var(--theme-text);
+            transition: background-color 0.3s, color 0.3s;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .w-80 { width: 80% !important; }
+
+        /* Floating navigation menu */
+        .floating-nav {
+            position: fixed;
+            top: 60px; /* Adjusted position to be below the navbar */
+            right: 20px;
+            z-index: 1030;
+            background: var(--theme-card-bg);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid var(--theme-border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            min-width: 200px;
+            max-height: 70vh;
+            overflow-y: auto;
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+        }
+
+        .floating-nav.show {
+            transform: translateX(0);
+        }
+
+        .floating-nav .nav-link {
+            color: var(--theme-text);
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-bottom: 4px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: block;
+        }
+
+        .floating-nav .nav-link:hover {
+            background: var(--theme-bg-secondary);
+            color: var(--bs-primary);
+        }
+
+        /* Menu toggle button now within the navbar */
+
+        .navbar {
+            background-color: var(--theme-bg-secondary) !important;
+            border-bottom: none; /* This removes the line at the bottom */
+            position: sticky;
+            top: 0.5rem; /* This creates a 1rem distance from the top of the page */
+            z-index: 1020;
+            border-radius: 12px; /* These are the curvy edges */
+            margin-bottom: 2rem; 
+        }
+
+         .navbar .container {
+            max-width: none;
+        }
+
+        /* New styling for the logo to create the "squircle" effect */
+        .navbar-logo {
+            width: 32px;
+            height: 32px;
+            object-fit: cover;
+            border-radius: 20%; /* Creates the "squircle" shape */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar-logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Enhanced logo styling */
+        .navbar-brand {
+            font-size: 1.25rem !important;
+            font-weight: 700 !important;
+        }
+
+        /* Floating menu toggle button */
+        .menu-toggle {
+            position: fixed; /* Makes the button float relative to the viewport */
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--theme-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+         .menu-toggle:hover {
+            transform: scale(1.3);
+        }
+
+        .header-title {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--theme-text);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            transition: color 0.3s ease;
+        }
+
+        .header-title:hover {
+            color: #ffcc00;
+        }
+
+        .logo-gem {
+            color: #ffc107 !important;
+            font-size: 1.8rem !important;
+            text-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+        }
+
+        /* No-scroll viewport layout */
+        .no-scroll {
+            height: 100vh;
+            overflow: hidden;
+            background: var(--theme-gradient);
+            color: var(--theme-text);
+        }
+
+        /* Updated styling for the action buttons */
+        .action-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1025;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-end;
+        }
+        
+        .action-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s ease;
+        }
+
+        .action-container:hover {
+            transform: translateX(-5px);
+        }
+
+        .action-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .action-btn i {
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .burger-btn {
+            background: linear-gradient(135deg, #c28b00, #966d00);
+            color: white;
+        }
+
+        .puja-btn {
+            background: linear-gradient(135deg, #d9534f, #c0392b);
+            color: white;
+        }
+
+        .app-btn {
+            background: linear-gradient(135deg, #4CAF50, #2e7d32);
+            color: white;
+        }
+
+        /* New Dark Yellow Gradient */
+        .action-container.dark-yellow {
+            background: linear-gradient(135deg, #c28b00, #966d00);
+        }
+
+        /* New Green Gradient */
+        .action-container.green {
+            background: linear-gradient(135deg, #4CAF50, #2e7d32);
+        }
+
+        .action-text {
+            color: var(--theme-text);
+            font-weight: 600;
+            background: var(--theme-card-bg);
+            padding: 8px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+            border: 1px solid var(--theme-border);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Pinned Posts Container --- */ 
+        .pinned-posts-container {
+            display: flex;
+            gap: 15px;
+            padding: 0;
+            border-radius: 0;
+            background: none;
+            border: none;
+            box-shadow: none;
+            transition: none;
+        }
+
+        .pinned-post-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0;
+            transition: transform 0.2s ease;
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .pinned-post-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+/*            border: 2px solid #ccc;*/
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .pinned-post-wrapper {
+            position: relative;
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .tooltip {
+            visibility: hidden;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            font-size: 12px;
+            border-radius: 4px;
+            padding: 4px 6px;
+            position: absolute;
+            z-index: 1;
+            bottom: 110%; /* above the image */
+            /* Adjusted position to move it to the left */
+            right: 0;
+            transform: translateX(0%);
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .pinned-post-wrapper:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Main viewport container */
+        .main-viewport {
+            height: calc(100vh - 56px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Posts grid container */
+        .posts-grid {
+            flex: 1;
+            padding: 1rem 0;
+            overflow: hidden;
+        }
+
+        /* Viewport post cards */
+        .viewport-post-card {
+            background: var(--theme-card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid var(--theme-border);
+            position: relative;
+            height: 100%;
+            min-height: 280px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-bs-theme="light"] .viewport-post-card {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .viewport-post-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--bs-primary);
+            z-index: 10;
+        }
+
+        /* Card image */
+        .card-image {
+            position: relative;
+            height: 140px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .viewport-post-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        /* Card overlay */
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--theme-overlay);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .viewport-post-card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .card-overlay i {
+            color: var(--bs-primary);
+            font-size: 1.5rem;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+        }
+
+        .viewport-post-card:hover .card-overlay i {
+            transform: scale(1.2);
+        }
+
+        /* --- BEGIN FIXES FOR RECENT POSTS CARD --- */
+        .recent-posts-list {
+            padding: 1rem;
+            height: 100%;
+            background: var(--theme-card-bg);
+            border-radius: 12px;
+        }
+
+        .recent-posts-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--theme-text);
+            text-align: center;
+            border-bottom: 1px solid var(--theme-border);
+            padding-bottom: 0.5rem;
+        }
+
+        .recent-posts-items {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            color: var(--theme-text-muted);
+            /* Added max-height and overflow for scrolling */
+            max-height: 250px; 
+            overflow-y: auto;
+        }
+
+        .recent-post-item {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--theme-border);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .recent-post-item:last-child {
+            border-bottom: none;
+        }
+
+        .recent-post-item:hover {
+            color: var(--bs-primary);
+        }
+
+        .recent-post-item-title {
+            font-size: 0.875rem;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        /* --- END FIXES FOR RECENT POSTS CARD --- */
+
+
+        /* Card content */
+        .card-content {
+            padding: 1rem;
+            height: calc(100% - 140px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--bs-secondary);
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+            color: var(--theme-text);
+            transition: color 0.3s ease;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .viewport-post-card:hover .card-title {
+            color: var(--bs-primary);
+        }
+
+        .card-excerpt {
+            color: var(--theme-text-muted);
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            font-size: 0.875rem;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+            margin-top: auto;
+        }
+
+        .tag {
+            background: rgba(var(--bs-primary-rgb), 0.2);
+            color: var(--bs-primary);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 500;
+        }
+
+        /* Responsive adjustments for 2+3 grid */
+        @media (min-width: 768px) {
+            .row-2-posts .col-md-6 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+            
+            .row-3-posts .col-md-4 {
+                flex: 0 0 33.333%;
+                max-width: 33.333%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-viewport {
+                height: calc(100vh - 56px);
+            }
+            
+            .viewport-post-card {
+                min-height: 240px;
+                margin-bottom: 1rem;
+            }
+            
+            .card-image {
+                height: 120px;
+            }
+            
+            .card-content {
+                height: calc(100% - 120px);
+                padding: 0.75rem;
+            }
+
+            /* Mobile navbar adjustments */
+            .navbar-brand {
+                font-size: 1rem !important;
+            }
+            
+            .logo-gem {
+                font-size: 1.4rem !important;
+            }
+            
+            /* This is the new rule to ensure the posts have top spacing */
+            #postsContainer {
+                margin-top: 1rem;
+            }
+
+            /* Hide button text on very small screens */
+            @media (max-width: 576px) {
+                .btn-text {
+                    display: none;
+                }
+                .action-text {
+                    display: none;
+                }
+                .action-buttons {
+                    gap: 10px;
+                }
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-body-tertiary">
+
+    <div class="container ">
+        <!--  title container  -->
+        <nav class="navbar navbar-expand-lg mt-1 mb-1 rounded-3">
+            <a class="navbar-brand ps-3  d-flex align-items-center flex-wrap" href="/">
+                <img src="/static/logo.png" alt="My Logo" class="navbar-logo me-2 rounded-circle" />
+                <span class="header-title">Temples - The Heart of Sanathana dharma</span>
+            </a>
+        </nav>
+
+        <!-- Main Viewport Container -->
+        <div id="postsContainer"class="my-4" >
+            <!-- Posts will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Menu Toggle Button -->
+    <div class="action-buttons">
+        <button class="menu-toggle action-btn burger-btn" onclick="toggleFloatingNav()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Floating Navigation Menu -->
+    <nav class="floating-nav" id="floatingNav">
+        <div class="mb-3">
+            <!-- <h6 class="text-muted mb-2">Navigation</h6> -->
+            <div id="dynamicNav">
+                <!-- Dynamic navigation items will be inserted here -->
+            </div>
+        </div>
+        <hr>
+        <div class="d-flex flex-column gap-2">
+            <!-- Theme Toggle Button -->
+            <button class="btn btn-outline-secondary btn-sm" id="themeToggle">
+                <i class="fas fa-sun me-2"></i>
+                <span id="themeText">Light Theme</span>
+            </button>
+            <!-- Refresh Button -->
+<!--             <button class="btn btn-outline-primary btn-sm" onclick="refreshPosts()">
+                <i class="fas fa-refresh me-2"></i>
+                Refresh
+            </button> -->
+        </div>
+    </nav>
+
+    <!-- Pinned Posts & Action Buttons -->
+    <div class="action-buttons">
+        <!-- Pinned Posts will be injected here -->
+        <div id="pinnedPostsContainer" class="pinned-posts-container d-flex flex-row">
+            <!-- Pinned posts will be dynamically inserted here -->
+        </div>
+
+        <a href="#" class="action-container" onclick="navigateToPost('puja-essentials-guide')">
+            <span class="action-text">Puja Products</span>
+            <button class="action-btn puja-btn">
+                <i class="fas fa-shopping-cart "></i>
+            </button>
+        </a>
+        <a href="#" class="action-container" onclick="navigateToPost('nithyadharma-mobile-app')">
+            <span class="action-text">Mobile App</span>
+            <button class="action-btn app-btn">
+                <i class="fas fa-mobile-alt"></i>
+            </button>
+        </a>
+    </div>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Global variables
+        let POSTS_DATA = [];
+        let currentPosts = [];
+        const POSTS_JSON_URL = './posts.json'; // The URL for the JSON file
+
+        const CONFIG = {
+            recentPostsCount: 5
+        };
+        
+        // Function to display a custom alert message
+        function showCustomAlert(message) {
+            const alertBox = document.createElement('div');
+            alertBox.className = 'alert alert-info alert-dismissible fade show fixed-top mt-3 mx-auto w-75';
+            alertBox.style.maxWidth = '400px';
+            alertBox.style.zIndex = '1100';
+            alertBox.role = 'alert';
+            alertBox.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            `;
+            document.body.appendChild(alertBox);
+
+            setTimeout(() => {
+                const bootstrapAlert = bootstrap.Alert.getInstance(alertBox);
+                if (bootstrapAlert) {
+                    bootstrapAlert.close();
+                } else {
+                    alertBox.remove();
+                }
+            }, 3000);
+
+            return false;
+        }
+
+         // Function to handle tag clicks
+        function handleTagClick(tag) {
+            event.stopPropagation();
+
+            console.log("handleTagClick called for :", tag);
+
+            const postsWithTag = POSTS_DATA.filter(post => post.tags.includes(tag));
+            const count = postsWithTag.length;
+            const message = `There are ${count} posts with the tag: #${tag}.`;
+            showCustomAlert(message);
+        }
+
+        // This function will fetch the posts data from the external JSON file
+        async function fetchPostsData() {
+            try {
+                // Using a relative path to fetch the posts.json file
+                const response = await fetch(POSTS_JSON_URL);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const allPosts = await response.json();
+                
+                // Filter out posts with hide: true
+                POSTS_DATA = allPosts.filter(post => !post.hide);
+
+                console.log("Posts data loaded successfully:", POSTS_DATA);
+                
+                // Now that the data is loaded, initialize the page
+                initializePage();
+            } catch (e) {
+                console.error("Could not fetch posts data:", e);
+                // Fallback to a default or show an error message
+                POSTS_DATA = [];
+                // Still try to render the page, maybe show a message
+                initializePage(); 
+            }
+        }
+
+        // Initialize the page components after fetching data
+        function initializePage() {
+            generateNavigation();
+            displayPosts();
+            displayPinnedPosts(); // New function to display pinned posts
+            initializeThemeToggle();
+        }
+
+        // Toggle floating navigation
+        function toggleFloatingNav() {
+            const nav = document.getElementById('floatingNav');
+            nav.classList.toggle('show');
+        }
+
+        // Close floating nav when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('floatingNav');
+            const toggle = document.querySelector('.menu-toggle');
+            
+            if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+                nav.classList.remove('show');
+            }
+        });
+
+        // Get recent posts based on date (for first row)
+        function getRecentPosts(count = CONFIG.recentPostsCount) {
+            const postsOnly = POSTS_DATA.filter(post => post.type === 'posts' && !post.hide);
+            
+            // Sort by date (most recent first)
+            postsOnly.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            return postsOnly.slice(0, count);
+        }
+
+        // Get random posts (for second row)
+        function getRandomPosts(count = 4, exclude = []) {
+            const postsOnly = POSTS_DATA.filter(post => 
+                post.type === 'posts' && !post.hide && !exclude.includes(post.slug)
+            );
+            
+            const shuffled = [...postsOnly].sort(() => 0.5 - Math.random());
+            
+            return shuffled.slice(0, count);
+        }
+        
+        // New function to get pinned posts
+        function getPinnedPosts() {
+            return POSTS_DATA.filter(post => post.pinned && !post.hide);
+        }
+        
+        // New function to display pinned posts
+        function displayPinnedPosts() {
+            const pinnedPosts = getPinnedPosts();
+            const container = document.getElementById('pinnedPostsContainer');
+            if (!container) return;
+
+            let pinnedHtml = '';
+            pinnedPosts.forEach(post => {
+                pinnedHtml += `
+                    <div class="pinned-post-wrapper">
+                        <a href="${getSlugUrl(post.slug)}" class="pinned-post-btn" style="text-decoration: none;">
+                            <img src="static/logo.png" alt="" aria-hidden="true">
+                        </a>
+                        <span class="tooltip">${post.title}</span>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = pinnedHtml;
+        }
+
+        // Generate dynamic navigation from static posts
+        function generateNavigation() {
+            const staticPosts = POSTS_DATA.filter(post => post.type === 'static' && !post.hide);
+            const navContainer = document.getElementById('dynamicNav');
+            
+            //let navHTML = '<a class="nav-link" href="/"><i class="fas fa-home me-2"></i>Home</a>';
+            
+            let navHTML = ''
+
+            staticPosts.forEach(post => {
+                const icon = post.slug === 'about' ? 'info-circle' : 'envelope';
+                navHTML += `<a class="nav-link" href="${getSlugUrl(post.slug)}"><i class="fas fa-${icon} me-2"></i>${post.title}</a>`;
+            });
+            
+            navContainer.innerHTML = navHTML;
+        }
+
+        // Helper function to format date
+        // function formatPostDate(dateString) {
+        //     const options = { day: 'numeric', month: 'short' };
+        //     const date = new Date(dateString);
+        //     return date.toLocaleDateString('en-US', options);
+        // }
+
+    function formatPostDate(dateString) {
+        const date = new Date(dateString);
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const month = monthNames[date.getMonth()];
+        const day = String(date.getDate()).padStart(2, '0');
+        const year = date.getFullYear();
+        return `${month} ${day}, ${year}`;
+    }
+
+        // Create post card HTML
+        function createPostCard(post) {
+            if (!post) return '';
+
+            // Gracefully fall back to static image if post.images is missing or empty
+            const randomImage = (post.images && post.images.length > 0)
+                ? `posts/${post.slug}/${post.images[Math.floor(Math.random() * post.images.length)]}`
+                : 'static/card-default.jpg'; // Fallback image
+
+            return `
+                <article class="viewport-post-card h-100" onclick="window.location.href='${getSlugUrl(post.slug)}'">
+                    <div class="card-image">
+                        <img src="${randomImage}" alt="${post.title}" class="img-fluid"
+                            onerror="this.onerror=null;this.src='static/card-default.jpg';">
+                        <div class="card-overlay">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="author">${post.author}</span>
+                            <span class="date">${formatPostDate(post.date)}</span>
+                        </div>
+                        <h3 class="card-title">${post.title}</h3>
+                        <p class="card-excerpt">${post.excerpt}</p>
+
+                        <div class="card-tags">
+                            ${post.tags.slice(0, 3).map(tag => `<span class="tag" onclick="handleTagClick('${tag}')">#${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                </article>
+            `;
+        }
+
+        /**
+         * Generates the HTML for the "Latest Posts" card.
+         * @param {Array<Object>} recentPosts The array of recent post objects.
+         * @returns {string} The HTML string for the latest posts card.
+         */
+        function getRecentPostsCard(recentPosts) {
+            let cardHtml = `
+                <article class="viewport-post-card h-100">
+                    <div class="recent-posts-list h-100">
+                        <h3 class="recent-posts-title">Latest Posts</h3>
+                        <ul class="recent-posts-items">
+            `;
+
+            for (let i = 0; i < recentPosts.length; i++) {
+                cardHtml += `
+                    <li class="recent-post-item" onclick="navigateToPost('${recentPosts[i].slug}')">
+                        <div class="recent-post-item-title">${formatPostDate(recentPosts[i].date)} - ${recentPosts[i].title}</div>
+                    </li>
+                `;
+            }
+
+            cardHtml += `
+                        </ul>
+                    </div>
+                </article>
+            `;
+
+            return cardHtml;
+        }
+
+        // Generate SEO-friendly slug URL
+        // function getSlugUrl(slug) {
+        //     return `/posts/${slug}/`;
+        // }
+
+        //  we dont need to use /posts/$(slug) because since we use 404 , it will not find the /slug url and will go there anyway. how intelligent
+        function getSlugUrl(slug) {
+            return `/${slug}/`;
+        }
+
+
+        // Navigate to a specific post
+        function navigateToPost(slug) {
+            window.location.href = getSlugUrl(slug);
+        }
+        
+        // Display posts in 2+3 grid layout
+        function displayPosts() {
+            const container = document.getElementById('postsContainer');
+            
+            const recentPosts = getRecentPosts(CONFIG.recentPostsCount);
+            const recentPostsCardHTML = getRecentPostsCard(recentPosts);
+            
+            const excludedSlugs = recentPosts.map(post => post.slug);
+            const pinnedSlugs = getPinnedPosts().map(post => post.slug);
+            const allExcludedSlugs = [...new Set([...excludedSlugs, ...pinnedSlugs])];
+            
+            const randomPosts = getRandomPosts(4, allExcludedSlugs);
+            currentPosts = [ ...recentPosts, ...randomPosts ];
+
+            let gridHTML = `
+                <!-- First row: 2 posts -->
+                <div class="row row-2-posts g-3 mb-3" style="height: 48%;">
+                    <div class="col-md-6">
+                        ${recentPostsCardHTML}
+                    </div>
+                    <div class="col-md-6">
+                        ${randomPosts[0] ? createPostCard(randomPosts[0]) : ''}
+                    </div>
+                </div>
+                
+                <!-- Second row: 3 posts -->
+                <div class="row row-3-posts g-3" style="height: 48%;">
+                    <div class="col-md-4">
+                        ${randomPosts[1] ? createPostCard(randomPosts[1]) : ''}
+                    </div>
+                    <div class="col-md-4">
+                        ${randomPosts[2] ? createPostCard(randomPosts[2]) : ''}
+                    </div>
+                    <div class="col-md-4">
+                        ${randomPosts[3] ? createPostCard(randomPosts[3]) : ''}
+                    </div>
+                </div>
+            `;
+            
+            container.innerHTML = gridHTML;
+            initializePostCards();
+        }
+
+        // Refresh posts function
+        function refreshPosts() {
+            const container = document.getElementById('postsContainer');
+            container.style.opacity = '0.5';
+            
+            setTimeout(() => {
+                displayPosts();
+                container.style.opacity = '1';
+            }, 300);
+        }
+
+        // Initialize post card interactions
+        function initializePostCards() {
+            const postCards = document.querySelectorAll('.viewport-post-card');
+            
+            postCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-4px) scale(1.02)';
+                    this.style.zIndex = '10';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                    this.style.zIndex = 'auto';
+                });
+            });
+        }
+
+        // Initialize theme toggle
+        function initializeThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeText = document.getElementById('themeText');
+            
+            if (!themeToggle || !themeText) return;
+            
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            setTheme(savedTheme);
+            
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = document.documentElement.getAttribute('data-bs-theme') || 'dark';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                setTheme(newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+            
+            function setTheme(theme) {
+                if (theme === 'light') {
+                    document.documentElement.setAttribute('data-bs-theme', 'light');
+                    themeText.textContent = 'Dark Theme';
+                    themeToggle.querySelector('i').className = 'fas fa-moon me-2';
+                } else {
+                    document.documentElement.setAttribute('data-bs-theme', 'dark');
+                    themeText.textContent = 'Light Theme';
+                    themeToggle.querySelector('i').className = 'fas fa-sun me-2';
+                }
+            }
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchPostsData();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+[
+        {
+        "slug": "about",
+        "type": "static",
+        "title": "About",
+        "author": "sriram",
+        "date": "2000-07-23",
+        "tags": ["sriram", "temples", "trains" , "nithyadharma"]
+    },
+    {
+        "slug": "privacy-policy",
+        "type": "posts",
+        "title": "NithyaDharma Mobile App Privacy Policy",
+        "author": "sriram",
+        "date": "2025-08-08",
+        "tags": ["nithyadharma", "templetracker"],
+        "hide":true
+    },
+    {
+        "slug": "what-is-sanathana-dharma",
+        "type": "posts",
+        "title": "What is Sanathana Dharma ?",
+        "author": "Sriram Seetharaman",
+        "date": "2023-11-10",
+        "tags": ["temples", "rituals", "spirituality" , "hinduism"]
+    },
+    {
+        "slug": "lokamotiv",
+        "type": "static",
+        "title": "Lokamotiv Technology Solutions",
+        "author": "Sriram Seetharaman",
+        "date": "2023-06-19",
+        "tags": ["lokamotiv", "dharma"]
+    },
+    {
+        "slug": "nithyadharma-puja-products",
+        "type": "posts",
+        "title": "Nithyadharma Puja Products",
+        "author": "R.Srinivasan",
+        "date": "2019-02-13",
+        "tags": ["nithyadharma", "spirituality", "wisdom" , "hinduism" ],
+        "pinned": true
+    }
+]
