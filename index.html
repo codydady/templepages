@@ -7,6 +7,7 @@
     
 
   <!--
+    todo - important : these are to reconcile change between git and local repo. sriram , aug 12,2025
     This script now runs immediately as the browser parses the HTML.
     It does not wait for the DOM to load, ensuring the <base> tag is set
     before the browser attempts to fetch any other relative resources.
@@ -26,11 +27,25 @@
 
     // Add the base tag to the head of the document
     document.head.prepend(baseTag);
+
+        // --- Fix specific ABSOLUTE paths ---
+    // Now, we must fix elements with paths that start with a '/'.
+    // We get the elements and prepend the basePath.
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      // Find the navbar brand link and fix its href.
+      const navbarBrand = document.querySelector('.navbar-brand');
+      if (navbarBrand) {
+        navbarBrand.href = basePath;
+      }
+      
+      // Find the logo image inside the navbar brand and fix its src.
+      const logoImg = document.querySelector('.navbar-logo');
+      if (logoImg) {
+        // We assume the original path was '/static/logo.png'
+        logoImg.src = `${basePath}static/logo.png`;
+      }
   </script>
-
-
-
-
 
     <!-- Using the standard Bootstrap CDN for dark/light themes -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
