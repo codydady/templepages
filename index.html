@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
-    <base href="/">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temples, the Heart of Sanathana Dharma</title>
+    
+
+  <!--
+    This script now runs immediately as the browser parses the HTML.
+    It does not wait for the DOM to load, ensuring the <base> tag is set
+    before the browser attempts to fetch any other relative resources.
+  -->
+  <script>
+    const repoName = 'templepages'; // 🚨 IMPORTANT: Change this to your repository name
+    const path = window.location.pathname;
+    const baseTag = document.createElement('base');
+
+    if (path.includes(`/${repoName}/`)) {
+      // We are on GitHub Pages, set the base to the repo name
+      baseTag.href = `/${repoName}/`;
+    } else {
+      // We are running locally, set the base to the root
+      baseTag.href = '/';
+    }
+
+    // Add the base tag to the head of the document
+    document.head.prepend(baseTag);
+  </script>
+
+
+
+
+
     <!-- Using the standard Bootstrap CDN for dark/light themes -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
