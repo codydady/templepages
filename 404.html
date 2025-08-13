@@ -562,7 +562,7 @@
                 const responses = await Promise.all(promises);
                 responses.forEach((response, index) => {
                     if (response.ok) {
-                        postImages.push(`/posts/${postSlug}/img${index + 1}.jpg`);
+                        postImages.push(`${basePath}posts/${postSlug}/img${index + 1}.jpg`);
                         foundImages = true;
                     }
                 });
