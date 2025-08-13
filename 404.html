@@ -14,10 +14,11 @@
     before the browser attempts to fetch any other relative resources.
   -->
   <script>
-    const repoName = 'templepages'; // 🚨 IMPORTANT: Change this to your repository name
+    const repoName = 'templepages'; // IMPORTANT: Change this to your repository name
     const path = window.location.pathname;
     const baseTag = document.createElement('base');
-
+    const MAX_IMGS_TO_FETCH = 7;
+    
     let basePath; // <-- Correctly declared here
 
     if (path.includes(`/${repoName}/`)) {
@@ -36,20 +37,20 @@
     // Now, we must fix elements with paths that start with a '/'.
     // We get the elements and prepend the basePath.
     
-    document.addEventListener('DOMContentLoaded', () => {
-      // Find the navbar brand link and fix its href.
-      const navbarBrand = document.querySelector('.navbar-brand');
-      if (navbarBrand) {
-        navbarBrand.href = basePath;
-      }
+  //   document.addEventListener('DOMContentLoaded', () => {
+  //     // Find the navbar brand link and fix its href.
+  //     const navbarBrand = document.querySelector('.navbar-brand');
+  //     if (navbarBrand) {
+  //       navbarBrand.href = basePath;
+  //     }
       
-      // Find the logo image inside the navbar brand and fix its src.
-      const logoImg = document.querySelector('.navbar-logo');
-      if (logoImg) {
-        // We assume the original path was '/static/logo.png'
-        logoImg.src = `${basePath}static/logo.png`;
-      }
-  })
+  //     // Find the logo image inside the navbar brand and fix its src.
+  //     const logoImg = document.querySelector('.navbar-logo');
+  //     if (logoImg) {
+  //       // We assume the original path was '/static/logo.png'
+  //       logoImg.src = `${basePath}static/logo.png`;
+  //     }
+  // })
   </script>
 
 
@@ -343,7 +344,8 @@
             <!-- The navbar-brand now wraps both the logo and the text -->
         <nav class="navbar navbar-expand-lg mt-1 mb-1 rounded-3">
             <a class="navbar-brand ps-3 d-flex align-items-center  flex-wrap" href="/">
-                <img src="/static/logo.png" alt="My Logo" class="navbar-logo me-2 rounded-circle" />
+                <!-- the img src is set from script uptop which looks for a img entry with navbar-logo class in it which the following is. so src is not reqd -->
+                <img  class="navbar-logo me-2 rounded-circle" />  
                 <span class="header-title">Temples - The Heart of Sanathana dharma</span>
             </a>
         </nav>
@@ -552,7 +554,7 @@
 
             // Check a range of images concurrently
             const promises = [];
-            for (let i = 1; i <= 10; i++) {
+            for (let i = 1; i <= MAX_IMGS_TO_FETCH; i++) {
                 promises.push(fetch(`/posts/${postSlug}/img${i}.jpg`, { method: 'HEAD', cache: 'no-store' }));
             }
 
@@ -576,6 +578,8 @@
                         No images were found for this post.
                     </div>
                 `;
+                console.warn(`no img<?>.jpg files found for slug: ${postSlug} .`);
+
                 return;
             }
 
