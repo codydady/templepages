@@ -18,7 +18,7 @@
     const path = window.location.pathname;
     const baseTag = document.createElement('base');
     const MAX_IMGS_TO_FETCH = 7;
-    
+
     let basePath; // <-- Correctly declared here
 
     if (path.includes(`/${repoName}/`)) {
@@ -555,7 +555,7 @@
             // Check a range of images concurrently
             const promises = [];
             for (let i = 1; i <= MAX_IMGS_TO_FETCH; i++) {
-                promises.push(fetch(`/posts/${postSlug}/img${i}.jpg`, { method: 'HEAD', cache: 'no-store' }));
+                promises.push(fetch(`${basePath}posts/${postSlug}/img${i}.jpg`, { method: 'HEAD', cache: 'no-store' }));
             }
 
             try {
