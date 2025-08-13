@@ -37,20 +37,20 @@
     // Now, we must fix elements with paths that start with a '/'.
     // We get the elements and prepend the basePath.
     
-  //   document.addEventListener('DOMContentLoaded', () => {
-  //     // Find the navbar brand link and fix its href.
-  //     const navbarBrand = document.querySelector('.navbar-brand');
-  //     if (navbarBrand) {
-  //       navbarBrand.href = basePath;
-  //     }
+    document.addEventListener('DOMContentLoaded', () => {
+      // Find the navbar brand link and fix its href.
+      const navbarBrand = document.querySelector('.navbar-brand');
+      if (navbarBrand) {
+        navbarBrand.href = basePath;
+      }
       
-  //     // Find the logo image inside the navbar brand and fix its src.
-  //     const logoImg = document.querySelector('.navbar-logo');
-  //     if (logoImg) {
-  //       // We assume the original path was '/static/logo.png'
-  //       logoImg.src = `${basePath}static/logo.png`;
-  //     }
-  // })
+      // Find the logo image inside the navbar brand and fix its src.
+      const logoImg = document.querySelector('.navbar-logo');
+      if (logoImg) {
+        // We assume the original path was '/static/logo.png'
+        logoImg.src = `${basePath}static/logo.png`;
+      }
+  })
   </script>
 
 
