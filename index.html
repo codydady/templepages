@@ -860,13 +860,12 @@
         function generateNavigation() {
             const staticPosts = POSTS_DATA.filter(post => post.type === 'static' && !post.hide);
             const navContainer = document.getElementById('dynamicNav');
-            
-            //let navHTML = '<a class="nav-link" href="/"><i class="fas fa-home me-2"></i>Home</a>';
-            
+                        
             let navHTML = ''
+            console.log('index generateNavigation called with staticPosts.length ' + staticPosts.length);
 
             staticPosts.forEach(post => {
-                const icon = post.slug === 'about' ? 'info-circle' : 'envelope';
+                const icon = post.slug === 'about' ? 'info-circle' : 'train';
                 navHTML += `<a class="nav-link" href="${getSlugUrl(post.slug)}"><i class="fas fa-${icon} me-2"></i>${post.title}</a>`;
             });
             
@@ -880,15 +879,39 @@
         //     return date.toLocaleDateString('en-US', options);
         // }
 
-    function formatPostDate(dateString) {
-        const date = new Date(dateString);
-        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        const month = monthNames[date.getMonth()];
-        const day = String(date.getDate()).padStart(2, '0');
-        const year = date.getFullYear();
-        return `${month} ${day}, ${year}`;
-    }
+    // function formatPostDate(dateString) {
+    //     const date = new Date(dateString);
+    //     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    //     const month = monthNames[date.getMonth()];
+    //     const day = String(date.getDate()).padStart(2, '0');
+    //     const year = date.getFullYear();
+    //     return `${month} ${day}, ${year}`;
+    // }
 
+function formatPostDate(dateString) {
+    const postDate = new Date(dateString);
+    const now = new Date();
+    const oneWeekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
+
+    // Format the date as "Oct 27, 2023"
+    const formattedDate = postDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+    });
+
+    // Check if the post is less than one week old
+    const isNew = (now - postDate) < oneWeekInMilliseconds;
+
+    if (isNew) {
+        // Return the formatted date with a 'New' badge span
+        // We're using a Bootstrap badge for a clean look
+        return `${formattedDate} <span class="badge bg-warning ms-2">New</span>`;
+    } else {
+        // Return only the formatted date
+        return formattedDate;
+    }
+}
         // Create post card HTML
         function createPostCard(post) {
             if (!post) return '';
@@ -954,20 +977,11 @@
         }
 
         // Generate SEO-friendly slug URL
-        // function getSlugUrl(slug) {
-        //     return `/posts/${slug}/`;
-        // }
-
         //  we dont need to use /posts/$(slug) because since we use 404 , it will not find the /slug url and will go there anyway. how intelligent
-        // function getSlugUrl(slug) {
-        //     return `/${slug}/`;
-        // }
-
         // for this to work with both git and local , we sud do a basePath check as weall
         function getSlugUrl(slug) {
             return `${basePath}${slug}/`;
         }
-
 
         // Navigate to a specific post
         function navigateToPost(slug) {

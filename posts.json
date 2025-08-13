@@ -24,6 +24,14 @@
         "date": "2023-11-10",
         "tags": ["temples", "rituals", "spirituality" , "hinduism"]
     },
+        {
+        "slug": "whdat-is-sanathana-dharma",
+        "type": "posts",
+        "title": "new check ?",
+        "author": "Sriram Seetharaman",
+        "date": "2025-8-10",
+        "tags": ["temples", "rituals", "spirituality" , "hinduism"]
+    },
     {
         "slug": "lokamotiv",
         "type": "static",

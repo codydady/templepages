@@ -470,16 +470,25 @@
             document.body.classList.toggle('no-scroll', isShown);
         }
 
+        // Generate SEO-friendly slug URL
+        //  we dont need to use /posts/$(slug) because since we use 404 , it will not find the /slug url and will go there anyway. how intelligent
+        // for this to work with both git and local , we sud do a basePath check as weall
+        function getSlugUrl(slug) {
+            return `${basePath}${slug}/`;
+        }
+
         // Generate dynamic navigation from static posts
         function generateNavigation() {
+
             const staticPosts = postsData.filter(post => post.type === 'static' && !post.hide);
             const navContainer = document.getElementById('dynamicNav');
             
             let navHTML = '';
             
             staticPosts.forEach(post => {
-                const icon = post.slug === 'about' ? 'info-circle' : 'envelope';
+                const icon = post.slug === 'about' ? 'info-circle' : 'universal-access';
                 navHTML += `<a class="nav-link" href="${getSlugUrl(post.slug)}"><i class="fas fa-${icon} me-2"></i>${post.title}</a>`;
+                // console.log('generateNavigation for '+ post.slug);
             });
             
             navContainer.innerHTML = navHTML;
@@ -689,8 +698,6 @@
 
         // Main initialization function
         async function initializePage() {
-            generateNavigation() 
-
             postSlug = getPostSlugFromUrl();
 
             if (!postSlug) {
@@ -731,8 +738,14 @@
                         }
                     })();
 
+                    // this is for filling the hamburger
+                    generateNavigation() 
+
+                    // this is for the post contents
                     displayContent(currentPost);
-                } else {
+                
+                } 
+                else {
                     // Handle case where post is not found in the JSON data
                     document.getElementById('postTitle').textContent = "Post Not Found";
                     document.getElementById('postContent').innerHTML = "<p>The post you are looking for does not exist. Please check the URL and try again.</p>";
