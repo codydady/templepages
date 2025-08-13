@@ -3,7 +3,7 @@
         "slug": "about",
         "type": "static",
         "title": "About",
-        "author": "sriram",
+        "author": "Sriram Seetharaman",
         "date": "2000-07-23",
         "tags": ["sriram", "temples", "trains" , "nithyadharma"]
     },
@@ -31,7 +31,7 @@
         "author": "Sriram Seetharaman",
         "date": "2025-6-14",
         "tags": ["temples", "rituals", "spirituality" , "hinduism"]
-    },
+    },  
     {
         "slug": "lokamotiv",
         "type": "static",
@@ -39,14 +39,23 @@
         "author": "Sriram Seetharaman",
         "date": "2023-06-19",
         "tags": ["lokamotiv", "dharma"]
-    },
+    },   
     {
         "slug": "nithyadharma-puja-products",
         "type": "posts",
-        "title": "Nithyadharma Puja Products",
+        "title": "Nithyadharma Authentic Puja Products",
         "author": "R.Srinivasan",
         "date": "2019-02-13",
         "tags": ["nithyadharma", "spirituality", "wisdom" , "hinduism" ],
+        "pinned": true
+    },   
+    {
+        "slug": "which-temple-to-start-with",
+        "type": "posts",
+        "title": "Which temple to start my visit and how to see temples ?? ",
+        "author": "Bharanidharan",
+        "date": "2025-08-13",
+        "tags": [ "spirituality", "wisdom" , "hinduism" ],
         "pinned": true
     }
 ]

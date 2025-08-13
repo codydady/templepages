@@ -6,7 +6,6 @@
     <title id="pageTitle">Templepages - temples , trains , nithyadharma & sriram ! </title>
     <!-- Bootstrap CSS and Font Awesome for icons -->
 
-
   <!--
     todo - important : these are to reconcile change between git and local repo. sriram , aug 12,2025
     This script now runs immediately as the browser parses the HTML.
@@ -59,9 +58,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
     <style>
         * {
-            font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+            font-family: "Lora", "Palatino Linotype", "Book Antiqua", Palatino, serif;
             font-size: 1.0rem; /* This makes the text 10% larger than the default */
         }
 
@@ -131,8 +132,8 @@
 
         /* New styling for the logo to create the "squircle" effect */
         .navbar-logo {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             object-fit: cover;
             border-radius: 20%; /* Creates the "squircle" shape */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -551,6 +552,7 @@
             // Array to store found image filenames
             const postImages = [];
             let foundImages = false;
+            let imgurl ;
 
             // Check a range of images concurrently
             const promises = [];
@@ -562,7 +564,10 @@
                 const responses = await Promise.all(promises);
                 responses.forEach((response, index) => {
                     if (response.ok) {
-                        postImages.push(`${basePath}posts/${postSlug}/img${index + 1}.jpg`);
+                        imgurl = `${basePath}posts/${postSlug}/img${index + 1}.jpg` ;
+                        console.log(`valid images found out of 7 are  ${imgurl} .`);
+
+                        postImages.push(imgurl);
                         foundImages = true;
                     }
                 });
