@@ -50,12 +50,20 @@
         "pinned": true
     },   
     {
+        "slug": "ganapathy-agraharam",
+        "type": "posts",
+        "title": "Maha Ganapathy temple, Ganapathy Agraharam",
+        "author": "Sriram S.",
+        "date": "2002-02-23",
+        "tags": ["temple", "spirituality", "wisdom" , "hinduism" ]
+    },   
+    {
         "slug": "which-temple-to-start-with",
         "type": "posts",
         "title": "Which temple to start my visit and how to see temples ?? ",
         "author": "Bharanidharan",
         "date": "2025-08-13",
-        "tags": [ "spirituality", "wisdom" , "hinduism" ],
+        "tags": [ "spirituality", "wisdom" , "hinduism"  , "blog"],
         "pinned": true
     }
 ]

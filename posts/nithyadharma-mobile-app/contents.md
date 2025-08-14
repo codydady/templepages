@@ -8,7 +8,9 @@ Consuming is plodding whereas Dharma is momentous. It paves way for happiness.
 
 <strong>Download Nithya Dharma App from Google Playstore</strong>
 
-<a href="https://play.google.com/store/apps/details?id=com.lokamotiv.nithyadharma">https://play.google.com/store/apps/details?id=com.lokamotiv.nithyadharma</a>&nbsp;
+<!-- <a href="https://play.google.com/store/apps/details?id=com.lokamotiv.nithyadharma">https://play.google.com/store/apps/details?id=com.lokamotiv.nithyadharma</a>&nbsp; -->
+
+<a href="https://play.google.com/store/apps/details?id=com.sd.nithyadharma&pcampaignid=web_share">https://play.google.com/store/apps/details?id=com.sd.nithyadharma&pcampaignid=web_share</a>&nbsp;
 
 <strong>We also collect donations for lighting a lamp in village temples.&nbsp; if you are interested, you may do so following instructions within the App </strong>
 
