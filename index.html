@@ -164,14 +164,6 @@
             max-width: none;
         }
 
-        .navbar-sticky {
-            position: sticky;
-            top: 0;
-            z-index: 1000; /* Ensure it stays above other content */
-            background-color: var(--theme-bg-secondary); /* Match your theme */
-            padding: 1rem 0; /* Adjust padding as needed */
-        }
-
         /* New styling for the logo to create the "squircle" effect */
         .navbar-logo {
             width: 36px;
@@ -727,7 +719,7 @@
         const POSTS_JSON_URL = './posts.json'; // The URL for the JSON file , the . is all important
 
         const CONFIG = {
-            recentPostsCount: 5
+            recentPostsCount: 20
         };
         
         // Function to display a custom alert message
@@ -870,7 +862,7 @@
             const navContainer = document.getElementById('dynamicNav');
                         
             let navHTML = ''
-            console.log('index generateNavigation called with staticPosts.length ' + staticPosts.length);
+            //console.log('index generateNavigation called with staticPosts.length ' + staticPosts.length);
 
             staticPosts.forEach(post => {
                 const icon = post.slug === 'about' ? 'info-circle' : 'train';
@@ -880,54 +872,104 @@
             navContainer.innerHTML = navHTML;
         }
 
-        // Helper function to format date
-        // function formatPostDate(dateString) {
-        //     const options = { day: 'numeric', month: 'short' };
-        //     const date = new Date(dateString);
-        //     return date.toLocaleDateString('en-US', options);
+        function formatPostDate(dateString) {
+            const postDate = new Date(dateString);
+            const now = new Date();
+            const oneWeekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
+
+            // Format the date as "Oct 27, 2023"
+            const formattedDate = postDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+
+            // Check if the post is less than one week old
+            const isNew = (now - postDate) < oneWeekInMilliseconds;
+
+            if (isNew) {
+                // Return the formatted date with a 'New' badge span
+                // We're using a Bootstrap badge for a clean look
+                return `${formattedDate} <span class="badge bg-warning ms-2">New</span>`;
+            } else {
+                // Return only the formatted date
+                return formattedDate;
+            }
+        }
+
+        /**
+         * Tries to fetch a set of potential images for a post and returns a random valid one.
+         *
+         * It will attempt to load 'img1.jpg', 'img2.jpg', and 'img3.jpg'.
+         * All valid image URLs are collected into a list, and then one is chosen randomly.
+         * If no valid images are found, it falls back to a default image.
+         *
+         * @param {object} post The post object, containing a slug.
+         * @returns {Promise<string>} A promise that resolves to the URL of a randomly
+         * selected valid image or the path to a default fallback image.
+         */
+
+        // NOT USED AS ITS TOO COMPLEX FOR MY NEEDS NOW. SO WILL COMMENT THIS OUT 
+        // async function getRandomValidPostImage(post) {
+
+        //   // Define the potential image names to try.
+        //   const potentialImages = ['img1.jpg', 'img2.jpg', 'img3.jpg' ];
+        //   const validImages = []; // Array to store the URLs of images that exist.
+
+        //   // Iterate through each potential image name.
+        //   for (const imageName of potentialImages) {
+        //     const imagePath = `${basePath}posts/${post.slug}/${imageName}`;
+
+        //     try {
+        //       // Use the fetch API with the HEAD method to check if the image exists.
+        //       // `HEAD` is more efficient than `GET` because it doesn't download the image data.
+        //       const response = await fetch(imagePath, { method: 'HEAD' });
+
+        //       // `response.ok` is true for a status in the range 200-299.
+        //       if (response.ok) {
+        //         // If a valid image is found, add its path to our list.
+        //         validImages.push(imagePath);
+        //       }
+        //     } catch (error) {
+        //       // Ignore network errors or other fetch failures.
+        //       // The loop will continue to the next image path.
+        //       console.error(`Failed to fetch ${imagePath}:`, error);
+        //     }
+        //   }
+        //   console.log("for post "+ post.slug + "found  "+ validImages.length + " images");
+
+        //   // Check if we found any valid images.
+        //   if (validImages.length > 0) {
+        //     // If we have at least one valid image, pick a random one from the list.
+        //     const randomIndex = Math.floor(Math.random() * validImages.length);
+        //     //console.log("for post picked image is "+ validImages[randomIndex] ); 
+        //     return validImages[randomIndex];
+        //   } 
+        //   else {
+        //     // If the list is empty, return the fallback image.
+        //     console.log("no image found for header , so picking card-default");
+        //     return 'static/card-default.jpg';
+        //   }
         // }
 
-    // function formatPostDate(dateString) {
-    //     const date = new Date(dateString);
-    //     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    //     const month = monthNames[date.getMonth()];
-    //     const day = String(date.getDate()).padStart(2, '0');
-    //     const year = date.getFullYear();
-    //     return `${month} ${day}, ${year}`;
-    // }
 
-function formatPostDate(dateString) {
-    const postDate = new Date(dateString);
-    const now = new Date();
-    const oneWeekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
-
-    // Format the date as "Oct 27, 2023"
-    const formattedDate = postDate.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-    });
-
-    // Check if the post is less than one week old
-    const isNew = (now - postDate) < oneWeekInMilliseconds;
-
-    if (isNew) {
-        // Return the formatted date with a 'New' badge span
-        // We're using a Bootstrap badge for a clean look
-        return `${formattedDate} <span class="badge bg-warning ms-2">New</span>`;
-    } else {
-        // Return only the formatted date
-        return formattedDate;
-    }
-}
         // Create post card HTML
         function createPostCard(post) {
             if (!post) return '';
 
             // Gracefully fall back to static image if post.images is missing or empty
-            const randomImage = (post.images && post.images.length > 0)
-                ? `posts/${post.slug}/${post.images[Math.floor(Math.random() * post.images.length)]}`
-                : 'static/card-default.jpg'; // Fallback image
+            // const randomImage = (post.images && post.images.length > 0)
+            //     ? `posts/${post.slug}/${post.images[Math.floor(Math.random() * post.images.length)]}`
+            //     : 'static/card-default.jpg'; // Fallback image
+            // let randomImage = '';
+          
+            // randomImage =   getRandomValidPostImage(post);
+                // console.log("in createPostCard, randomImage is "+ randomImage);
+      
+            // Gracefully fall back to static image if post.images is missing or empty
+            const randomImage =  `posts/${post.slug}/img1.jpg` ;
+                // : 'static/card-default.jpg'; // Fallback image
+            // console.log("in createPostCard, randomImage is "+ randomImage);
 
             return `
                 <article class="viewport-post-card h-100" onclick="window.location.href='${getSlugUrl(post.slug)}'">
@@ -963,7 +1005,7 @@ function formatPostDate(dateString) {
             let cardHtml = `
                 <article class="viewport-post-card h-100">
                     <div class="recent-posts-list h-100">
-                        <h3 class="recent-posts-title">Latest Posts</h3>
+                        <h3 class="recent-posts-title">Recent Posts</h3>
                         <ul class="recent-posts-items">
             `;
 
@@ -1003,10 +1045,14 @@ function formatPostDate(dateString) {
             const recentPosts = getRecentPosts(CONFIG.recentPostsCount);
             const recentPostsCardHTML = getRecentPostsCard(recentPosts);
             
-            const excludedSlugs = recentPosts.map(post => post.slug);
-            const pinnedSlugs = getPinnedPosts().map(post => post.slug);
-            const allExcludedSlugs = [...new Set([...excludedSlugs, ...pinnedSlugs])];
+            // was as of aug 15,2025
+            // const excludedSlugs = recentPosts.map(post => post.slug);
+            // const pinnedSlugs = getPinnedPosts().map(post => post.slug);
+            // const allExcludedSlugs = [...new Set([...excludedSlugs, ...pinnedSlugs])];
             
+            // changing allExcludedSlugs to empty list so my postcards are populated irrespective of lesser number of posts.
+            const allExcludedSlugs = [];
+
             const randomPosts = getRandomPosts(4, allExcludedSlugs);
             currentPosts = [ ...recentPosts, ...randomPosts ];
 
@@ -1014,10 +1060,10 @@ function formatPostDate(dateString) {
                 <!-- First row: 2 posts -->
                 <div class="row row-2-posts g-3 mb-3" style="height: 48%;">
                     <div class="col-md-6">
-                        ${recentPostsCardHTML}
+                        ${randomPosts[0] ? createPostCard(randomPosts[0]) : ''}
                     </div>
                     <div class="col-md-6">
-                        ${randomPosts[0] ? createPostCard(randomPosts[0]) : ''}
+                        ${recentPostsCardHTML}
                     </div>
                 </div>
                 

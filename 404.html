@@ -16,7 +16,7 @@
     const repoName = 'templepages'; // IMPORTANT: Change this to your repository name
     const path = window.location.pathname;
     const baseTag = document.createElement('base');
-    const MAX_IMGS_TO_FETCH = 7;
+    const MAX_IMGS_TO_FETCH = 8;
 
     let basePath; // <-- Correctly declared here
 
@@ -565,7 +565,7 @@
                 responses.forEach((response, index) => {
                     if (response.ok) {
                         imgurl = `${basePath}posts/${postSlug}/img${index + 1}.jpg` ;
-                        console.log(`valid images found out of 7 are  ${imgurl} .`);
+                        // console.log(`valid images found out of 7 are  ${imgurl} .`);
 
                         postImages.push(imgurl);
                         foundImages = true;
