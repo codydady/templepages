@@ -4,20 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temples, the Heart of Sanathana Dharma</title>
-    
 
-  <!--
-    todo - important : these are to reconcile change between git and local repo. sriram , aug 12,2025
-    This script now runs immediately as the browser parses the HTML.
-    It does not wait for the DOM to load, ensuring the <base> tag is set
-    before the browser attempts to fetch any other relative resources.
-  -->
-  <script>
+    <script>
+        // CRITICAL: This script now runs immediately as the browser parses the HTML.
+        // It does not wait for the DOM to load, ensuring the <base> tag is set
+        // before the browser attempts to fetch any other relative resources.
         const repoName = 'templepages'; // IMPORTANT: Change this to your repository name
         const path = window.location.pathname;
         const baseTag = document.createElement('base');
 
-        let basePath; // <-- Correctly declared here
+        let basePath;
 
         if (path.includes(`/${repoName}/`)) {
           // We are on GitHub Pages, the base path is the repo name
@@ -31,54 +27,54 @@
 
         // Add the base tag to the head of the document
         document.head.prepend(baseTag);
-
-            // --- Fix specific ABSOLUTE paths ---
-        // Now, we must fix elements with paths that start with a '/'.
-        // We get the elements and prepend the basePath.
-        
-      //   document.addEventListener('DOMContentLoaded', () => {
-      //     // Find the navbar brand link and fix its href.
-      //     const navbarBrand = document.querySelector('.navbar-brand');
-      //     if (navbarBrand) {
-      //       navbarBrand.href = basePath;
-      //     }
-          
-      //     // Find the logo image inside the navbar brand and fix its src.
-      //     const logoImg = document.querySelector('.navbar-logo');
-      //     if (logoImg) {
-      //       // We assume the original path was '/static/logo.png'
-      //       logoImg.src = `${basePath}static/logo.png`;
-      //     }
-      // })
-  </script>
+    </script>
 
     <!-- Using the standard Bootstrap CDN for dark/light themes -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
     <style>
-        /* Custom styles for Dynamic Blog */
-
-        /* Imports for all the fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
-
-        * {
-            font-family: "Lora", "Crimson Text", "Book Antiqua",serif;
-            font-size: 1.0rem; /* This makes the text 10% larger than the default */
+        /*
+            CORRECTION: This CSS ensures the body has a consistent look and feel
+            without managing the layout, which is now done by individual containers.
+        */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: "Lora", "Crimson Text", "Book Antiqua", serif;
+            font-size: 1.0rem;
+            line-height: 1.6;
         }
 
-        .custom-title-text {
-            line-height: 1.2;
-            letter-spacing: 1px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            transition: font-family 0.5s ease, color 0.5s ease;
+        /*
+            CORRECTION: This is the core fix. The header is now fixed to the top
+            of the viewport, ensuring it never scrolls.
+        */
+        .fixed-header-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1020;
+            background-color: transparent; /* Allows content below to show through if transparent */
+            padding: 0 1rem; /* Adjust padding to match the main content container */
+        }
+
+        /*
+            CORRECTION: This is the main content wrapper. The top margin
+            ensures the content is pushed down far enough to be fully visible,
+            even when the header wraps.
+        */
+        .main-content-wrapper {
+            margin-top: 120px; /* Increased margin for desktop to prevent overlap */
+            padding: 1rem;
         }
 
         /* Configuration Variables */
-        /* Theme Variables */
         :root, [data-bs-theme="dark"] {
-            /* Default to dark theme variables if not specified */
             --theme-bg: var(--bs-dark);
             --theme-bg-secondary: var(--bs-dark);
             --theme-card-bg: var(--bs-dark);
@@ -86,7 +82,6 @@
             --theme-text-muted: var(--bs-secondary);
             --theme-border: rgba(255, 255, 255, 0.1);
             --theme-overlay: rgba(0, 0, 0, 0.7);
-            --theme-gradient: linear-gradient(135deg, var(--bs-dark) 0%, #1a1a2e 50%, var(--bs-dark) 100%);
         }
         [data-bs-theme="light"] {
             --theme-bg: #f8f6f0;
@@ -97,23 +92,71 @@
             --theme-border: rgba(0, 0, 0, 0.1);
         }
 
-
-        /* The main fix: applying the theme background to the body */
-       body {
+        body {
             background-color: var(--theme-bg);
             color: var(--theme-text);
             transition: background-color 0.3s, color 0.3s;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
         }
 
-        .w-80 { width: 80% !important; }
+        .navbar {
+            background-color: var(--theme-bg-secondary) !important;
+            border-bottom: none;
+            z-index: 1020;
+            border-radius: 12px;
+        }
 
-        /* Floating navigation menu */
+        .navbar-logo {
+            width: 36px;
+            height: 36px;
+            object-fit: cover;
+            border-radius: 20%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar-logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-brand {
+            font-size: 1.25rem !important;
+            font-weight: 700 !important;
+        }
+
+        .header-title {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--theme-text);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: color 0.3s ease;
+        }
+
+        .header-title:hover {
+            color: #ffcc00;
+        }
+
+        /* Floating navigation menu and action buttons styling... (unchanged) */
+        .menu-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--theme-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1035;
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.3);
+        }
+
         .floating-nav {
             position: fixed;
-            top: 60px; /* Adjusted position to be below the navbar */
+            top: 60px;
             right: 20px;
             z-index: 1030;
             background: var(--theme-card-bg);
@@ -148,87 +191,6 @@
             color: var(--bs-primary);
         }
 
-        /* Menu toggle button now within the navbar */
-
-        .navbar {
-            background-color: var(--theme-bg-secondary) !important;
-            border-bottom: none; /* This removes the line at the bottom */
-            position: sticky;
-            top: 0.5rem; /* This creates a 1rem distance from the top of the page */
-            z-index: 1020;
-            border-radius: 12px; /* These are the curvy edges */
-            margin-bottom: 2rem; 
-        }
-
-         .navbar .container {
-            max-width: none;
-        }
-
-        /* New styling for the logo to create the "squircle" effect */
-        .navbar-logo {
-            width: 36px;
-            height: 36px;
-            object-fit: cover;
-            border-radius: 20%; /* Creates the "squircle" shape */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .navbar-logo:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Enhanced logo styling */
-        .navbar-brand {
-            font-size: 1.25rem !important;
-            font-weight: 700 !important;
-        }
-
-        /* Floating menu toggle button */
-        .menu-toggle {
-            position: fixed; /* Makes the button float relative to the viewport */
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: var(--theme-text);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-         .menu-toggle:hover {
-            transform: scale(1.3);
-        }
-
-        .header-title {
-            font-family: 'Dancing Script', cursive;
-            font-weight: 700;
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            color: var(--theme-text);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            transition: color 0.3s ease;
-        }
-
-        .header-title:hover {
-            color: #ffcc00;
-        }
-
-        .logo-gem {
-            color: #ffc107 !important;
-            font-size: 1.8rem !important;
-            text-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
-        }
-
-        /* No-scroll viewport layout */
-        .no-scroll {
-            height: 100vh;
-            overflow: hidden;
-            background: var(--theme-gradient);
-            color: var(--theme-text);
-        }
-
-        /* Updated styling for the action buttons */
         .action-buttons {
             position: fixed;
             bottom: 20px;
@@ -239,7 +201,7 @@
             gap: 15px;
             align-items: flex-end;
         }
-        
+
         .action-container {
             display: flex;
             align-items: center;
@@ -266,7 +228,7 @@
             font-size: 1.2rem;
             cursor: pointer;
         }
-        
+
         .action-btn i {
             color: white;
             font-size: 1.2rem;
@@ -287,21 +249,10 @@
             color: white;
         }
 
-        /* New Dark Yellow Gradient */
-        .action-container.dark-yellow {
-            background: linear-gradient(135deg, #c28b00, #966d00);
-        }
-
-        /* New Green Gradient */
-        .action-container.green {
-            background: linear-gradient(135deg, #4CAF50, #2e7d32);
-        }
-
         .action-text {
             color: var(--theme-text);
             font-weight: 600;
             background: var(--theme-card-bg);
-/*            background: #ede8dc;*/
             padding: 8px 8px;
             border-radius: 14px;
             white-space: nowrap;
@@ -309,7 +260,6 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* --- Pinned Posts Container --- */ 
         .pinned-posts-container {
             display: flex;
             gap: 15px;
@@ -362,7 +312,7 @@
             padding: 4px 6px;
             position: absolute;
             z-index: 1;
-            bottom: 110%; /* above the image */
+            bottom: 110%;
             right: 0;
             transform: translateX(0%);
             white-space: nowrap;
@@ -375,22 +325,6 @@
             opacity: 1;
         }
 
-        /* Main viewport container */
-        .main-viewport {
-            height: calc(100vh - 56px);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        /* Posts grid container */
-        .posts-grid {
-            flex: 1;
-            padding: 1rem 0;
-            overflow: hidden;
-        }
-
-        /* Viewport post cards */
         .viewport-post-card {
             background: var(--theme-card-bg);
             border-radius: 12px;
@@ -463,7 +397,6 @@
             transform: scale(1.2);
         }
 
-        /* --- BEGIN FIXES FOR RECENT POSTS CARD --- */
         .recent-posts-list {
             padding: 1rem;
             height: 100%;
@@ -486,8 +419,7 @@
             padding: 0;
             margin: 0;
             color: var(--theme-text-muted);
-            /* Added max-height and overflow for scrolling */
-            max-height: 250px; 
+            max-height: 250px;
             overflow-y: auto;
         }
 
@@ -514,10 +446,7 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
-        /* --- END FIXES FOR RECENT POSTS CARD --- */
 
-
-        /* Card content */
         .card-content {
             padding: 1rem;
             height: calc(100% - 140px);
@@ -584,47 +513,44 @@
                 flex: 0 0 50%;
                 max-width: 50%;
             }
-            
+
             .row-3-posts .col-md-4 {
                 flex: 0 0 33.333%;
                 max-width: 33.333%;
             }
         }
 
+        /*
+            CRITICAL FIX for mobile: Adjust the margin-top
+            to prevent content from being hidden by the fixed header.
+        */
         @media (max-width: 768px) {
-            .main-viewport {
-                height: calc(100vh - 56px);
-            }
-            
             .viewport-post-card {
                 min-height: 240px;
                 margin-bottom: 1rem;
             }
-            
+
             .card-image {
                 height: 120px;
             }
-            
+
             .card-content {
                 height: calc(100% - 120px);
                 padding: 0.75rem;
             }
 
-            /* Mobile navbar adjustments */
             .navbar-brand {
                 font-size: 1rem !important;
             }
-            
-            .logo-gem {
-                font-size: 1.4rem !important;
-            }
-            
-            /* This is the new rule to ensure the posts have top spacing */
-            #postsContainer {
-                margin-top: 1rem;
+
+            .header-title {
+                font-size: clamp(1.2rem, 3.5vw, 2rem);
             }
 
-            /* Hide button text on very small screens */
+            .main-content-wrapper {
+                margin-top: 100px; /* Reduced margin for smaller screens */
+            }
+
             @media (max-width: 576px) {
                 .btn-text {
                     display: none;
@@ -640,64 +566,62 @@
     </style>
 </head>
 
-<body class="bg-body-tertiary">
+<body>
+    <!--
+        CRITICAL FIX: The entire header is now a single `fixed-header-container`
+        that will stay at the top of the viewport.
+    -->
+    <div class="fixed-header-container">
+        <div class="container mt-3 mb-1">
+            <nav class="navbar navbar-expand-lg rounded-3 px-3">
+                <a class="navbar-brand d-flex align-items-center flex-wrap" href="/">
+                    <img src="./static/logo.png" alt="My Logo" class="navbar-logo me-2 rounded-circle" />
+                    <span class="header-title">Temples - The Heart of Sanathana dharma</span>
+                </a>
+            </nav>
+        </div>
+    </div>
 
-    <div class="container ">
-        <!--  title container  -->
-        <nav class="navbar navbar-expand-lg mt-1 mb-1 rounded-3">
-            <a class="navbar-brand ps-3  d-flex align-items-center flex-wrap" href="/">
-                <img src="./static/logo.png" alt="My Logo" class="navbar-logo me-2 rounded-circle" />
-                <span class="header-title">Temples - The Heart of Sanathana dharma</span>
-            </a>
-        </nav>
-
-        <!-- Main Viewport Container -->
-        <div id="postsContainer"class="my-4" >
+    <!--
+        CORRECTION: This is the main content wrapper. The top margin
+        ensures the content starts below the fixed header.
+    -->
+    <div class="main-content-wrapper container">
+        <div id="postsContainer">
             <!-- Posts will be dynamically inserted here -->
         </div>
     </div>
 
-    <!-- Menu Toggle Button -->
+    <!-- Floating Navigation Menu and Action Buttons are kept outside the main content wrapper -->
     <div class="action-buttons">
         <button class="menu-toggle action-btn burger-btn" onclick="toggleFloatingNav()">
             <i class="fas fa-bars"></i>
         </button>
     </div>
 
-    <!-- Floating Navigation Menu -->
     <nav class="floating-nav" id="floatingNav">
         <div class="mb-3">
-            <!-- <h6 class="text-muted mb-2">Navigation</h6> -->
             <div id="dynamicNav">
                 <!-- Dynamic navigation items will be inserted here -->
             </div>
         </div>
         <hr>
         <div class="d-flex flex-column gap-2">
-            <!-- Theme Toggle Button -->
             <button class="btn btn-outline-secondary btn-sm" id="themeToggle">
                 <i class="fas fa-sun me-2"></i>
                 <span id="themeText">Light Theme</span>
             </button>
-            <!-- Refresh Button -->
-<!--             <button class="btn btn-outline-primary btn-sm" onclick="refreshPosts()">
-                <i class="fas fa-refresh me-2"></i>
-                Refresh
-            </button> -->
         </div>
     </nav>
 
-    <!-- Pinned Posts & Action Buttons -->
     <div class="action-buttons">
-        <!-- Pinned Posts will be injected here -->
         <div id="pinnedPostsContainer" class="pinned-posts-container d-flex flex-row">
             <!-- Pinned posts will be dynamically inserted here -->
         </div>
-
         <a href="#" class="action-container" onclick="navigateToPost('nithyadharma-puja-products')">
             <span class="action-text">Puja Products</span>
             <button class="action-btn puja-btn">
-                <i class="fas fa-shopping-cart "></i>
+                <i class="fas fa-shopping-cart"></i>
             </button>
         </a>
         <a href="#" class="action-container" onclick="navigateToPost('nithyadharma-mobile-app')">
@@ -708,21 +632,19 @@
         </a>
     </div>
 
-
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
         // Global variables
         let POSTS_DATA = [];
         let currentPosts = [];
-        const POSTS_JSON_URL = './posts.json'; // The URL for the JSON file , the . is all important
+        const POSTS_JSON_URL = './posts.json';
 
         const CONFIG = {
             recentPostsCount: 20
         };
-        
-        // Function to display a custom alert message
+
         function showCustomAlert(message) {
             const alertBox = document.createElement('div');
             alertBox.className = 'alert alert-info alert-dismissible fade show fixed-top mt-3 mx-auto w-75';
@@ -747,100 +669,73 @@
             return false;
         }
 
-         // Function to handle tag clicks
         function handleTagClick(tag) {
             event.stopPropagation();
-
             console.log("handleTagClick called for :", tag);
-
             const postsWithTag = POSTS_DATA.filter(post => post.tags.includes(tag));
             const count = postsWithTag.length;
             const message = `There are ${count} posts with the tag: #${tag}.`;
             showCustomAlert(message);
         }
 
-        // This function will fetch the posts data from the external JSON file
         async function fetchPostsData() {
             try {
-                // Using a relative path to fetch the posts.json file
                 const response = await fetch(POSTS_JSON_URL);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const allPosts = await response.json();
-                
-                // Filter out posts with hide: true
                 POSTS_DATA = allPosts.filter(post => !post.hide);
-
-                // console.log("Posts data loaded successfully:", POSTS_DATA);
-                
-                // Now that the data is loaded, initialize the page
                 initializePage();
             } catch (e) {
                 console.error("Could not fetch posts data:", e);
-                // Fallback to a default or show an error message
                 POSTS_DATA = [];
-                // Still try to render the page, maybe show a message
-                initializePage(); 
+                initializePage();
             }
         }
 
-        // Initialize the page components after fetching data
         function initializePage() {
             generateNavigation();
             displayPosts();
-            displayPinnedPosts(); // New function to display pinned posts
+            displayPinnedPosts();
             initializeThemeToggle();
         }
 
-        // Toggle floating navigation
         function toggleFloatingNav() {
             const nav = document.getElementById('floatingNav');
             nav.classList.toggle('show');
         }
 
-        // Close floating nav when clicking outside
         document.addEventListener('click', function(event) {
             const nav = document.getElementById('floatingNav');
             const toggle = document.querySelector('.menu-toggle');
-            
             if (!nav.contains(event.target) && !toggle.contains(event.target)) {
                 nav.classList.remove('show');
             }
         });
 
-        // Get recent posts based on date (for first row)
         function getRecentPosts(count = CONFIG.recentPostsCount) {
             const postsOnly = POSTS_DATA.filter(post => post.type === 'posts' && !post.hide);
-            
-            // Sort by date (most recent first)
             postsOnly.sort((a, b) => new Date(b.date) - new Date(a.date));
-            
             return postsOnly.slice(0, count);
         }
 
-        // Get random posts (for second row)
         function getRandomPosts(count = 4, exclude = []) {
-            const postsOnly = POSTS_DATA.filter(post => 
+            const postsOnly = POSTS_DATA.filter(post =>
                 post.type === 'posts' && !post.hide && !exclude.includes(post.slug)
             );
-            
             const shuffled = [...postsOnly].sort(() => 0.5 - Math.random());
-            
             return shuffled.slice(0, count);
         }
-        
-        // New function to get pinned posts
+
         function getPinnedPosts() {
             return POSTS_DATA.filter(post => post.pinned && !post.hide);
         }
-        
-        // New function to display pinned posts
+
         function displayPinnedPosts() {
             const pinnedPosts = getPinnedPosts();
             const container = document.getElementById('pinnedPostsContainer');
             if (!container) return;
-
             let pinnedHtml = '';
             pinnedPosts.forEach(post => {
                 pinnedHtml += `
@@ -852,23 +747,17 @@
                     </div>
                 `;
             });
-
             container.innerHTML = pinnedHtml;
         }
 
-        // Generate dynamic navigation from static posts
         function generateNavigation() {
             const staticPosts = POSTS_DATA.filter(post => post.type === 'static' && !post.hide);
             const navContainer = document.getElementById('dynamicNav');
-                        
-            let navHTML = ''
-            //console.log('index generateNavigation called with staticPosts.length ' + staticPosts.length);
-
+            let navHTML = '';
             staticPosts.forEach(post => {
                 const icon = post.slug === 'about' ? 'info-circle' : 'train';
                 navHTML += `<a class="nav-link" href="${getSlugUrl(post.slug)}"><i class="fas fa-${icon} me-2"></i>${post.title}</a>`;
             });
-            
             navContainer.innerHTML = navHTML;
         }
 
@@ -876,101 +765,22 @@
             const postDate = new Date(dateString);
             const now = new Date();
             const oneWeekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
-
-            // Format the date as "Oct 27, 2023"
             const formattedDate = postDate.toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'short',
                 day: 'numeric'
             });
-
-            // Check if the post is less than one week old
             const isNew = (now - postDate) < oneWeekInMilliseconds;
-
             if (isNew) {
-                // Return the formatted date with a 'New' badge span
-                // We're using a Bootstrap badge for a clean look
                 return `${formattedDate} <span class="badge bg-warning ms-2">New</span>`;
             } else {
-                // Return only the formatted date
                 return formattedDate;
             }
         }
 
-        /**
-         * Tries to fetch a set of potential images for a post and returns a random valid one.
-         *
-         * It will attempt to load 'img1.jpg', 'img2.jpg', and 'img3.jpg'.
-         * All valid image URLs are collected into a list, and then one is chosen randomly.
-         * If no valid images are found, it falls back to a default image.
-         *
-         * @param {object} post The post object, containing a slug.
-         * @returns {Promise<string>} A promise that resolves to the URL of a randomly
-         * selected valid image or the path to a default fallback image.
-         */
-
-        // NOT USED AS ITS TOO COMPLEX FOR MY NEEDS NOW. SO WILL COMMENT THIS OUT 
-        // async function getRandomValidPostImage(post) {
-
-        //   // Define the potential image names to try.
-        //   const potentialImages = ['img1.jpg', 'img2.jpg', 'img3.jpg' ];
-        //   const validImages = []; // Array to store the URLs of images that exist.
-
-        //   // Iterate through each potential image name.
-        //   for (const imageName of potentialImages) {
-        //     const imagePath = `${basePath}posts/${post.slug}/${imageName}`;
-
-        //     try {
-        //       // Use the fetch API with the HEAD method to check if the image exists.
-        //       // `HEAD` is more efficient than `GET` because it doesn't download the image data.
-        //       const response = await fetch(imagePath, { method: 'HEAD' });
-
-        //       // `response.ok` is true for a status in the range 200-299.
-        //       if (response.ok) {
-        //         // If a valid image is found, add its path to our list.
-        //         validImages.push(imagePath);
-        //       }
-        //     } catch (error) {
-        //       // Ignore network errors or other fetch failures.
-        //       // The loop will continue to the next image path.
-        //       console.error(`Failed to fetch ${imagePath}:`, error);
-        //     }
-        //   }
-        //   console.log("for post "+ post.slug + "found  "+ validImages.length + " images");
-
-        //   // Check if we found any valid images.
-        //   if (validImages.length > 0) {
-        //     // If we have at least one valid image, pick a random one from the list.
-        //     const randomIndex = Math.floor(Math.random() * validImages.length);
-        //     //console.log("for post picked image is "+ validImages[randomIndex] ); 
-        //     return validImages[randomIndex];
-        //   } 
-        //   else {
-        //     // If the list is empty, return the fallback image.
-        //     console.log("no image found for header , so picking card-default");
-        //     return 'static/card-default.jpg';
-        //   }
-        // }
-
-
-        // Create post card HTML
         function createPostCard(post) {
             if (!post) return '';
-
-            // Gracefully fall back to static image if post.images is missing or empty
-            // const randomImage = (post.images && post.images.length > 0)
-            //     ? `posts/${post.slug}/${post.images[Math.floor(Math.random() * post.images.length)]}`
-            //     : 'static/card-default.jpg'; // Fallback image
-            // let randomImage = '';
-          
-            // randomImage =   getRandomValidPostImage(post);
-                // console.log("in createPostCard, randomImage is "+ randomImage);
-      
-            // Gracefully fall back to static image if post.images is missing or empty
-            const randomImage =  `posts/${post.slug}/img1.jpg` ;
-                // : 'static/card-default.jpg'; // Fallback image
-            // console.log("in createPostCard, randomImage is "+ randomImage);
-
+            const randomImage = `posts/${post.slug}/img1.jpg`;
             return `
                 <article class="viewport-post-card h-100" onclick="window.location.href='${getSlugUrl(post.slug)}'">
                     <div class="card-image">
@@ -986,8 +796,6 @@
                             <span class="date">${formatPostDate(post.date)}</span>
                         </div>
                         <h3 class="card-title">${post.title}</h3>
-                        <p class="card-excerpt">${post.excerpt}</p>
-
                         <div class="card-tags">
                             ${post.tags.slice(0, 3).map(tag => `<span class="tag" onclick="handleTagClick('${tag}')">#${tag}</span>`).join('')}
                         </div>
@@ -996,11 +804,6 @@
             `;
         }
 
-        /**
-         * Generates the HTML for the "Latest Posts" card.
-         * @param {Array<Object>} recentPosts The array of recent post objects.
-         * @returns {string} The HTML string for the latest posts card.
-         */
         function getRecentPostsCard(recentPosts) {
             let cardHtml = `
                 <article class="viewport-post-card h-100">
@@ -1008,7 +811,6 @@
                         <h3 class="recent-posts-title">Recent Posts</h3>
                         <ul class="recent-posts-items">
             `;
-
             for (let i = 0; i < recentPosts.length; i++) {
                 cardHtml += `
                     <li class="recent-post-item" onclick="navigateToPost('${recentPosts[i].slug}')">
@@ -1016,48 +818,30 @@
                     </li>
                 `;
             }
-
             cardHtml += `
                         </ul>
                     </div>
                 </article>
             `;
-
             return cardHtml;
         }
 
-        // Generate SEO-friendly slug URL
-        //  we dont need to use /posts/$(slug) because since we use 404 , it will not find the /slug url and will go there anyway. how intelligent
-        // for this to work with both git and local , we sud do a basePath check as weall
         function getSlugUrl(slug) {
             return `${basePath}${slug}/`;
         }
 
-        // Navigate to a specific post
         function navigateToPost(slug) {
             window.location.href = getSlugUrl(slug);
         }
-        
-        // Display posts in 2+3 grid layout
+
         function displayPosts() {
             const container = document.getElementById('postsContainer');
-            
             const recentPosts = getRecentPosts(CONFIG.recentPostsCount);
             const recentPostsCardHTML = getRecentPostsCard(recentPosts);
-            
-            // was as of aug 15,2025
-            // const excludedSlugs = recentPosts.map(post => post.slug);
-            // const pinnedSlugs = getPinnedPosts().map(post => post.slug);
-            // const allExcludedSlugs = [...new Set([...excludedSlugs, ...pinnedSlugs])];
-            
-            // changing allExcludedSlugs to empty list so my postcards are populated irrespective of lesser number of posts.
             const allExcludedSlugs = [];
-
             const randomPosts = getRandomPosts(4, allExcludedSlugs);
             currentPosts = [ ...recentPosts, ...randomPosts ];
-
             let gridHTML = `
-                <!-- First row: 2 posts -->
                 <div class="row row-2-posts g-3 mb-3" style="height: 48%;">
                     <div class="col-md-6">
                         ${randomPosts[0] ? createPostCard(randomPosts[0]) : ''}
@@ -1066,8 +850,6 @@
                         ${recentPostsCardHTML}
                     </div>
                 </div>
-                
-                <!-- Second row: 3 posts -->
                 <div class="row row-3-posts g-3" style="height: 48%;">
                     <div class="col-md-4">
                         ${randomPosts[1] ? createPostCard(randomPosts[1]) : ''}
@@ -1080,32 +862,26 @@
                     </div>
                 </div>
             `;
-            
             container.innerHTML = gridHTML;
             initializePostCards();
         }
 
-        // Refresh posts function
         function refreshPosts() {
             const container = document.getElementById('postsContainer');
             container.style.opacity = '0.5';
-            
             setTimeout(() => {
                 displayPosts();
                 container.style.opacity = '1';
             }, 300);
         }
 
-        // Initialize post card interactions
         function initializePostCards() {
             const postCards = document.querySelectorAll('.viewport-post-card');
-            
             postCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
                     this.style.transform = 'translateY(-4px) scale(1.02)';
                     this.style.zIndex = '10';
                 });
-                
                 card.addEventListener('mouseleave', function() {
                     this.style.transform = 'translateY(0) scale(1)';
                     this.style.zIndex = 'auto';
@@ -1113,23 +889,18 @@
             });
         }
 
-        // Initialize theme toggle
         function initializeThemeToggle() {
             const themeToggle = document.getElementById('themeToggle');
             const themeText = document.getElementById('themeText');
-            
             if (!themeToggle || !themeText) return;
-            
             const savedTheme = localStorage.getItem('theme') || 'dark';
             setTheme(savedTheme);
-            
             themeToggle.addEventListener('click', function() {
                 const currentTheme = document.documentElement.getAttribute('data-bs-theme') || 'dark';
                 const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
                 setTheme(newTheme);
                 localStorage.setItem('theme', newTheme);
             });
-            
             function setTheme(theme) {
                 if (theme === 'light') {
                     document.documentElement.setAttribute('data-bs-theme', 'light');
@@ -1142,8 +913,6 @@
                 }
             }
         }
-
-        // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             fetchPostsData();
         });
