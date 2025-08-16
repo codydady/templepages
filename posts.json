@@ -82,12 +82,19 @@
         "tags": ["temple" , "hinduism" ]
     },   
     {
+        "slug": "soundharanaayagi-sametha-pushpavaneswarar-temple-thiruppoonthuruththi",
+        "type": "posts",
+        "title": "Soundharanaayagi sametha Pushpavaneswarar temple, Thiruppoonthuruththil",
+        "author": "Sriram S.",
+        "date": "2012-03-24",
+        "tags": ["temple" , "appar" , "thevaram" , "sapthasthanam"]
+    },   
+    {
         "slug": "which-temple-to-start-with",
         "type": "posts",
         "title": "Which temple to start my visit and how to see temples ?? ",
         "author": "Bharanidharan",
         "date": "2025-08-13",
-        "tags": [ "spirituality", "wisdom" , "hinduism"  , "blog"],
-        "pinned": true
+        "tags": [ "spirituality", "wisdom" , "hinduism"  , "blog"]
     }
 ]

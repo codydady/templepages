@@ -54,23 +54,13 @@
             of the viewport, ensuring it never scrolls.
         */
         .fixed-header-container {
-            position: fixed;
+            position: sticky;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1020;
             background-color: transparent; /* Allows content below to show through if transparent */
             padding: 0 1rem; /* Adjust padding to match the main content container */
-        }
-
-        /*
-            CORRECTION: This is the main content wrapper. The top margin
-            ensures the content is pushed down far enough to be fully visible,
-            even when the header wraps.
-        */
-        .main-content-wrapper {
-            margin-top: 120px; /* Increased margin for desktop to prevent overlap */
-            padding: 1rem;
         }
 
         /* Configuration Variables */
@@ -547,10 +537,6 @@
                 font-size: clamp(1.2rem, 3.5vw, 2rem);
             }
 
-            .main-content-wrapper {
-                margin-top: 100px; /* Reduced margin for smaller screens */
-            }
-
             @media (max-width: 576px) {
                 .btn-text {
                     display: none;
@@ -567,12 +553,9 @@
 </head>
 
 <body>
-    <!--
-        CRITICAL FIX: The entire header is now a single `fixed-header-container`
-        that will stay at the top of the viewport.
-    -->
+
     <div class="fixed-header-container">
-        <div class="container mt-3 mb-1">
+        <div class="container mt-2 mb-2">
             <nav class="navbar navbar-expand-lg rounded-3 px-3">
                 <a class="navbar-brand d-flex align-items-center flex-wrap" href="/">
                     <img src="./static/logo.png" alt="My Logo" class="navbar-logo me-2 rounded-circle" />
@@ -580,17 +563,15 @@
                 </a>
             </nav>
         </div>
+
+        <div class="container">
+            <div id="postsContainer">
+                <!-- Posts will be dynamically inserted here -->
+            </div>
+        </div>
+
     </div>
 
-    <!--
-        CORRECTION: This is the main content wrapper. The top margin
-        ensures the content starts below the fixed header.
-    -->
-    <div class="main-content-wrapper container">
-        <div id="postsContainer">
-            <!-- Posts will be dynamically inserted here -->
-        </div>
-    </div>
 
     <!-- Floating Navigation Menu and Action Buttons are kept outside the main content wrapper -->
     <div class="action-buttons">
@@ -647,7 +628,9 @@
 
         function showCustomAlert(message) {
             const alertBox = document.createElement('div');
-            alertBox.className = 'alert alert-info alert-dismissible fade show fixed-top mt-3 mx-auto w-75';
+            // alertBox.className = 'alert alert-info alert-dismissible fade show fixed-top mt-3 mx-auto w-75';
+            alertBox.className = `alert alert-warning alert-dismissible fade show position-fixed top-0 end-0 mt-5 me-3`;
+
             alertBox.style.maxWidth = '400px';
             alertBox.style.zIndex = '1100';
             alertBox.role = 'alert';
@@ -671,10 +654,10 @@
 
         function handleTagClick(tag) {
             event.stopPropagation();
-            console.log("handleTagClick called for :", tag);
+            // console.log("handleTagClick called for :", tag);
             const postsWithTag = POSTS_DATA.filter(post => post.tags.includes(tag));
             const count = postsWithTag.length;
-            const message = `There are ${count} posts with the tag: #${tag}.`;
+            const message = `There are ${count} posts with the tag: #${tag}. Tag based navigation to come soon`;
             showCustomAlert(message);
         }
 

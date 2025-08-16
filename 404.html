@@ -4,37 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="pageTitle">Templepages - temples , trains , nithyadharma & sriram ! </title>
-
-    <!-- CRITICAL FIX: This script now runs immediately as the browser parses the HTML. -->
-    <script>
-        const repoName = 'templepages';
-        const path = window.location.pathname;
-        const baseTag = document.createElement('base');
-        const MAX_IMGS_TO_FETCH = 8;
-        let basePath;
-
-        if (path.includes(`/${repoName}/`)) {
-            basePath = `/${repoName}/`;
-            baseTag.href = basePath;
-        } else {
-            basePath = '/';
-            baseTag.href = basePath;
-        }
-        document.head.prepend(baseTag);
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const navbarBrand = document.querySelector('.navbar-brand');
-            if (navbarBrand) {
-                navbarBrand.href = basePath;
-            }
-            const logoImg = document.querySelector('.navbar-logo');
-            if (logoImg) {
-                logoImg.src = `${basePath}static/logo.png`;
-            }
-        });
-    </script>
-
     <!-- Bootstrap CSS and Font Awesome for icons -->
+
+  <!--
+    todo - important : these are to reconcile change between git and local repo. sriram , aug 12,2025
+    This script now runs immediately as the browser parses the HTML.
+    It does not wait for the DOM to load, ensuring the <base> tag is set
+    before the browser attempts to fetch any other relative resources.
+  -->
+  <script>
+    const repoName = 'templepages'; // IMPORTANT: Change this to your repository name
+    const path = window.location.pathname;
+    const baseTag = document.createElement('base');
+    const MAX_IMGS_TO_FETCH = 8;
+
+    let basePath; // <-- Correctly declared here
+
+    if (path.includes(`/${repoName}/`)) {
+      // We are on GitHub Pages, the base path is the repo name
+      basePath = `/${repoName}/`;
+      baseTag.href = basePath;
+    } else {
+      // We are running locally, the base path is the root
+      basePath = '/';
+      baseTag.href = basePath;
+    }
+    // Add the base tag to the head of the document
+    document.head.prepend(baseTag);
+
+        // --- Fix specific ABSOLUTE paths ---
+    // Now, we must fix elements with paths that start with a '/'.
+    // We get the elements and prepend the basePath.
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      // Find the navbar brand link and fix its href.
+      const navbarBrand = document.querySelector('.navbar-brand');
+      if (navbarBrand) {
+        navbarBrand.href = basePath;
+      }
+      
+      // Find the logo image inside the navbar brand and fix its src.
+      const logoImg = document.querySelector('.navbar-logo');
+      if (logoImg) {
+        // We assume the original path was '/static/logo.png'
+        logoImg.src = `${basePath}static/logo.png`;
+      }
+  })
+  </script>
+
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,7 +61,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 
     <style>
-        /* This is the new, combined CSS for a better layout */
+        * {
+            font-family: "Lora", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+            font-size: 1.0rem; /* This makes the text 10% larger than the default */
+        }
+
+        /* Custom styles for the blog post page */
         :root, [data-bs-theme="dark"] {
             --theme-bg: #0d0c1d;
             --theme-bg-secondary: #1a1a2e;
@@ -61,61 +84,57 @@
             --theme-border: rgba(0, 0, 0, 0.1);
         }
 
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: "Lora", "Palatino Linotype", "Book Antiqua", Palatino, serif;
-            font-size: 1.0rem;
-            line-height: 1.6;
+        body {
             background-color: var(--theme-bg);
             color: var(--theme-text);
             transition: background-color 0.3s, color 0.3s;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
         }
 
-        /*
-            CRITICAL FIX: The entire header is now a single container
-            that is fixed to the top of the viewport.
-        */
-        .fixed-header-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1020;
-            background-color: transparent;
-            padding: 0 1rem;
+        .header-title {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--theme-text);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            transition: color 0.3s ease;
         }
 
-        /*
-            CRITICAL FIX: This is the main content wrapper. The top margin
-            ensures the content is pushed down far enough to be fully visible,
-            even when the header wraps.
-        */
-        .main-content-wrapper {
-            margin-top: 120px;
-            padding: 1rem;
+        .header-title:hover {
+            color: #ffcc00;
         }
 
-        /* Responsive adjustments for the main content wrapper */
-        @media (max-width: 768px) {
-            .main-content-wrapper {
-                margin-top: 100px; /* Reduced margin for smaller screens */
-            }
+        /* This rule ensures the navbar container has the same max-width as the post content */
+        .navbar .container,
+        .container {
+            max-width: none;
         }
 
+        /* UPDATED: Added rounded corners, spacing, and removed the bottom border */
         .navbar {
             background-color: var(--theme-bg-secondary) !important;
-            border-bottom: none;
+            border-bottom: none; /* Removed the bottom border for a cleaner look */
+            top: 1rem; /* Makes the navbar stick 1rem from the top */
             z-index: 1020;
-            border-radius: 12px;
+            border-radius: 12px; /* Adds curvy edges */
         }
 
+        .nav-link {
+            color: var(--theme-text) !important;
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #ffcc00 !important;
+        }
+
+        /* New styling for the logo to create the "squircle" effect */
         .navbar-logo {
             width: 36px;
             height: 36px;
             object-fit: cover;
-            border-radius: 20%;
+            border-radius: 20%; /* Creates the "squircle" shape */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -125,26 +144,14 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
 
+        /* Enhanced logo styling */
         .navbar-brand {
             font-size: 1.25rem !important;
             font-weight: 700 !important;
         }
 
-        .header-title {
-            font-family: 'Dancing Script', cursive;
-            font-weight: 700;
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            color: var(--theme-text);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            transition: color 0.3s ease;
-        }
-
-        .header-title:hover {
-            color: #ffcc00;
-        }
-
         .post-header {
-            margin-top: 1rem;
+            margin-top: 2rem;
             margin-bottom: 1rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid var(--theme-border);
@@ -209,41 +216,60 @@
         .floating-action-buttons .btn:hover {
             transform: translateY(-2px);
         }
-        .floating-nav {
-            position: fixed;
-            top: 60px;
-            right: 20px;
-            z-index: 1030;
-            background: var(--theme-card-bg);
-            border-radius: 12px;
-            padding: 15px;
-            border: 1px solid var(--theme-border);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            min-width: 200px;
-            max-height: 70vh;
-            overflow-y: auto;
-            transform: translateX(120%);
-            transition: transform 0.3s ease;
+
+        @media (max-width: 768px) {
+            .post-title {
+                font-size: 2rem;
+            }
+            .post-content {
+                font-size: 1rem;
+            }
+            .floating-action-buttons {
+                bottom: 10px;
+                right: 10px;
+            }
         }
-        .floating-nav.show {
-            transform: translateX(0);
-        }
-        .floating-nav .nav-link {
-            color: var(--theme-text);
-            padding: 8px 12px;
-            border-radius: 6px;
-            margin-bottom: 4px;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            display: block;
-        }
-        .floating-nav .nav-link:hover {
-            background: var(--theme-bg-secondary);
-            color: var(--bs-primary);
-        }
+
+.floating-nav {
+    position: fixed;
+    top: 60px; /* Adjusted position to be below the navbar */
+    right: 20px;
+    z-index: 1030;
+    background: var(--theme-card-bg);
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid var(--theme-border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    min-width: 200px;
+    max-height: 70vh;
+    overflow-y: auto;
+    transform: translateX(120%);
+    transition: transform 0.3s ease;
+}
+
+.floating-nav.show {
+    transform: translateX(0);
+}
+
+.floating-nav .nav-link {
+    color: var(--theme-text);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: block;
+}
+
+.floating-nav .nav-link:hover {
+    background: var(--theme-bg-secondary);
+    color: var(--bs-primary);
+}
+
+        /* Floating menu toggle button */
         .menu-toggle {
-            position: fixed;
+            position: fixed; /* Makes the button float relative to the viewport */
             top: 1rem;
             right: 1rem;
             background: none;
@@ -251,11 +277,12 @@
             color: var(--theme-text);
             font-size: 1.5rem;
             cursor: pointer;
-            z-index: 1035;
         }
-        .menu-toggle:hover {
+
+         .menu-toggle:hover {
             transform: scale(1.3);
         }
+
         .action-buttons {
             position: fixed;
             bottom: 20px;
@@ -266,6 +293,7 @@
             gap: 15px;
             align-items: flex-end;
         }
+
         .action-btn {
             width: 50px;
             height: 50px;
@@ -279,94 +307,87 @@
             font-size: 1.2rem;
             cursor: pointer;
         }
+        
         .action-btn i {
             color: white;
             font-size: 1.2rem;
         }
-        .burger-btn {
+
+       .burger-btn {
             background: linear-gradient(135deg, #c28b00, #966d00);
             color: white;
         }
-        .image-collage {
-            display: grid;
-            gap: 0.5rem;
-            border-radius: 12px;
-            overflow: hidden;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        }
-        .image-collage img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            aspect-ratio: 1;
-            border-radius: 8px;
-        }
-        @media (max-width: 768px) {
-            .post-title {
-                font-size: 2rem;
-            }
-            .post-content {
-                font-size: 1rem;
-            }
-            .floating-action-buttons {
-                bottom: 10px;
-                right: 10px;
-            }
-        }
-    </style>
+
+    /* Custom styles for the image collage layout */
+    .image-collage {
+        display: grid;
+        gap: 0.5rem; /* Small gap between images */
+        border-radius: 12px;
+        overflow: hidden;
+        /* Using auto-fit to create a responsive grid based on image count */
+        /* minmax(100px, 1fr) ensures images are at least 100px wide and fill the available space */
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+    .image-collage img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures images fill their container without stretching */
+        aspect-ratio: 1; /* Maintains a square aspect ratio for a uniform grid look */
+        border-radius: 8px;
+    }
+
+</style>
 </head>
 
 <body class="bg-body-tertiary">
-    <!--
-        CRITICAL FIX: The entire header is now a single `fixed-header-container`
-        that will stay at the top of the viewport.
-    -->
-    <div class="fixed-header-container">
-        <div class="container mt-3 mb-1">
-            <nav class="navbar navbar-expand-lg rounded-3 px-3">
-                <a class="navbar-brand d-flex align-items-center flex-wrap" href="/">
-                    <img class="navbar-logo me-2 rounded-circle" />
-                    <span class="header-title">Temples - The Heart of Sanathana dharma</span>
-                </a>
-            </nav>
+    <!-- Navigation Bar -->
+    <div class="container">
+            <!-- The navbar-brand now wraps both the logo and the text -->
+        <nav class="navbar navbar-expand-lg mt-1 mb-1 rounded-3 \">
+            <a class="navbar-brand ps-3 d-flex align-items-center  flex-wrap" href="/">
+                <!-- the img src is set from script uptop which looks for a img entry with navbar-logo class in it which the following is. so src is not reqd -->
+                <img  class="navbar-logo me-2 rounded-circle" />  
+                <span class="header-title">Temples - The Heart of Sanathana dharma</span>
+            </a>
+        </nav>
+
+        <div class="container my-4 ">
+                <!-- Post Header -->
+                <div class="post-header">
+                    <h1 class="post-title" id="postTitle">Loading...</h1>
+                    <p class="post-meta" id="postMeta">
+                        <span id="postAuthor">Loading...</span> | <span id="postDate">Loading...</span>
+                    </p>
+                    <div id="postTags" class="d-flex flex-wrap">
+                        <!-- Tags will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <!-- Image Gallery -->
+                <div class="image-gallery" id="imageGallery">
+                    <div class="loading" id="loadingImages">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p class="mt-2">Loading images...</p>
+                    </div>
+                    <!-- Images will be dynamically inserted here -->
+                </div>
+
+                <!-- Post Content -->
+                <div class="post-content" id="postContent">
+                    <div class="loading" id="loadingContent">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p class="mt-2">Loading content...</p>
+                    </div>
+                    <!-- Content from contents.md will be inserted here -->
+                </div>
         </div>
     </div>
 
-    <!--
-        CRITICAL FIX: This is the main content wrapper. The top margin
-        ensures the content starts below the fixed header.
-    -->
-    <div class="main-content-wrapper container">
-        <div class="container my-4">
-            <!-- Post Header -->
-            <div class="post-header">
-                <h1 class="post-title" id="postTitle">Loading...</h1>
-                <p class="post-meta" id="postMeta">
-                    <span id="postAuthor">Loading...</span> | <span id="postDate">Loading...</span>
-                </p>
-                <div id="postTags" class="d-flex flex-wrap">
-                    <!-- Tags will be dynamically inserted here -->
-                </div>
-            </div>
-
-            <!-- Image Gallery -->
-            <div class="image-gallery" id="imageGallery">
-                <div class="loading" id="loadingImages">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p class="mt-2">Loading images...</p>
-                </div>
-                <!-- Images will be dynamically inserted here -->
-            </div>
-
-            <!-- Post Content -->
-            <div class="post-content" id="postContent">
-                <div class="loading" id="loadingContent">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p class="mt-2">Loading content...</p>
-                </div>
-                <!-- Content from contents.md will be inserted here -->
-            </div>
-        </div>
+    <!-- Menu Toggle Button -->
+    <div class="action-buttons">
+        <button class="menu-toggle action-btn burger-btn" onclick="toggleFloatingNav()">
+            <i class="fas fa-bars"></i>
+        </button>
     </div>
 
     <!-- Floating Navigation Menu -->
@@ -378,27 +399,38 @@
             </div>
         </div>
     </nav>
-    
+
     <!-- Floating Action Buttons -->
-    <div class="action-buttons">
-        <button class="menu-toggle action-btn burger-btn" onclick="toggleFloatingNav()">
-            <i class="fas fa-bars"></i>
-        </button>
+    <div class="floating-action-buttons">
         <button class="btn btn-outline-secondary" id="themeToggle">
             <i class="fas fa-sun me-2"></i><span id="themeText">Light Theme</span>
         </button>
+        <!-- <a href="/" class="btn btn-outline-secondary d-block"><i class="fas fa-arrow-left"></i></a> -->
     </div>
+
+    
 
     <!-- Bootstrap JS and marked.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
+        /**
+         * The main logic for the blog post page.
+         * This script fetches post metadata from posts.json, renders images,
+         * and loads the main content from contents.md based on the URL slug.
+         */
+
         let currentPost = null;
         let postSlug = '';
         let postsData = [];
         
+        // Function to display a custom alert message
+        // This version is now configurable for color and position
         function showCustomAlert(message, alertType = 'success') {
             const alertBox = document.createElement('div');
+            // Use position-fixed, top-0, end-0, and margin-top (mt-3)
+            // to position the alert in the top-right, below the title bar.
+            // 'alertType' makes the color configurable. 'success' is light green.
             alertBox.className = `alert alert-${alertType} alert-dismissible fade show position-fixed top-0 end-0 mt-5 me-3`;
             alertBox.style.maxWidth = '400px';
             alertBox.style.zIndex = '1100';
@@ -408,6 +440,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             `;
             document.body.appendChild(alertBox);
+
             setTimeout(() => {
                 const bootstrapAlert = bootstrap.Alert.getInstance(alertBox);
                 if (bootstrapAlert) {
@@ -416,44 +449,64 @@
                     alertBox.remove();
                 }
             }, 3000);
+
             return false;
         }
-
+         // Function to handle tag clicks
         function handleTagClick(tag) {
             event.stopPropagation();
+
+            // console.log("handleTagClick called for :", tag);
+
             const postsWithTag = postsData.filter(post => post.tags.includes(tag));
             const count = postsWithTag.length;
             const message = `There are ${count} posts with the tag: #${tag}.`;
             showCustomAlert(message);
         }
 
+        // Function to toggle the floating navigation menu
         function toggleFloatingNav() {
             const nav = document.getElementById('floatingNav');
             const isShown = nav.classList.toggle('show');
+
+            // Add or remove a class to the body to prevent scrolling when the menu is open
             document.body.classList.toggle('no-scroll', isShown);
         }
 
+        // Generate SEO-friendly slug URL
+        //  we dont need to use /posts/$(slug) because since we use 404 , it will not find the /slug url and will go there anyway. how intelligent
+        // for this to work with both git and local , we sud do a basePath check as weall
         function getSlugUrl(slug) {
             return `${basePath}${slug}/`;
         }
 
+        // Generate dynamic navigation from static posts
         function generateNavigation() {
+
             const staticPosts = postsData.filter(post => post.type === 'static' && !post.hide);
             const navContainer = document.getElementById('dynamicNav');
+            
             let navHTML = '';
+            
             staticPosts.forEach(post => {
                 const icon = post.slug === 'about' ? 'info-circle' : 'universal-access';
                 navHTML += `<a class="nav-link" href="${getSlugUrl(post.slug)}"><i class="fas fa-${icon} me-2"></i>${post.title}</a>`;
+                // console.log('generateNavigation for '+ post.slug);
             });
+            
             navContainer.innerHTML = navHTML;
         }
 
+        // Function to extract the slug from the URL
         function getPostSlugFromUrl() {
+            // Get the pathname, e.g., "/posts/sikkal/"
             const path = window.location.pathname;
+            // Split by '/', filter out empty strings, and get the last part
             const parts = path.split('/').filter(p => p);
             return parts.length > 0 ? parts[parts.length - 1] : null;
         }
 
+        // Function to display post details from a post data object
         function displayPostDetails(postData) {
             if (!postData) {
                 console.error("Post data is not available.");
@@ -461,20 +514,28 @@
                 document.getElementById('postContent').innerHTML = "<p>The post you are looking for does not exist.</p>";
                 return;
             }
+
+            // Update title and meta information
             document.getElementById('pageTitle').textContent = postData.title;
             document.getElementById('postTitle').textContent = postData.title;
             document.getElementById('postAuthor').textContent = postData.author;
             document.getElementById('postDate').textContent = new Date(postData.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
             
+            // Render tags
             const tagsContainer = document.getElementById('postTags');
             tagsContainer.innerHTML = '';
+
             if (postData.tags && postData.tags.length > 0) {
                 postData.tags.forEach(tag => {
                     const tagLink = document.createElement('a');
                     tagLink.textContent = tag;
                     tagLink.className = 'tag-link';
+
+                    // Add a click event listener instead of a href attribute
                     tagLink.addEventListener('click', (event) => {
+                        // Prevents the default action of the link (navigating to a new page)
                         event.preventDefault();
+                        // Call the handleTagClick function with the tag name
                         handleTagClick(tag);
                     });
                     tagsContainer.appendChild(tagLink);
@@ -482,21 +543,30 @@
             }
         }
 
+        // Function to render the image gallery
         async function findAndDisplayImages(postData) {
+            // Select the HTML elements for the gallery and loading indicator
             const gallery = document.getElementById('imageGallery');
             const loadingIndicator = document.getElementById('loadingImages');
+
+            // Array to store found image filenames
             const postImages = [];
             let foundImages = false;
-            let imgurl;
+            let imgurl ;
+
+            // Check a range of images concurrently
             const promises = [];
             for (let i = 1; i <= MAX_IMGS_TO_FETCH; i++) {
                 promises.push(fetch(`${basePath}posts/${postSlug}/img${i}.jpg`, { method: 'HEAD', cache: 'no-store' }));
             }
+
             try {
                 const responses = await Promise.all(promises);
                 responses.forEach((response, index) => {
                     if (response.ok) {
-                        imgurl = `${basePath}posts/${postSlug}/img${index + 1}.jpg`;
+                        imgurl = `${basePath}posts/${postSlug}/img${index + 1}.jpg` ;
+                        // console.log(`valid images found out of 7 are  ${imgurl} .`);
+
                         postImages.push(imgurl);
                         foundImages = true;
                     }
@@ -504,6 +574,8 @@
             } catch (error) {
                 console.error('Error fetching images:', error);
             }
+
+            // Handle cases where there are no images in the post data
             if (!postData || !foundImages) {
                 if (loadingIndicator) loadingIndicator.remove();
                 gallery.innerHTML = `
@@ -512,26 +584,46 @@
                     </div>
                 `;
                 console.warn(`no img<?>.jpg files found for slug: ${postSlug} .`);
+
                 return;
             }
+
+            // Remove the loading indicator once we have the image data
             if (loadingIndicator) loadingIndicator.remove();
+
+            // Get the total number of images to determine the best layout
             const imageCount = postImages.length;
-            let colClass = 'col-12';
+            let colClass = 'col-12'; // Default to a single column for safety
+            
+            // --- Picstitch-like layout logic based on image count ---
             if (imageCount === 1) {
-                colClass = 'col-12';
+                colClass = 'col-12'; // Single, full-width image
             } else if (imageCount === 2) {
+                // Two images side-by-side on medium screens and up
                 colClass = 'col-12 col-md-6';
             } else if (imageCount === 3) {
+                // Three images in a row on medium screens and up
                 colClass = 'col-12 col-md-4';
             } else if (imageCount === 4) {
+                // A 2x2 grid on small screens and up
                 colClass = 'col-12 col-sm-6';
             } else if (imageCount === 5) {
+                // Two rows with 3 and 2 images on medium screens and up
                 colClass = 'col-12 col-md-4';
             } else if (imageCount >= 6) {
+                // A consistent grid of 3 or 4 columns on larger screens
                 colClass = 'col-12 col-sm-6 col-md-4 col-lg-3';
             }
-            let galleryHTML = '<div class="row g-3">';
+
+            // Start building the gallery HTML with a Bootstrap row
+            let galleryHTML = '<div class="row g-3">'; // g-3 adds a small gap between images
+
             postImages.forEach(imageUrl => {
+                // Correct the image path by removing the redundant 'images/' prefix if it exists
+                // const cleanedFilename = imageFilename.startsWith('images/') ? imageFilename.substring('images/'.length) : imageFilename;
+                // const imageUrl = `/posts/${postSlug}/${cleanedFilename}`;
+                
+                // Add each image to the gallery with the determined column class
                 galleryHTML += `
                     <div class="${colClass}">
                         <div class="card h-100 overflow-hidden shadow-sm">
@@ -540,22 +632,33 @@
                     </div>
                 `;
             });
+
             galleryHTML += '</div>';
+            
+            // Insert the generated HTML into the gallery container
             gallery.innerHTML = galleryHTML;
         }
 
+        // Function to load and display Markdown content
         async function displayContent() {
             const contentContainer = document.getElementById('postContent');
             const loadingIndicator = document.getElementById('loadingContent');
+
+            // Remove the loading indicator as soon as we start
             if (loadingIndicator) {
                 loadingIndicator.remove();
             }
+            
             try {
+                // Construct the path to the markdown file dynamically
                 const response = await fetch(`${basePath}posts/${postSlug}/contents.md`);
+                
                 if (response.ok) {
+                    // If the file is found, get the text and parse it as Markdown
                     const markdownText = await response.text();
                     contentContainer.innerHTML = marked.parse(markdownText);
                 } else {
+                    // If the file is not found, display a clear HTML alert
                     contentContainer.innerHTML = `
                         <div class="alert alert-warning text-center" role="alert">
                             No content was found for this post.
@@ -564,6 +667,7 @@
                     console.warn(`contents.md not found for slug: ${postSlug}, using placeholder content.`);
                 }
             } catch (e) {
+                // Handle network errors or other exceptions
                 console.error(`Error fetching contents.md for slug: ${postSlug}`, e);
                 contentContainer.innerHTML = `
                     <div class="alert alert-danger text-center" role="alert">
@@ -573,18 +677,22 @@
             }
         }
 
+        // Function to initialize the theme toggle
         function initializeThemeToggle() {
             const themeToggle = document.getElementById('themeToggle');
             const themeText = document.getElementById('themeText');
             if (!themeToggle || !themeText) return;
+
             const savedTheme = localStorage.getItem('theme') || 'dark';
             setTheme(savedTheme);
+
             themeToggle.addEventListener('click', function() {
                 const currentTheme = document.documentElement.getAttribute('data-bs-theme') || 'dark';
                 const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
                 setTheme(newTheme);
                 localStorage.setItem('theme', newTheme);
             });
+
             function setTheme(theme) {
                 document.documentElement.setAttribute('data-bs-theme', theme);
                 if (theme === 'light') {
@@ -597,26 +705,40 @@
             }
         }
 
+        // Main initialization function
         async function initializePage() {
             postSlug = getPostSlugFromUrl();
+
             if (!postSlug) {
+                // This page is likely being accessed directly or incorrectly.
+                // We'll show a friendly error message and stop further execution.
                 document.getElementById('postTitle').textContent = "Invalid URL";
                 document.getElementById('postContent').innerHTML = "<p>Please navigate to a valid blog post page.</p>";
+                // Remove loading indicators
                 document.getElementById('loadingImages').remove();
                 document.getElementById('loadingContent').remove();
                 initializeThemeToggle();
                 return;
             }
+
             try {
+                // Fetch the central posts.json file from the root
                 const postsResponse = await fetch(`${basePath}posts.json`);
                 if (!postsResponse.ok) {
                     throw new Error('Failed to fetch central posts.json');
                 }
                 postsData = await postsResponse.json();
+                
+                // Find the post that matches the current slug
                 const post = postsData.find(p => p.slug === postSlug);
+
                 if (post) {
                     currentPost = post;
+                    // Now that we have the data, we can render the page
                     displayPostDetails(currentPost);
+                    // displayImages(currentPost);
+                    
+                    // Call within an async IIFE
                     (async () => {
                         try {
                             await findAndDisplayImages(currentPost);
@@ -624,16 +746,24 @@
                             console.error('Error loading images:', error);
                         }
                     })();
-                    generateNavigation();
+
+                    // this is for filling the hamburger
+                    generateNavigation() 
+
+                    // this is for the post contents
                     displayContent(currentPost);
+                
                 } 
                 else {
+                    // Handle case where post is not found in the JSON data
                     document.getElementById('postTitle').textContent = "Post Not Found";
                     document.getElementById('postContent').innerHTML = "<p>The post you are looking for does not exist. Please check the URL and try again.</p>";
+                    // Remove loading indicators and image gallery to prevent empty placeholders
                     document.getElementById('loadingImages').remove();
                     document.getElementById('imageGallery').innerHTML = '';
                     document.getElementById('loadingContent').remove();
                 }
+
             } catch (e) {
                 console.error("Error during page initialization:", e);
                 document.getElementById('postTitle').textContent = "Error Loading Post";
@@ -644,6 +774,8 @@
                 initializeThemeToggle();
             }
         }
+
+        // Start initialization when DOM is loaded
         document.addEventListener('DOMContentLoaded', initializePage);
     </script>
 </body>
