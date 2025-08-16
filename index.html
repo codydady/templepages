@@ -47,19 +47,19 @@
             font-family: "Lora", "Crimson Text", "Book Antiqua", serif;
             font-size: 1.0rem;
             line-height: 1.6;
+            padding-top: var(--header-height, 0);
+                        background-color: var(--theme-bg);
+            color: var(--theme-text);
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        /*
-            CORRECTION: This is the core fix. The header is now fixed to the top
-            of the viewport, ensuring it never scrolls.
-        */
         .fixed-header-container {
-            position: sticky;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1020;
-            background-color: transparent; /* Allows content below to show through if transparent */
+            background-color: var(--theme-bg); /* Use theme variable for a consistent background */
             padding: 0 1rem; /* Adjust padding to match the main content container */
         }
 
@@ -80,12 +80,6 @@
             --theme-text: #2c3e50;
             --theme-text-muted: #7f8c8d;
             --theme-border: rgba(0, 0, 0, 0.1);
-        }
-
-        body {
-            background-color: var(--theme-bg);
-            color: var(--theme-text);
-            transition: background-color 0.3s, color 0.3s;
         }
 
         .navbar {
@@ -469,18 +463,6 @@
             color: var(--bs-primary);
         }
 
-        .card-excerpt {
-            color: var(--theme-text-muted);
-            margin-bottom: 0.75rem;
-            line-height: 1.4;
-            flex: 1;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            font-size: 0.875rem;
-        }
-
         .card-tags {
             display: flex;
             flex-wrap: wrap;
@@ -495,6 +477,10 @@
             border-radius: 4px;
             font-size: 0.65rem;
             font-weight: 500;
+        }
+
+        .footer-section {
+            padding-bottom: 15px; /* Or whatever value you need */
         }
 
         /* Responsive adjustments for 2+3 grid */
@@ -549,12 +535,13 @@
                 }
             }
         }
+
     </style>
 </head>
 
 <body>
-
-    <div class="fixed-header-container">
+    <!-- header -->
+    <div class="fixed-header-container" id="headerContainer">
         <div class="container mt-2 mb-2">
             <nav class="navbar navbar-expand-lg rounded-3 px-3">
                 <a class="navbar-brand d-flex align-items-center flex-wrap" href="/">
@@ -563,15 +550,14 @@
                 </a>
             </nav>
         </div>
-
-        <div class="container">
-            <div id="postsContainer">
-                <!-- Posts will be dynamically inserted here -->
-            </div>
-        </div>
-
     </div>
 
+    <!-- posts -->
+    <div class="container footer-section">
+        <div  id="postsContainer">
+                <!-- Posts will be dynamically inserted here -->
+        </div>
+    </div>
 
     <!-- Floating Navigation Menu and Action Buttons are kept outside the main content wrapper -->
     <div class="action-buttons">
@@ -652,6 +638,26 @@
             return false;
         }
 
+        // New function to handle header padding
+        function initializeHeaderPadding() {
+            const header = document.getElementById('headerContainer');
+            const body = document.body;
+            
+            function setPadding() {
+                if (header) {
+                    const headerHeight = header.offsetHeight;
+                    body.style.setProperty('--header-height', `${headerHeight}px`);
+                }
+            }
+            
+            // Set padding on load and resize
+            setPadding();
+            window.addEventListener('resize', setPadding);
+            // Also set a small delay to ensure all assets (like images) are loaded
+            // and the height is correct
+            setTimeout(setPadding, 200);
+        }
+
         function handleTagClick(tag) {
             event.stopPropagation();
             // console.log("handleTagClick called for :", tag);
@@ -682,6 +688,7 @@
             displayPosts();
             displayPinnedPosts();
             initializeThemeToggle();
+            initializeHeaderPadding();
         }
 
         function toggleFloatingNav() {
@@ -821,11 +828,24 @@
             const container = document.getElementById('postsContainer');
             const recentPosts = getRecentPosts(CONFIG.recentPostsCount);
             const recentPostsCardHTML = getRecentPostsCard(recentPosts);
-            const allExcludedSlugs = [];
+
+            // approach 3 : exclude recent posts and pinned
+            // const excludedSlugs = recentPosts.map(post => post.slug);
+            // const pinnedSlugs = getPinnedPosts().map(post => post.slug);
+            // const allExcludedSlugs = [...new Set([...excludedSlugs, ...pinnedSlugs])];
+
+           // approach 2 : exclude pinned and selected posts
+            const excludedSlugs = ["nithyadharma-puja-products", "nithyadharma-mobile-app"]
+            const pinnedSlugs = getPinnedPosts().map(post => post.slug);
+            const allExcludedSlugs = [...new Set([ ...pinnedSlugs])];
+       
+            // approach 1 : exclude none 
+            // const allExcludedSlugs = [];
+
             const randomPosts = getRandomPosts(4, allExcludedSlugs);
             currentPosts = [ ...recentPosts, ...randomPosts ];
             let gridHTML = `
-                <div class="row row-2-posts g-3 mb-3" style="height: 48%;">
+                <div class="row row-2-posts g-3 mb-3">
                     <div class="col-md-6">
                         ${randomPosts[0] ? createPostCard(randomPosts[0]) : ''}
                     </div>
@@ -833,7 +853,7 @@
                         ${recentPostsCardHTML}
                     </div>
                 </div>
-                <div class="row row-3-posts g-3" style="height: 48%;">
+                <div class="row row-3-posts g-3">
                     <div class="col-md-4">
                         ${randomPosts[1] ? createPostCard(randomPosts[1]) : ''}
                     </div>

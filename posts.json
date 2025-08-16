@@ -82,12 +82,28 @@
         "tags": ["temple" , "hinduism" ]
     },   
     {
+        "slug": "thevara-vaipu-thalangal",
+        "type": "posts",
+        "title": "Thevara Vaippu thalangal",
+        "author": "Sriram S.",
+        "date": "2002-10-6",
+        "tags": ["temple"  , "thevaram" ]
+    },   
+    {
         "slug": "soundharanaayagi-sametha-pushpavaneswarar-temple-thiruppoonthuruththi",
         "type": "posts",
         "title": "Soundharanaayagi sametha Pushpavaneswarar temple, Thiruppoonthuruththil",
         "author": "Sriram S.",
         "date": "2012-03-24",
         "tags": ["temple" , "appar" , "thevaram" , "sapthasthanam"]
+    },   
+    {
+        "slug": "vandamar-poonguzhali-sametha-brahmapureeswarar-thirukkuvalai",
+        "type": "posts",
+        "title": "Vandamar Poonguzhali sametha Brahmapureeswarar, Thirukkuvalai",
+        "author": "Sriram S.",
+        "date": "2024-04-05",
+        "tags": ["temple" , "appar" , "thevaram" , "sapthavidangam" , "sundharar" , "sambandhar"]
     },   
     {
         "slug": "which-temple-to-start-with",

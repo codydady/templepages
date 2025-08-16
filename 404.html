@@ -16,7 +16,7 @@
     const repoName = 'templepages'; // IMPORTANT: Change this to your repository name
     const path = window.location.pathname;
     const baseTag = document.createElement('base');
-    const MAX_IMGS_TO_FETCH = 8;
+    const MAX_IMGS_TO_FETCH = 9;
 
     let basePath; // <-- Correctly declared here
 
@@ -67,13 +67,14 @@
         }
 
         /* Custom styles for the blog post page */
-        :root, [data-bs-theme="dark"] {
-            --theme-bg: #0d0c1d;
-            --theme-bg-secondary: #1a1a2e;
-            --theme-card-bg: #1a1a2e;
-            --theme-text: #f0f0f0;
-            --theme-text-muted: #b0b0b0;
+       :root, [data-bs-theme="dark"] {
+            --theme-bg: #303030;
+            --theme-bg-secondary: var(--bs-dark);
+            --theme-card-bg: var(--bs-dark);
+            --theme-text: var(--bs-light);
+            --theme-text-muted: var(--bs-secondary);
             --theme-border: rgba(255, 255, 255, 0.1);
+            --theme-overlay: rgba(0, 0, 0, 0.7);
         }
         [data-bs-theme="light"] {
             --theme-bg: #f8f6f0;
@@ -84,15 +85,27 @@
             --theme-border: rgba(0, 0, 0, 0.1);
         }
 
-        body {
+        html, body {
+            height: 100%;
             background-color: var(--theme-bg);
             color: var(--theme-text);
             transition: background-color 0.3s, color 0.3s;
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            padding-top: var(--header-height, 0);
         }
 
+        .fixed-header-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1020;
+            background-color: var(--theme-bg); /* Use theme variable for a consistent background */
+            padding: 0 1rem; /* Adjust padding to match the main content container */
+        }
+        
         .header-title {
             font-family: 'Dancing Script', cursive;
             font-weight: 700;
@@ -107,16 +120,15 @@
         }
 
         /* This rule ensures the navbar container has the same max-width as the post content */
-        .navbar .container,
+/*        .navbar .container,
         .container {
             max-width: none;
-        }
+        }*/
 
         /* UPDATED: Added rounded corners, spacing, and removed the bottom border */
         .navbar {
             background-color: var(--theme-bg-secondary) !important;
             border-bottom: none; /* Removed the bottom border for a cleaner look */
-            top: 1rem; /* Makes the navbar stick 1rem from the top */
             z-index: 1020;
             border-radius: 12px; /* Adds curvy edges */
         }
@@ -151,13 +163,13 @@
         }
 
         .post-header {
-            margin-top: 2rem;
-            margin-bottom: 1rem;
+            margin-top: 0.1rem;
+            margin-bottom: 2rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid var(--theme-border);
         }
         .post-title {
-            font-size: 2.0rem;
+            font-size: 1.5rem;
             font-weight: 700;
         }
         .post-meta {
@@ -318,40 +330,29 @@
             color: white;
         }
 
-    /* Custom styles for the image collage layout */
-    .image-collage {
-        display: grid;
-        gap: 0.5rem; /* Small gap between images */
-        border-radius: 12px;
-        overflow: hidden;
-        /* Using auto-fit to create a responsive grid based on image count */
-        /* minmax(100px, 1fr) ensures images are at least 100px wide and fill the available space */
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    }
-    .image-collage img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Ensures images fill their container without stretching */
-        aspect-ratio: 1; /* Maintains a square aspect ratio for a uniform grid look */
-        border-radius: 8px;
-    }
-
+        .footer-section {
+            padding-bottom: 15px; /* Or whatever value you need */
+        }
+        
 </style>
 </head>
 
-<body class="bg-body-tertiary">
+<body >
     <!-- Navigation Bar -->
     <div class="container">
-            <!-- The navbar-brand now wraps both the logo and the text -->
-        <nav class="navbar navbar-expand-lg mt-1 mb-1 rounded-3 \">
-            <a class="navbar-brand ps-3 d-flex align-items-center  flex-wrap" href="/">
-                <!-- the img src is set from script uptop which looks for a img entry with navbar-logo class in it which the following is. so src is not reqd -->
-                <img  class="navbar-logo me-2 rounded-circle" />  
-                <span class="header-title">Temples - The Heart of Sanathana dharma</span>
-            </a>
-        </nav>
+        <div class="fixed-header-container " id="headerContainer">
+            <div class="container mt-2 mb-2">
+                <nav class="navbar navbar-expand-lg mt-1 mb-3 rounded-3 \">
+                    <a class="navbar-brand ps-3 d-flex align-items-center  flex-wrap" href="/">
+                        <!-- the img src is set from script uptop which looks for a img entry with navbar-logo class in it which the following is. so src is not reqd -->
+                        <img  class="navbar-logo me-2 rounded-circle" />  
+                        <span class="header-title">Temples - The Heart of Sanathana dharma</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
 
-        <div class="container my-4 ">
+        <div class="container footer-section">
                 <!-- Post Header -->
                 <div class="post-header">
                     <h1 class="post-title" id="postTitle">Loading...</h1>
@@ -381,7 +382,8 @@
                     <!-- Content from contents.md will be inserted here -->
                 </div>
         </div>
-    </div>
+    </div> 
+     <!-- main title and post details part ends -->
 
     <!-- Menu Toggle Button -->
     <div class="action-buttons">
@@ -409,7 +411,6 @@
     </div>
 
     
-
     <!-- Bootstrap JS and marked.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -452,6 +453,54 @@
 
             return false;
         }
+
+                // New function to handle header padding
+        function initializeHeaderPaddingOld() {
+            const header = document.getElementById('headerContainer');
+            const body = document.body;
+            
+            function setPadding() {
+                if (header) {
+                    const headerHeight = header.offsetHeight;
+                    body.style.setProperty('--header-height', `${headerHeight}px`);
+                }
+            }
+            
+            // Set padding on load and resize
+            setPadding();
+            window.addEventListener('resize', setPadding);
+            // Also set a small delay to ensure all assets (like images) are loaded
+            // and the height is correct
+            setTimeout(setPadding, 200);
+        }
+
+        function initializeHeaderPadding() {
+            const header = document.getElementById('headerContainer');
+            const body = document.body;
+
+            if (!header) {
+                console.error("Header element with ID 'headerContainer' not found.");
+                return;
+            }
+
+            // Create a ResizeObserver to watch for header size changes
+            const resizeObserver = new ResizeObserver(entries => {
+                for (let entry of entries) {
+                    const headerHeight = entry.target.offsetHeight;
+                    body.style.setProperty('--header-height', `${headerHeight}px`);
+                }
+            });
+
+            // Start observing the header
+            resizeObserver.observe(header);
+
+            // Also, set a one-time padding on DOMContentLoaded in case of no resize
+            window.addEventListener('DOMContentLoaded', () => {
+                const headerHeight = header.offsetHeight;
+                body.style.setProperty('--header-height', `${headerHeight}px`);
+            });
+        }
+
          // Function to handle tag clicks
         function handleTagClick(tag) {
             event.stopPropagation();
@@ -707,6 +756,7 @@
 
         // Main initialization function
         async function initializePage() {
+
             postSlug = getPostSlugFromUrl();
 
             if (!postSlug) {
@@ -771,6 +821,10 @@
                 document.getElementById('loadingImages').remove();
                 document.getElementById('loadingContent').remove();
             } finally {
+
+                // this is to prevent post detail from slding under the title
+                initializeHeaderPadding();
+
                 initializeThemeToggle();
             }
         }
