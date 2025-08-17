@@ -837,7 +837,8 @@
            // approach 2 : exclude pinned and selected posts
             const excludedSlugs = ["nithyadharma-puja-products", "nithyadharma-mobile-app"]
             const pinnedSlugs = getPinnedPosts().map(post => post.slug);
-            const allExcludedSlugs = [...new Set([ ...pinnedSlugs])];
+            const allExcludedSlugs = [...new Set([...excludedSlugs, ...pinnedSlugs])];
+            // const allExcludedSlugs = [...new Set([ ...pinnedSlugs])];
        
             // approach 1 : exclude none 
             // const allExcludedSlugs = [];
