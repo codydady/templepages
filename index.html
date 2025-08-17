@@ -32,8 +32,8 @@
         // Add the base tag to the head of the document
         document.head.prepend(baseTag);
 
-
-        CONFIG = {
+        // Global variables
+        const CONFIG = {
             RECENT_POSTS_COUNT: 20,
             POSTS_JSON_URL : './posts.json',
             POSTS_DATA: [],
@@ -835,7 +835,8 @@
         }
 
         function getSlugUrl(slug) {
-            return `${basePath}${slug}/`;
+            // return `${basePath}${slug}/`;
+            return `${CONFIG.SITE_ROOT}${slug}/`;
         }
 
         function navigateToPost(slug) {

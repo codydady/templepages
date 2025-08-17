@@ -13,43 +13,44 @@
     before the browser attempts to fetch any other relative resources.
   -->
   <script>
-    const repoName = 'templepages'; // IMPORTANT: Change this to your repository name
-    const path = window.location.pathname;
-    const baseTag = document.createElement('base');
-    const MAX_IMGS_TO_FETCH = 9;
+        const repoName = 'templepages'; // IMPORTANT: Change this to your repository name
+        const path = window.location.pathname;
+        const baseTag = document.createElement('base');
+        const MAX_IMGS_TO_FETCH = 9;
 
-    let basePath; // <-- Correctly declared here
+        let basePath; // <-- Correctly declared here
 
-    if (path.includes(`/${repoName}/`)) {
-      // We are on GitHub Pages, the base path is the repo name
-      basePath = `/${repoName}/`;
-      baseTag.href = basePath;
-    } else {
-      // We are running locally, the base path is the root
-      basePath = '/';
-      baseTag.href = basePath;
-    }
-    // Add the base tag to the head of the document
-    document.head.prepend(baseTag);
+        if (path.includes(`/${repoName}/`)) {
+          // We are on GitHub Pages, the base path is the repo name
+          basePath = `/${repoName}/`;
+          baseTag.href = basePath;
+        } else {
+          // We are running locally, the base path is the root
+          basePath = '/';
+          baseTag.href = basePath;
+        }
+        // Add the base tag to the head of the document
+        document.head.prepend(baseTag);
 
         // --- Fix specific ABSOLUTE paths ---
-    // Now, we must fix elements with paths that start with a '/'.
-    // We get the elements and prepend the basePath.
-    
-    document.addEventListener('DOMContentLoaded', () => {
-      // Find the navbar brand link and fix its href.
-      const navbarBrand = document.querySelector('.navbar-brand');
-      if (navbarBrand) {
-        navbarBrand.href = basePath;
-      }
-      
-      // Find the logo image inside the navbar brand and fix its src.
-      const logoImg = document.querySelector('.navbar-logo');
-      if (logoImg) {
-        // We assume the original path was '/static/logo.png'
-        logoImg.src = `${basePath}static/logo.png`;
-      }
-  })
+        // Now, we must fix elements with paths that start with a '/'.
+        // We get the elements and prepend the basePath.
+        
+        document.addEventListener('DOMContentLoaded', () => {
+          // Find the navbar brand link and fix its href.
+          const navbarBrand = document.querySelector('.navbar-brand');
+          if (navbarBrand) {
+            navbarBrand.href = basePath;
+          }
+          
+          // Find the logo image inside the navbar brand and fix its src.
+          const logoImg = document.querySelector('.navbar-logo');
+          if (logoImg) {
+            // We assume the original path was '/static/logo.png'
+            // logoImg.src = `${basePath}static/logo.png`;
+            logoImg.src = `./static/logo.png`;
+          }
+      })
 
         document.addEventListener('click', function(event) {
             const nav = document.getElementById('floatingNav');
@@ -58,7 +59,7 @@
                 nav.classList.remove('show');
             }
         });
-    
+
   </script>
 
 
@@ -354,7 +355,7 @@
                 <nav class="navbar navbar-expand-lg mt-1 mb-3 rounded-3 \">
                     <a class="navbar-brand ps-3 d-flex align-items-center  flex-wrap" href="/">
                         <!-- the img src is set from script uptop which looks for a img entry with navbar-logo class in it which the following is. so src is not reqd -->
-                        <img  class="navbar-logo me-2 rounded-circle" />  
+                        <img   class="navbar-logo me-2 rounded-circle" />  
                         <span class="header-title">Temples - The Heart of Sanathana dharma</span>
                     </a>
                 </nav>
