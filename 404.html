@@ -16,7 +16,7 @@
         const repoName = 'templepages'; // IMPORTANT: Change this to your repository name
         const path = window.location.pathname;
         const baseTag = document.createElement('base');
-        const MAX_IMGS_TO_FETCH = 9;
+        //const MAX_IMGS_TO_FETCH = 9;
 
         let basePath; // <-- Correctly declared here
 
@@ -31,24 +31,42 @@
         }
         // Add the base tag to the head of the document
         document.head.prepend(baseTag);
+            // REPOSITORY_NAME:'templepages',
 
-        // --- Fix specific ABSOLUTE paths ---
-        // Now, we must fix elements with paths that start with a '/'.
-        // We get the elements and prepend the basePath.
+        // Function to extract the slug from the URL
+        function getPostSlugFromUrl() {
+            // Get the pathname, e.g., "/posts/sikkal/"
+            const path = window.location.pathname;
+            // Split by '/', filter out empty strings, and get the last part
+            const parts = path.split('/').filter(p => p);
+            return parts.length > 0 ? parts[parts.length - 1] : null;
+        }
+
+         // Global variables and moved all problematic site root related items here as git and local testing have different roots.
+        // dont know what will be the root when the www.templepages.com is mapped to the github page
         
+        const CONFIG = {
+            MAX_IMGS_TO_FETCH: 9,
+            POSTS_JSON_URL: './posts.json',
+            POSTS_DATA: [],
+            SITE_ROOT:basePath,
+            POST_SLUG:getPostSlugFromUrl(),
+            SLUG_ROOT: `${basePath}posts/${getPostSlugFromUrl()}`,
+            SLUG_URL:`${basePath}${getPostSlugFromUrl()}/`     // last '/'' is important
+        };
+
         document.addEventListener('DOMContentLoaded', () => {
           // Find the navbar brand link and fix its href.
           const navbarBrand = document.querySelector('.navbar-brand');
           if (navbarBrand) {
-            navbarBrand.href = basePath;
+            navbarBrand.href = CONFIG.SITE_ROOT;
           }
           
           // Find the logo image inside the navbar brand and fix its src.
           const logoImg = document.querySelector('.navbar-logo');
           if (logoImg) {
             // We assume the original path was '/static/logo.png'
-            // logoImg.src = `${basePath}static/logo.png`;
-            logoImg.src = `./static/logo.png`;
+            logoImg.src = './static/logo.png';
           }
       })
 
@@ -431,8 +449,8 @@
          * and loads the main content from contents.md based on the URL slug.
          */
 
-        let currentPost = null;
-        let postSlug = '';
+        // let currentPost = null;
+        // let postSlug = '';
         let postsData = [];
         
         // Function to display a custom alert message
@@ -533,11 +551,19 @@
         }
 
         // Generate SEO-friendly slug URL
-        //  we dont need to use /posts/$(slug) because since we use 404 , it will not find the /slug url and will go there anyway. how intelligent
+        //  we dont need to use /posts/$(slug) because since we use 404 , it will not find the /slug url and will go there anyway. 
+        // -----------------------------  HOW INTELLIGENT ------------------------------------
         // for this to work with both git and local , we sud do a basePath check as weall
-        function getSlugUrl(slug) {
-            return `${basePath}${slug}/`;
-        }
+        // function getSlugUrl(slug) {
+        //     // was 
+        //     // console.log(' getslugurl is ' +  `${CONFIG.SITE_ROOT}${slug}/`);
+        //     // return `${CONFIG.SITE_ROOT}${slug}/`;
+
+        //     // now
+        //     console.log(' getslugurl 2 is ' +  `${CONFIG.SLUG_URL}/`);
+        //     return CONFIG.SLUG_URL;
+            
+        // }
 
         // Generate dynamic navigation from static posts
         function generateNavigation() {
@@ -549,20 +575,12 @@
             
             staticPosts.forEach(post => {
                 const icon = post.slug === 'about' ? 'info-circle' : 'universal-access';
-                navHTML += `<a class="nav-link" href="${getSlugUrl(post.slug)}"><i class="fas fa-${icon} me-2"></i>${post.title}</a>`;
+//                navHTML += `<a class="nav-link" href="${getSlugUrl(post.slug)}"><i class="fas fa-${icon} me-2"></i>${post.title}</a>`;
+                navHTML += `<a class="nav-link" href="${CONFIG.SLUG_URL}"><i class="fas fa-${icon} me-2"></i>${post.title}</a>`;
                 // console.log('generateNavigation for '+ post.slug);
             });
             
             navContainer.innerHTML = navHTML;
-        }
-
-        // Function to extract the slug from the URL
-        function getPostSlugFromUrl() {
-            // Get the pathname, e.g., "/posts/sikkal/"
-            const path = window.location.pathname;
-            // Split by '/', filter out empty strings, and get the last part
-            const parts = path.split('/').filter(p => p);
-            return parts.length > 0 ? parts[parts.length - 1] : null;
         }
 
         // Function to display post details from a post data object
@@ -615,15 +633,15 @@
 
             // Check a range of images concurrently
             const promises = [];
-            for (let i = 1; i <= MAX_IMGS_TO_FETCH; i++) {
-                promises.push(fetch(`${basePath}posts/${postSlug}/img${i}.jpg`, { method: 'HEAD', cache: 'no-store' }));
+            for (let i = 1; i <= CONFIG.MAX_IMGS_TO_FETCH; i++) {
+                promises.push(fetch(`${CONFIG.SLUG_ROOT}/img${i}.jpg`, { method: 'HEAD', cache: 'no-store' }));
             }
 
             try {
                 const responses = await Promise.all(promises);
                 responses.forEach((response, index) => {
                     if (response.ok) {
-                        imgurl = `${basePath}posts/${postSlug}/img${index + 1}.jpg` ;
+                        imgurl = `${CONFIG.SLUG_ROOT}/img${index + 1}.jpg` ;
                         // console.log(`valid images found out of 7 are  ${imgurl} .`);
 
                         postImages.push(imgurl);
@@ -642,7 +660,7 @@
                         No images were found for this post.
                     </div>
                 `;
-                console.warn(`no img<?>.jpg files found for slug: ${postSlug} .`);
+                console.warn(`no img<?>.jpg files found for slug: ${CONFIG.POST_SLUG} .`);
 
                 return;
             }
@@ -710,7 +728,7 @@
             
             try {
                 // Construct the path to the markdown file dynamically
-                const response = await fetch(`${basePath}posts/${postSlug}/contents.md`);
+                const response = await fetch(`${CONFIG.SLUG_ROOT}/contents.md`);
                 
                 if (response.ok) {
                     // If the file is found, get the text and parse it as Markdown
@@ -723,11 +741,11 @@
                             No content was found for this post.
                         </div>
                     `;
-                    console.warn(`contents.md not found for slug: ${postSlug}, using placeholder content.`);
+                    console.warn(`contents.md not found for slug: ${CONFIG.POST_SLUG}, using placeholder content.`);
                 }
             } catch (e) {
                 // Handle network errors or other exceptions
-                console.error(`Error fetching contents.md for slug: ${postSlug}`, e);
+                console.error(`Error fetching contents.md for slug: ${CONFIG.POST_SLUG}`, e);
                 contentContainer.innerHTML = `
                     <div class="alert alert-danger text-center" role="alert">
                         An error occurred while loading the post content.
@@ -767,9 +785,9 @@
         // Main initialization function
         async function initializePage() {
 
-            postSlug = getPostSlugFromUrl();
+            // postSlug = getPostSlugFromUrl();
 
-            if (!postSlug) {
+            if (! CONFIG.POST_SLUG) {
                 // This page is likely being accessed directly or incorrectly.
                 // We'll show a friendly error message and stop further execution.
                 document.getElementById('postTitle').textContent = "Invalid URL";
@@ -783,17 +801,19 @@
 
             try {
                 // Fetch the central posts.json file from the root
-                const postsResponse = await fetch(`${basePath}posts.json`);
+                // const postsResponse = await fetch(`${basePath}posts.json`);
+                const postsResponse = await fetch(CONFIG.POSTS_JSON_URL);
+
                 if (!postsResponse.ok) {
                     throw new Error('Failed to fetch central posts.json');
                 }
                 postsData = await postsResponse.json();
                 
                 // Find the post that matches the current slug
-                const post = postsData.find(p => p.slug === postSlug);
+                const currentPost = postsData.find(p => p.slug === CONFIG.POST_SLUG);
 
-                if (post) {
-                    currentPost = post;
+                if (currentPost) {
+                    // currentPost = post;
                     // Now that we have the data, we can render the page
                     displayPostDetails(currentPost);
                     // displayImages(currentPost);

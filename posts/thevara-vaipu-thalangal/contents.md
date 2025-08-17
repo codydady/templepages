@@ -2,19 +2,6 @@
 <div class="temple-list-container">
 <div class="temple-card">
     <div class="temple-header">
-        <span class="serial-num">SNum</span>
-    </div>
-    <div class="temple-details">
-        <p><strong>Goddess:</strong> Goddess</p>
-        <p><strong>God:</strong> God</p>
-        <p><strong>Location:</strong> Location</p>
-        <p><strong>Priest:</strong> Priest</p>
-        <p><strong>Phone:</strong> Phone Num</p>
-    </div>
-</div>
-
-<div class="temple-card">
-    <div class="temple-header">
         <span class="serial-num">1</span>
     </div>
     <div class="temple-details">
