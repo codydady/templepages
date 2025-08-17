@@ -12,8 +12,12 @@
         const repoName = 'templepages'; // IMPORTANT: Change this to your repository name
         const path = window.location.pathname;
         const baseTag = document.createElement('base');
-
         let basePath;
+
+        // Global variables
+        // let CONFIG.POSTS_DATA = [];
+        // let currentPosts = [];
+        // const POSTS_JSON_URL = './posts.json';
 
         if (path.includes(`/${repoName}/`)) {
           // We are on GitHub Pages, the base path is the repo name
@@ -27,6 +31,15 @@
 
         // Add the base tag to the head of the document
         document.head.prepend(baseTag);
+
+
+        CONFIG = {
+            RECENT_POSTS_COUNT: 20,
+            POSTS_JSON_URL : './posts.json',
+            POSTS_DATA: [],
+            SITE_ROOT:basePath
+        };
+
     </script>
 
     <!-- Using the standard Bootstrap CDN for dark/light themes -->
@@ -73,6 +86,12 @@
             --theme-border: rgba(255, 255, 255, 0.1);
             --theme-overlay: rgba(0, 0, 0, 0.7);
         }
+
+        :root {
+            --bs-primary: #994c00; /* Override primary color to a custom orange */
+            --bs-primary-rgb: 153, 76, 0; /* Matching RGB values */
+        }
+
         [data-bs-theme="light"] {
             --theme-bg: #f8f6f0;
             --theme-bg-secondary: #ede8dc;
@@ -566,19 +585,20 @@
         </button>
     </div>
 
+    <!-- Floating Navigation Menu -->
     <nav class="floating-nav" id="floatingNav">
         <div class="mb-3">
             <div id="dynamicNav">
                 <!-- Dynamic navigation items will be inserted here -->
             </div>
         </div>
-        <hr>
+<!--         <hr>
         <div class="d-flex flex-column gap-2">
             <button class="btn btn-outline-secondary btn-sm" id="themeToggle">
                 <i class="fas fa-sun me-2"></i>
                 <span id="themeText">Light Theme</span>
             </button>
-        </div>
+        </div> -->
     </nav>
 
     <div class="action-buttons">
@@ -597,20 +617,16 @@
                 <i class="fas fa-mobile-alt"></i>
             </button>
         </a>
+           <button class="btn btn-outline-secondary btn-sm" id="themeToggle">
+                <i class="fas fa-sun me-2"></i>
+                <span id="themeText">Light Theme</span>
+            </button>       
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Global variables
-        let POSTS_DATA = [];
-        let currentPosts = [];
-        const POSTS_JSON_URL = './posts.json';
-
-        const CONFIG = {
-            recentPostsCount: 20
-        };
 
         function showCustomAlert(message) {
             const alertBox = document.createElement('div');
@@ -661,7 +677,7 @@
         function handleTagClick(tag) {
             event.stopPropagation();
             // console.log("handleTagClick called for :", tag);
-            const postsWithTag = POSTS_DATA.filter(post => post.tags.includes(tag));
+            const postsWithTag = CONFIG.POSTS_DATA.filter(post => post.tags.includes(tag));
             const count = postsWithTag.length;
             const message = `There are ${count} posts with the tag: #${tag}. Tag based navigation to come soon`;
             showCustomAlert(message);
@@ -669,16 +685,16 @@
 
         async function fetchPostsData() {
             try {
-                const response = await fetch(POSTS_JSON_URL);
+                const response = await fetch(CONFIG.POSTS_JSON_URL);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const allPosts = await response.json();
-                POSTS_DATA = allPosts.filter(post => !post.hide);
+                CONFIG.POSTS_DATA = allPosts.filter(post => !post.hide);
                 initializePage();
             } catch (e) {
                 console.error("Could not fetch posts data:", e);
-                POSTS_DATA = [];
+                CONFIG.POSTS_DATA = [];
                 initializePage();
             }
         }
@@ -704,14 +720,14 @@
             }
         });
 
-        function getRecentPosts(count = CONFIG.recentPostsCount) {
-            const postsOnly = POSTS_DATA.filter(post => post.type === 'posts' && !post.hide);
+        function getRecentPosts(count = CONFIG.RECENT_POSTS_COUNT) {
+            const postsOnly = CONFIG.POSTS_DATA.filter(post => post.type === 'posts' && !post.hide);
             postsOnly.sort((a, b) => new Date(b.date) - new Date(a.date));
             return postsOnly.slice(0, count);
         }
 
         function getRandomPosts(count = 4, exclude = []) {
-            const postsOnly = POSTS_DATA.filter(post =>
+            const postsOnly = CONFIG.POSTS_DATA.filter(post =>
                 post.type === 'posts' && !post.hide && !exclude.includes(post.slug)
             );
             const shuffled = [...postsOnly].sort(() => 0.5 - Math.random());
@@ -719,8 +735,10 @@
         }
 
         function getPinnedPosts() {
-            return POSTS_DATA.filter(post => post.pinned && !post.hide);
+            return CONFIG.POSTS_DATA.filter(post => post.pinned && !post.hide);
         }
+
+                            // <img src="${basePath}static/logo.png" alt="" aria-hidden="true">
 
         function displayPinnedPosts() {
             const pinnedPosts = getPinnedPosts();
@@ -731,7 +749,7 @@
                 pinnedHtml += `
                     <div class="pinned-post-wrapper">
                         <a href="${getSlugUrl(post.slug)}" class="pinned-post-btn" style="text-decoration: none;">
-                            <img src="${basePath}static/logo.png" alt="" aria-hidden="true">
+                            <img src="./static/logo.png" alt="" aria-hidden="true">
                         </a>
                         <span class="tooltip">${post.title}</span>
                     </div>
@@ -741,7 +759,7 @@
         }
 
         function generateNavigation() {
-            const staticPosts = POSTS_DATA.filter(post => post.type === 'static' && !post.hide);
+            const staticPosts = CONFIG.POSTS_DATA.filter(post => post.type === 'static' && !post.hide);
             const navContainer = document.getElementById('dynamicNav');
             let navHTML = '';
             staticPosts.forEach(post => {
@@ -787,7 +805,7 @@
                         </div>
                         <h3 class="card-title">${post.title}</h3>
                         <div class="card-tags">
-                            ${post.tags.slice(0, 3).map(tag => `<span class="tag" onclick="handleTagClick('${tag}')">#${tag}</span>`).join('')}
+                            ${post.tags.slice(0, 4).map(tag => `<span class="tag" onclick="handleTagClick('${tag}')">#${tag}</span>`).join('')}
                         </div>
                     </div>
                 </article>
@@ -826,7 +844,7 @@
 
         function displayPosts() {
             const container = document.getElementById('postsContainer');
-            const recentPosts = getRecentPosts(CONFIG.recentPostsCount);
+            const recentPosts = getRecentPosts(CONFIG.RECENT_POSTS_COUNT);
             const recentPostsCardHTML = getRecentPostsCard(recentPosts);
 
             // approach 3 : exclude recent posts and pinned
@@ -844,7 +862,7 @@
             // const allExcludedSlugs = [];
 
             const randomPosts = getRandomPosts(4, allExcludedSlugs);
-            currentPosts = [ ...recentPosts, ...randomPosts ];
+            //currentPosts = [ ...recentPosts, ...randomPosts ];
             let gridHTML = `
                 <div class="row row-2-posts g-3 mb-3">
                     <div class="col-md-6">

@@ -50,6 +50,15 @@
         logoImg.src = `${basePath}static/logo.png`;
       }
   })
+
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('floatingNav');
+            const toggle = document.querySelector('.menu-toggle');
+            if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+                nav.classList.remove('show');
+            }
+        });
+    
   </script>
 
 
@@ -333,7 +342,7 @@
         .footer-section {
             padding-bottom: 15px; /* Or whatever value you need */
         }
-        
+
 </style>
 </head>
 
@@ -395,7 +404,7 @@
     <!-- Floating Navigation Menu -->
     <nav class="floating-nav" id="floatingNav">
         <div class="mb-3">
-            <h6 class="text-muted mb-2">Navigation</h6>
+            <!-- <h6 class="text-muted mb-2">Navigation</h6> -->
             <div id="dynamicNav">
                 <!-- Dynamic navigation items will be inserted here -->
             </div>
@@ -519,7 +528,7 @@
             const isShown = nav.classList.toggle('show');
 
             // Add or remove a class to the body to prevent scrolling when the menu is open
-            document.body.classList.toggle('no-scroll', isShown);
+           // document.body.classList.toggle('no-scroll', isShown);
         }
 
         // Generate SEO-friendly slug URL
