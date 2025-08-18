@@ -229,6 +229,7 @@
             background-color: #ffcc00;
             color: #0d0c1d;
         }
+
         .image-gallery .row > div {
             padding: 5px;
         }
@@ -564,16 +565,16 @@
         //  we dont need to use /posts/$(slug) because since we use 404 , it will not find the /slug url and will go there anyway. 
         // -----------------------------  HOW INTELLIGENT ------------------------------------
         // for this to work with both git and local , we sud do a basePath check as weall
-        // function getSlugUrl(slug) {
-        //     // was 
-        //     // console.log(' getslugurl is ' +  `${CONFIG.SITE_ROOT}${slug}/`);
-        //     // return `${CONFIG.SITE_ROOT}${slug}/`;
+        function getSlugUrl(slug) {
+            // we cant do this as floating nav bar has multiple items and config.slug_url gives only one
+            console.log(' getslugurl is ' +  `${CONFIG.SITE_ROOT}${slug}/`);
+            return `${CONFIG.SITE_ROOT}${slug}/`;
 
-        //     // now
-        //     console.log(' getslugurl 2 is ' +  `${CONFIG.SLUG_URL}/`);
-        //     return CONFIG.SLUG_URL;
+            // now
+            // console.log(' getslugurl 2 is ' +  `${CONFIG.SLUG_URL}/`);
+            // return CONFIG.SLUG_URL;
             
-        // }
+        }
 
         // Generate dynamic navigation from static posts
         function generateNavigation() {
@@ -585,8 +586,8 @@
             
             staticPosts.forEach(post => {
                 const icon = post.slug === 'about' ? 'info-circle' : 'universal-access';
-//                navHTML += `<a class="nav-link" href="${getSlugUrl(post.slug)}"><i class="fas fa-${icon} me-2"></i>${post.title}</a>`;
-                navHTML += `<a class="nav-link" href="${CONFIG.SLUG_URL}"><i class="fas fa-${icon} me-2"></i>${post.title}</a>`;
+                navHTML += `<a class="nav-link" href="${getSlugUrl(post.slug)}"><i class="fas fa-${icon} me-2"></i>${post.title}</a>`;
+                // navHTML += `<a class="nav-link" href="${CONFIG.SLUG_URL}"><i class="fas fa-${icon} me-2"></i>${post.title}</a>`;
                 // console.log('generateNavigation for '+ post.slug);
             });
             
