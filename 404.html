@@ -6,6 +6,16 @@
     <title id="pageTitle">Templepages - temples , trains , nithyadharma & sriram ! </title>
     <!-- Bootstrap CSS and Font Awesome for icons -->
 
+    <!-- Google  analytics tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RH9RHE93K"></script>
+    <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-3RH9RHE93K');
+    </script>
+
   <!--
     todo - important : these are to reconcile change between git and local repo. sriram , aug 12,2025
     This script now runs immediately as the browser parses the HTML.
@@ -44,7 +54,7 @@
 
          // Global variables and moved all problematic site root related items here as git and local testing have different roots.
         // dont know what will be the root when the www.templepages.com is mapped to the github page
-        
+
         const CONFIG = {
             MAX_IMGS_TO_FETCH: 9,
             POSTS_JSON_URL: './posts.json',

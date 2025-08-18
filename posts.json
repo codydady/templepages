@@ -112,6 +112,23 @@
         "author": "Sriram S.",
         "date": "2018-07-21",
         "tags": ["temple" ]
+    },
+     {
+        "slug": "soundharanayagi-sametha-vilvaranyeswarar-thirukollamboodhoor",
+        "type": "posts",
+        "title": "Soundharanayagi sametha Vilvaranyeswarar temple, Thirukollamboodhoor",
+        "author": "Sriram S.",
+        "date": "2007-01-11",
+        "tags": ["temple" , "thevaram" , "sambandhar"]
+    },   
+    {
+        "slug": "othimalai-andavar-temple-irumbarai",
+        "type": "posts",
+        "title": "Othimalai andavar temple, Irumbarai",
+        "author": "Sriram S.",
+        "date": "2015-07-30",
+        "tags": ["temple" , "hill-temple"],
+        "pinned": true
     },   
     {
         "slug": "which-temple-to-start-with",
