@@ -38,7 +38,15 @@
         "title": "Lokamotiv Technology Solutions",
         "author": "Sriram Seetharaman",
         "date": "2023-06-19",
-        "tags": ["lokamotiv", "dharma"]
+        "tags": ["lokamotiv"]
+    },   
+    {
+        "slug": "jeya-mangala-anjaneyar-temple-idugampalayam",
+        "type": "posts",
+        "title": "Jeyamangala Anjaneyar temple, Idugampalayam",
+        "author": "Sriram Seetharaman",
+        "date": "2018-03-18",
+        "tags": [  "temple" , "hinduism" ]
     },   
     {
         "slug": "nithyadharma-puja-products",
@@ -46,8 +54,7 @@
         "title": "Nithyadharma Authentic Puja Products",
         "author": "R.Srinivasan",
         "date": "2019-02-13",
-        "tags": ["nithyadharma", "spirituality", "wisdom" , "hinduism" ],
-        "pinned": true
+        "tags": ["nithyadharma", "spirituality", "wisdom" , "hinduism" ]
     },   
     {
         "slug": "ganapathy-agraharam",
