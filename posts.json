@@ -158,9 +158,17 @@
         "title": "Meenakshi sametha Sundhareswarar temple, Kariyapatti",
         "author": "Sriram S.",
         "date": "2018-07-21",
-        "tags": ["temple" ]
+        "tags": ["temple" ]    
     },
      {
+        "slug": "sundharagujambika-sametha-nethrarppaneswarar-thiruveezhimizhalai",
+        "type": "posts",
+        "title": "Sundharagujambika sametha Nethrarppaneswarar, Thiruveezhimizhalai",
+        "author": "Sriram S.",
+        "date": "2012-08-18",
+        "tags": ["temple" , "thevaram" , "appar" , "sundharar" , "kalyana-parikara-sthalam" , "sambandhar"]
+    },   
+   {
         "slug": "soundharanayagi-sametha-vilvaranyeswarar-thirukollamboodhoor",
         "type": "posts",
         "title": "Soundharanayagi sametha Vilvaranyeswarar temple, Thirukollamboodhoor",
