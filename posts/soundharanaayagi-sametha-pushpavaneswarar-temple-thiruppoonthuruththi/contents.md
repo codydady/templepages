@@ -59,4 +59,3 @@ other temples which form the saptha sthanam heritage are kandiyur , thiruvedhiku
         </div>
  </div>
 
- 
