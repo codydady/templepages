@@ -10,7 +10,7 @@
     {
         "slug": "privacy-policy",
         "type": "posts",
-        "title": "NithyaDharma Mobile App Privacy Policy",
+        "title": "Nithya Dharma Mobile App Privacy Policy",
         "author": "sriram",
         "date": "2025-08-08",
         "tags": ["nithyadharma", "templetracker"],
@@ -27,10 +27,18 @@
     {
         "slug": "nithyadharma-mobile-app",
         "type": "static",
-        "title": "NithyaDharma Mobile App",
+        "title": "Nithya Dharma Mobile App",
         "author": "Sriram Seetharaman",
         "date": "2025-6-14",
-        "tags": ["temples", "rituals", "spirituality" , "hinduism"]
+        "tags": ["temples", "nithyadharma", "rituals", "spirituality" , "hinduism"]
+    },  
+    {
+        "slug": "nithyadharma-charitable-trust",
+        "type": "static",
+        "title": "Nithya Dharma Charitable Trust",
+        "author": "Sriram Seetharaman",
+        "date": "2025-5-7",
+        "tags": ["temples",  "nithyadharma",  "spirituality" , "hinduism"]
     },  
     {
         "slug": "lokamotiv",
