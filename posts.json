@@ -157,11 +157,19 @@
         "type": "posts",
         "title": "Karunyavalli  sametha Kachabeswarar temple, Eachankudi",
         "author": "Sriram S.",
-        "actualdate": "2023-11-04",
-        "date": "2025-08-28",
+        "date": "2023-11-04",
         "tags": ["temple" ]
     },   
     {
+        "slug": "anandhavalli-sametha-rajarajeswarar-temple-kadakadappai",
+        "type": "posts",
+        "title": "Aanandhavalli sametha Raja Rajeswarar temple, Kadakadappai",
+        "author": "Sriram S.",
+        "actualdate": "2020-01-31",
+        "date": "2025-09-5",
+        "tags": ["temple", "sapthasthanam" ]
+    },   
+   {
         "slug": "kaivalyambikai-sametha-karkkodaganadhar-temple-kodangudi",
         "type": "posts",
         "title": "Kaivalyambikai sametha Karkkodaganadhar temple, Kodangudi",
