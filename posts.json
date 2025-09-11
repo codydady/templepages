@@ -174,9 +174,17 @@
         "type": "posts",
         "title": "Kaivalyambikai sametha Karkkodaganadhar temple, Kodangudi",
         "author": "Sriram S.",
-        "actualdate": "2024-04-11",
-        "date": "2025-08-25",
+        "date": "2024-04-11",
         "tags": ["temple", "sarpa-dosha-parikaram" ]
+    },   
+    {
+        "slug": "amrithamugizhambikai-sametha-ukthavedeeswarar-temple-kuththalam",
+        "type": "posts",
+        "title": "Amritha Mugizhambikai sametha Ukthavedeeswarar temple, Kuththalam",
+        "author": "Sriram S.",
+        "actualdate": "2022-03-22",
+        "date": "2025-09-11",
+        "tags": ["temple", "thevaram" , "appar"  , "sundharar" , "sambandhar"]
     },   
     {
         "slug": "bhoomi-balaka-perumal-temple-thiruppuliyangudi",
