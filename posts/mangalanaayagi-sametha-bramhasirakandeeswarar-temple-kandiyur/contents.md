@@ -54,5 +54,3 @@ The tamizh sthalapuram is provided below as an image slideshow.
             </div>
         </div>
  </div>
-
- 
