@@ -47,7 +47,8 @@
             RECENT_POSTS_COUNT: 20,
             POSTS_JSON_URL : './posts.json',
             POSTS_DATA: [],
-            SITE_ROOT:basePath
+            SITE_ROOT:basePath,
+            NEW_HIGHLIGHT_FOR_POST_DURATION_MS: 14 * 24 * 60 * 60 * 1000
         };
 
     </script>
@@ -782,13 +783,14 @@
         function formatPostDate(dateString) {
             const postDate = new Date(dateString);
             const now = new Date();
-            const oneWeekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
+            //const oneWeekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
             const formattedDate = postDate.toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'short',
                 day: 'numeric'
             });
-            const isNew = (now - postDate) < oneWeekInMilliseconds;
+            const isNew = (now - postDate) < CONFIG.NEW_HIGHLIGHT_FOR_POST_DURATION_MS;
+//            const isNew = (now - postDate) < oneWeekInMilliseconds;
             if (isNew) {
                 return `${formattedDate} <span class="badge bg-warning ms-2">New</span>`;
             } else {
