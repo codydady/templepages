@@ -21,8 +21,9 @@
         "type": "posts",
         "title": "What is Sanathana Dharma ?",
         "author": "Sriram Seetharaman",
-        "date": "2023-11-10",
-        "tags": ["temples", "rituals", "spirituality" , "hinduism"]
+        "actualdate": "2023-11-10",
+        "date": "2025-09-27",
+        "tags": ["temples", "rituals","nithyadharma", "spirituality" , "hinduism"]
     },
     {
         "slug": "nithyadharma-mobile-app",
