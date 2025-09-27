@@ -5,6 +5,7 @@
 This temple is situated on the north bank of pambani river at a distance of 2 km north of Raja Mannargudi in Tiruvarur district. This temple has town bus and minibus facility from Mannargudi. Can also come by auto.
 
 <strong>அமிர்தநாயகி சமேத நாகநாதசுவாமி திருக்கோயில், பாமணி</strong>
+
 <b>அமைவிடம் :</b>
 
 இக்கோயில் திருவாரூர் மாவட்டம் ராஜ மன்னார்குடிக்கு வடக்கே 2.கி.மீ.தொலைவில் பாம்பணி ஆற்றின் வடபுறம் அமைந்துள்ளது. தேவாரம் பாடப்பெற்ற தலங்களுள் ஒன்றாகும். திருஞானசம்பந்தர், திருநாவுக்கரசர், சுந்தரர் ஆகிய மூன்று நாயன்மார்களாலும் பாடப்பெற்றது. இக்கோயிலுக்கு மன்னார்குடியில் இருந்து டவுன்பஸ், மினிபஸ் வசதி உண்டு. ஆட்டோவிலும் வரலாம்.
