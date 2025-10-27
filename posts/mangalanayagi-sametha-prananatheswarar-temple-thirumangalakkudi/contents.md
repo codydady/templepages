@@ -1,0 +1,26 @@
+Tirumangalakudi is located very close to Aduthurai, on the way to Tiruppanandal.
+
+<strong>Sthala puranam&nbsp;</strong>
+
+Sage Galva, through his yogic power, learnt that he would be affected with leprosy. So he prayed to Navagrahams to protect him, and they obliged. However, this caused resentment in Brahma, as be felt he alone was in charge of humans’ destinies. As a result, he cursed the Navagrahams to be afflicted with leprosy. The Navagrahams prayed to Brahma to withdraw his curse, but that was not to be. However, Brahma guided them to pray to Prananatheswarar at Tirumangalakudi. The Navagrahams did accordingly, and also installed a shrine for Vinayakar and built a temple as well. Eventually, Lord Siva blessed them and they were relieved of Brahma’s curse. As a mark of gratitude, the Sage Galva built a temple for the Navagrahams at the place they undertook their penance.
+
+Kulothunga Chola’s minister – Aalaivanar – built this temple from taxes he collected, but without the king’s permission. The king ordered the minister’s head to be severed, after which the remains were brought to Tirumangalakudi for final rites. The minister’s wife pleaded with Lord Siva at this temple to resurrect her husband, and He obliged. Elated at being back alive, the minister embraced the Lingam and called him Jeevanayakam (the Tamil equivalent of Prana Natheswarar). The Lord also acceded to the couple’s request, to bless devotees coming here with a happy wedded life. For this reason, the mangala saradu (thread) is given to lady devotees as prasadam.
+
+An interesting feature of this temple is that several key aspects of the temple have the name “Mangalam“, meaning auspicious, in them. The place is Tirumangalakudi, another name of the moolavar is Mangalanathar, Ambal is Mangalambikai, Vinayakar is Mangala Vinayakar, and there are the Mangala vimanam and Mangala Teertham as well.
+
+While the height of the Lingam varies across temples, the one at this temple is relatively shorter than most others. It is said that this is to enable Agastyar (who is considered short in stature) to perform oblations to the Lingam here.
+
+This temple houses an emerald idol of Natarajar (maragatha Natarajar), and is one of very few temples to do so. There are, in fact, two Natarajar murtis in the temple. Also, Lakshmi and Saraswati are in place of the Dwarapalakas, and Saraswati is seen without her veena.
+
+There is no separate Navagraham shrine at this temple. The belief is that Suryanar Koil (where the Navagrahams each have separate shrines) is itself the Navagraham shrine of this temple. Therefore, the general custom is to worship at this temple and then proceed to the nearby Suryanar Koil.
+
+This is a Chola temple, with the basic structure estimated to be over 1500 years old. There are also inscriptions from the Pallava and Vijayanagara times, in this temple.
+
+[ngg src="galleries" ids="127" display="basic_thumbnail"]
+<h6 style="text-align: center;"><strong>மங்கலநாயகி சமேத பிராணநாதேஸ்வரர், திருமங்கலக்குடி</strong></h6>
+கும்பகோணத்திலிருந்து கதிராமங்கலம் வழியாக மயிலாடுதுறை செல்லும் சாலையில் இத்தலம் அமைந்துள்ளது. ஆடுதுறையிலிருந்து 2 கிமீ தொலைவு. திருப்பனந்தாளுக்கும் சாலை உள்ளது. குடந்தையிலிருந்து சுமார் 20 கிமீக்கள் தொலைவு. ஐந்து நிலைகள் கொண்ட ராஜ கோபுரம் நம்மை வரவேற்கின்றது. கோயிலுக்கு வெளியே குளம் உள்ளது. முன்மண்டபத்தில் நந்தி, பலிபீடம் வெளிச்சுற்றில் விநாயகர் சந்நிதி. முன்மண்டபத்தில் ஸ்வாமி சந்நிதித் தெற்கு நோக்கியுள்ளது. உள்சுற்றில் பதினோரு சிவலிங்கத் திருமேனிகள் வரிசையாக உள்ளன. விநாயகர் ஆறுமுகர், கஜலக்ஷ்மி, பைரவர் சந்நிதிகள் மற்றும் நடராஜ சபை உள்ளது. இரண்டு நடராஜாத்திருமேனிகள் உள்ளன. ஒன்று ஆனித்திருமஞ்சன நாளிலும் மற்றொன்று ஆருத்திரா தரிசன நாளிலும் உலா வருவதாகச் சொல்லப்படுகிறது. நேரே பார்த்தால் மூலவர் தரிசனம். நீண்டுயர்ந்த பானம் மிகப்பொலிவான மூர்த்தி. உற்சவ மூர்த்தங்களில் சந்திரசேகரர், மயில்வாகனன், நால்வர், பிரதோஷ நாயகர் முதலியனச் சிறப்பானவை. வழக்கமான கோகேஷ்ட மூர்த்தங்கள் உள்ளன.
+
+காளி, சூரியன், பிரம்மா, திருமால், அகத்தியர் ஆகியவர்கள் வழிபட்ட பெருமை உடைய தலம். இது பஞ்சமங்கலக்ஷேத்ரம் என்ற பெருமையுடையது. பஞ்சமங்கலமாவது மங்கள விமானம், மங்கள விநாயகர் மங்களாம்பிகை, மங்கள தீர்த்தம், மங்கலக்குடி என்பனவாம்.
+முதலாம் குலோத்துங்கன் காலத்தில் மந்திரியொருவன் மன்னனின் வரிப்பணத்தைக்கொண்டு திருமங்கலக் குடியிலேஷனுக்கு கோயில் கட்டினான். அதையறிந்த மன்னன் கோபமுற்று மந்திரியை சிறைச்சயதம் செய்யுமாறு உத்தரவிட்டான். மந்திரியின் மனைவி, மங்களாம்பிகையிடம் மாங்கல்யப் பிச்சை தருமாறு வேண்டினாள். மந்திரி தன் உடலை திருமங்கலக்குடியில் அடக்கம் செய்யுமாறு வேண்டினான். மன்னன் உத்தரவு நிறைவேற்றப்பட்டு மந்திரியின் உயிரற்ற உடலை எடுத்துவரும்போது திருமங்கலக்குடியை அடைந்ததும் மங்களாம்பிகை அருளால் அவன்மீண்டும் உயிர் பெற்றான். மங்களாம்பிகை மாங்கல்யக்காப்பு தந்தருளி ஆட்கொண்டாள். அன்று முதல் தன்னை வழிபடுவோர்க்கு மாங்கல்ய பலம் அருள்வதாக அம்பிகை அருளினால் என்பது வரலாறு. நவக்கிரகங்களின் தோஷம் நீங்கிய தலம் சூரியனார் கோயில். அத்தோஷத்தை நீக்கியருளிய ஈசனித்தலத்து உறையும் பிராணவரதேஸ்வரரேயாவார். ஆகவே திருமங்கலக்குடியை தரிசித்த பின்பே சூரியனார் கோயில் சென்று வழிபடவேண்டும் என்பது ஐதீகம்.
+
+சம்பந்தர் , அப்பர் பாடல் பெற்ற தலம். உடலில் வியாதியுள்ளவர்கள் இங்குவந்து கார்த்திகை முதல் ஞாயிறு தொடங்கி 11&nbsp; ஞாயிற்றுக்கிழமைகளில் இங்குள்ள வெள்ளெருக்கு இலையில் தயிர்சாதம் சுவாமிக்கு நிவேதனம் செய்தால் வியாதியிலிருந்து நீங்கப்பெறுவர் என்பது வரலாறு. பலர் அவ்வாறு குணமடைந்து செல்கின்றனர்.
