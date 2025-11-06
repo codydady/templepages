@@ -21,8 +21,7 @@
         "type": "posts",
         "title": "What is Sanathana Dharma ?",
         "author": "Sriram Seetharaman",
-        "actualdate": "2023-11-10",
-        "date": "2025-10-27",
+        "date": "2023-11-10",
         "tags": ["temples", "rituals","nithyadharma", "spirituality" , "hinduism"]
     },
     {
@@ -34,6 +33,15 @@
         "tags": ["temples", "hinduism"]
     },  
     {
+        "slug": "girigujambigai-samtha-naganathar-temple-ragu-sthalam-thirunageswaram",
+        "type": "posts",
+        "title": "Girigujambigai samtha Shenbagaranyeswarar/Naganathar, Thirunageswaram",
+        "author": "Sriram Seetharaman",
+        "date": "2025-11-06",
+        "actualdate": "2007-04-18",
+        "tags": ["temples", "hinduism","appar","sundharar","sambandhar","thevaram","navagraham","shivarathri-adhiseshan-legend","thiruneelakkudi-sapthasthanam"]
+    },  
+   {
         "slug": "mangalanayagi-sametha-prananatheswarar-temple-thirumangalakkudi",
         "type": "posts",
         "title": "MangaLanayagi sametha Prananatheswarar, Thirumangalakkudi",
@@ -47,8 +55,7 @@
         "type": "posts",
         "title": "Navukkarasi udanurai Naganathar temple, Periyakumarapalayam",
         "author": "Sriram Seetharaman",
-        "date": "2025-10-2",
-        "actualdate": "2019-23-3",
+        "date": "2019-23-3",
         "tags": ["temples", "hinduism"]
     },  
     {
