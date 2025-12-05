@@ -27,18 +27,26 @@
     {
         "slug": "parvathi-sametha-kailasanathar-temple-koonancheri",
         "type": "posts",
-        "title": "Parvathi sametha Kailasanathar Kovil, Koonancheri",
+        "title": "Parvathi sametha Kailasanathar, Koonancheri",
         "author": "Sriram Seetharaman",
         "date": "2023-06-13",
         "tags": ["temples", "hinduism"]
+    },  
+    {
+        "slug": "gnanambika-sametha-gnanaparameswarar-temple-naaloor-mayaanam",
+        "type": "posts",
+        "title": "Gnanambika sametha Gnana Parameswara Swamy, Naaloor Mayaanam",
+        "author": "Sriram Seetharaman",
+        "date": "2025-12-04",
+        "actualdate": "2008-01-08",
+        "tags": ["temples", "hinduism","sambandhar","thevaram", "mayanam"]
     },  
     {
         "slug": "ubhayapushpavilochani-sametha-hayavantheeswarar-temple-seeyathamangai",
         "type": "posts",
         "title": "Ubhayapushpavilochani sametha Ayavantheeswarar, Seeyathamangai",
         "author": "Sriram Seetharaman",
-        "date": "2025-11-20",
-        "actualdate": "2008-05-02",
+        "date": "2025-05-2",
         "tags": ["temples", "hinduism","sambandhar","thevaram"]
     },  
     {
