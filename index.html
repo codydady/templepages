@@ -252,6 +252,11 @@
             background: linear-gradient(135deg, #c28b00, #966d00);
             color: white;
         }
+        
+        .loko-btn {
+            background: linear-gradient(135deg, #502830, #953e34);
+            color: white;
+        }
 
         .puja-btn {
             background: linear-gradient(135deg, #d9534f, #c0392b);
@@ -616,6 +621,12 @@
         <div id="pinnedPostsContainer" class="pinned-posts-container d-flex flex-row">
             <!-- Pinned posts will be dynamically inserted here -->
         </div>
+        <a href="#" class="action-container" onclick="navigateToPost('lokamotiv')">
+            <span class="action-text">lokamotiv technology solutions</span>
+            <button class="action-btn loko-btn">
+                <i class="fas fa-receipt"></i>
+            </button>
+        </a>
         <a href="#" class="action-container" onclick="navigateToPost('nithyadharma-puja-products')">
             <span class="action-text">Puja Products</span>
             <button class="action-btn puja-btn">
@@ -866,7 +877,7 @@
             // const allExcludedSlugs = [...new Set([...excludedSlugs, ...pinnedSlugs])];
 
            // approach 2 : exclude pinned and selected posts
-            const excludedSlugs = ["nithyadharma-puja-products", "nithyadharma-mobile-app"]
+            const excludedSlugs = ["lokamotiv", "nithyadharma-puja-products", "nithyadharma-mobile-app"]
             const pinnedSlugs = getPinnedPosts().map(post => post.slug);
             const allExcludedSlugs = [...new Set([...excludedSlugs, ...pinnedSlugs])];
             // const allExcludedSlugs = [...new Set([ ...pinnedSlugs])];
