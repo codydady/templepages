@@ -33,12 +33,20 @@
         "tags": ["temples", "hinduism"]
     },  
     {
+        "slug": "girisundhari-sametha-panchavarneswarar-temple-nallur",
+        "type": "posts",
+        "title": "Girisundhari sametha Panchavarneswarar / KalyanaSundhareswarar, Nallur",
+        "author": "Sriram Seetharaman",
+        "date": "2026-01-01",
+        "actualdate": "2004-02-24",
+        "tags": ["temples", "hinduism","sambandhar","appar","sundharar","thevaram", "nallur-sapthasthanam"]
+    }, 
+    {
         "slug": "gnanambika-sametha-gnanaparameswarar-temple-naaloor-mayaanam",
         "type": "posts",
         "title": "Gnanambika sametha Gnana Parameswara Swamy, Naaloor Mayaanam",
         "author": "Sriram Seetharaman",
-        "date": "2025-12-04",
-        "actualdate": "2008-01-08",
+        "date": "2008-01-08",
         "tags": ["temples", "hinduism","sambandhar","thevaram", "mayanam"]
     },  
     {
