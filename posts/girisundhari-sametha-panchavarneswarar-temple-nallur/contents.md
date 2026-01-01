@@ -1,10 +1,10 @@
 <strong>Sthala puranam and temple information</strong>
 
-Kunthi, mother of the Pandavas, was cursed for having borne the children of the pancha boothas. She prayed to Narada for redemption, and he Naradar advised her to bathe in the seven oceans to redeem hereself. As this was not possible for Kunti, Narada advised her to pray to Kalyanasundareswarar at this temple. Under Lord Siva’s orders, Narada brought the waters of all the seven oceans here, and Kunti bathed in that water on Magham nakshatram (Kunti’s birth star) in the month of Masi. Bathing in this temple tank is said to have the same effects and benefits as bathing at Kumbakonam’s Mahamaham tank.
+Kunthi, mother of the Pandavas, was cursed for having borne the children of the pancha boothas. She prayed to Narada for redemption, and Naradar advised her to bathe in the seven oceans to redeem hereself. As this was not possible for Kunti, Narada advised her to pray to Kalyanasundareswarar at this temple. Under Lord Siva’s orders, Narada brought the waters of all the seven oceans here, and Kunti bathed in that water on Magham nakshatram (Kunti’s birth star) in the month of Masi. Bathing in this temple tank is said to have the same effects and benefits as bathing at Kumbakonam’s Mahamaham tank.
 
 The idol of Lord Siva presents itself in five different colors during the day – copper, pink, gold, emerald and another unidentifiable colour. He is called Panchavarneswarar, for this reason.
 
-Devotees say that on the day of the Mahamaham festival in Kumbakonam, the Lingam of Lord Siva here sweats, and is therefore fanned to keep Him cool.
+Devotees say that on the day of the Mahamaham festival in Kumbakonam, the Lingam of Lord Siva here sweats, and is therefore fanned to keep him cool.
 
 The Lingam here has many holes / spots, and it is believed that these are the holes made by Sage Bringhi when he tried to bore through between the male and female aspects of Lord Siva and Parvati as Ardhanari.
 
@@ -42,11 +42,11 @@ Pasupateeswarar temple, Avoor
 Also, Patteeswaram is located only about 6 km away, and has several temples of note.
 
 Kumbakonam is the nearest town with good accommodation facilities.
+<br>
 
+<h3 style="text-align: center;"><strong>கிரிசுந்தரி சமேத பஞ்சவர்ணேஸ்வரர், நல்லூர்</strong></h3>
 
-<h5 style="text-align: center;"><strong>கிரிசுந்தரி சமேத பஞ்சவர்ணேஸ்வரர், நல்லூர்</strong></h5>
-
-தஞ்சையிலிருந்து கும்பகோணம் செல்லும் சாலையில் பாபநாசம் வந்து, அங்கிருந்து மேலும் 1 கிமீ சென்றால் அத்தாணி ரயில்வே கேட் வருகிறது. அந்த இடத்தில் வலங்கைமான் செல்லும் சாலையில் 1 கிமீ சென்றால் நல்லூர் உள்ளது. கும்பகோணத்திலிருந்து வருபவர்கள் இதுபோலவே வரலாம் அல்லது சுந்தரபெருமாள் கோயில் வழியாகவும் வரலாம். கும்பகோணத்திலிருந்து நகர பேருந்து உள்ளது. இரு மற்றும் நான்கு சக்கர வாகனங்கள் கோயில் வாசல் வரை செல்லும். திருநல்லூர் -பெருமணம் என்று ஒரு தலம் உள்ளது. அது வேறு, அத்தலம் தற்போது ஆச்சாள்புரம் என்று அழைக்கப்படுகிறது.
+தஞ்சையிலிருந்து கும்பகோணம் செல்லும் சாலையில் பாபநாசம் வந்து, அங்கிருந்து மேலும் 1 கிமீ சென்றால் அத்தாணி ரயில்வே கேட் வருகிறது. அந்த இடத்தில் வலங்கைமான் செல்லும் சாலையில் 1 கிமீ சென்றால் நல்லூர் உள்ளது. கும்பகோணத்திலிருந்து வருபவர்கள் இதுபோலவே வரலாம் அல்லது சுந்தரபெருமாள் கோயில் வழியாகவும் வரலாம். கும்பகோணத்திலிருந்து நகர பேருந்து உள்ளது. இரு மற்றும் நான்கு சக்கர வாகனங்கள் கோயில் வாசல் வரை செல்லும். திருநல்லூர் - பெருமணம் என்று ஒரு தலம் உள்ளது. அது வேறு, அத்தலம் தற்போது ஆச்சாள்புரம் என்று அழைக்கப்படுகிறது.
 
 <strong>அமைப்பு:</strong>
 
@@ -56,11 +56,11 @@ Kumbakonam is the nearest town with good accommodation facilities.
 
 <strong>இதன் காரணத்தை தலபுராணத்தில் காண்க.</strong>
 
-சிவலிங்கத்தின் பின்னால், அகஸ்திய முனிவருக்கு திருமணக்கோலம் காட்டியருளிய கல்யாணசுந்தரேஸ்வரர் உருவம் சுதைவடிவில் உள்ளது. இருபுறமும் பிரம்மனும், விஷ்ணுவும் காட்சிதர, அகஸ்தியர் கைக்கூப்பி வணங்குவது போன்று உள்ளது. அற்புதமான காட்சி. ஆனால் இருட்டாக இருப்பதால் அர்ச்சகர் தீபாராதனை காண்பிக்கும் போது பார்த்தால் நல்லது. ஏனெனில் கட்டுமலையில் சிறு சிறு சாளரங்களே உள்ளன. மூலவருக்கு அருகில் அகஸ்திய லிங்கம் உள்ளது. மூலவரை சுற்றி வர குறுகலான சிறு பிரகாரம் உள்ளது. கோயிலின் கிழக்கு வாயில் மட்டுமே பயனில் உள்ளது. மேற்கு வாயில் பூட்டப்பட்டதே உள்ளது. காரணம் தெரியவில்லை.
+சிவலிங்கத்தின் பின்னால், அகஸ்திய முனிவருக்கு திருமணக்கோலம் காட்டியருளிய கல்யாணசுந்தரேஸ்வரர் உருவம் சுதைவடிவில் உள்ளது. இருபுறமும் பிரம்மனும், விஷ்ணுவும் காட்சிதர, அகஸ்தியர் கைக்கூப்பி வணங்குவது போன்று உள்ளது. அற்புதமான காட்சி. ஆனால் இருட்டாக இருப்பதால் அர்ச்சகர் தீபாராதனை காண்பிக்கும் போது பார்த்தால் நல்லது. ஏனெனில் கட்டுமலையில் சிறு சிறு சாளரங்களே உள்ளன. மூலவருக்கு அருகில் அகஸ்திய லிங்கம் உள்ளது. மூலவரை சுற்றி வர குறுகலான சிறு பிரகாரம் உள்ளது. கோயிலின் கிழக்கு வாயில் மட்டுமே பயனில் உள்ளது. மேற்கு வாயில் பூட்டப்பட்டுள்ளது. காரணம் தெரியவில்லை.
 
 <strong>தலபுராணம்</strong> :
 
-புராண காலந்தொட்டு, சோழர் பாண்டியர் காலத்தியான வரை பல அற்புதங்கள் இத்தலத்தில் நிகழ்ந்துள்ளன. அவற்றுள் சிலவற்றைப் பார்ப்போம்.
+புராண காலந்தொட்டு, சோழர் பாண்டியர் காலத்தியன வரை பல அற்புதங்கள் இத்தலத்தில் நிகழ்ந்துள்ளன. அவற்றுள் சிலவற்றைப் பார்ப்போம்.
 
 <strong>கைலாய சிகரமே இத்தலம் :</strong>
 
@@ -88,7 +88,7 @@ Kumbakonam is the nearest town with good accommodation facilities.
 
 <strong>இதர தகவல்கள் :</strong>
 
-ஸ்வாமியைக் காண நான் சென்றிருந்த 3 முறையும் 3 வண்ணங்களைக் கண்டு தொழும் பாக்கியம் கிடைத்தது. ஒருமுறை கரும்பச்சை நிறத்திலும் , ஒருமுறை தங்கமயமாகவும் , ஒரு முறை தாமிர நிறத்திலும் காட்சியளித்தார். தங்கம் அல்லது தாமிரக்காப்பு சாத்தினாள் எவ்வாறிருக்குமோ அவ்வாறு இருந்தது. வேறெங்கும் காணமுடியாத அதிசயம். அனைவரும் ஒருமுறையேனும் கண்டு தொழ வேண்டிய பதி. இக்கோயிலின் எதிரே உள்ள சப்த சாகர தீர்த்தத்தில் உள்ள 12 படித்துறைகளிலும் நீராடி ஸ்வாமியை 12 முறை வளம் வருவோர் உடர்ப்பிணி மற்றும் பிறவிப்பிணியும் நீங்கப்பெறுவர் என்று கூறப்படுகிறது. கோச்செங்கட்சோழன் கட்டுவித்த கட்டுமலைக்கோயியில், இவ்வகைக் கோயில்கள் யானையாராகி கோயில்கள் எனப்படும். ஏன் யானை ஏறமுடியாதவாறு கட்டுவித்தான் என்பதற்கு திருவானைக்காவல் தலபுராணத்தில் விடை உள்ளது.
+ஸ்வாமியைக் காண நான் சென்றிருந்த 3 முறையும் 3 வண்ணங்களைக் கண்டு தொழும் பாக்கியம் கிடைத்தது. ஒருமுறை கரும்பச்சை நிறத்திலும் , ஒருமுறை தங்கமயமாகவும் , ஒரு முறை தாமிர நிறத்திலும் காட்சியளித்தார். தங்கம் அல்லது தாமிரக்காப்பு சாத்தினாள் எவ்வாறிருக்குமோ அவ்வாறு இருந்தது. வேறெங்கும் காணமுடியாத அதிசயம். அனைவரும் ஒருமுறையேனும் கண்டு தொழ வேண்டிய பதி. இக்கோயிலின் எதிரே உள்ள சப்த சாகர தீர்த்தத்தில் உள்ள 12 படித்துறைகளிலும் நீராடி ஸ்வாமியை 12 முறை வளம் வருவோர் உடற்பிணி மற்றும் பிறவிப்பிணியும் நீங்கப்பெறுவர் என்று கூறப்படுகிறது. கோச்செங்கட்சோழன் கட்டுவித்த கட்டுமலைக்கோயியில், இவ்வகைக் கோயில்கள் யானை ஏறா கோயில்கள் எனப்படும். ஏன் யானை ஏறமுடியாதவாறு கட்டுவித்தான் என்பதற்கு திருவானைக்காவல் தலபுராணத்தில் விடை உள்ளது.
 
 <strong>அருகிலுள்ள கோவில்கள் :</strong>
 
