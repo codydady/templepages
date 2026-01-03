@@ -40,5 +40,5 @@ If you want to know more about me and what happens, please visit
   <li>On Facebook: <a href="https://facebook.com/templepages">https://facebook.com/templepages</a></li>
   <li>On YouTube: <a href="https://youtube.com/c/templepages">https://youtube.com/c/templepages</a></li>
   <li>On Instagram: <a href="https://instagram.com/templepages">https://instagram.com/templepages</a></li>
-  <li>Android App: <a href="https://play.google.com/store/apps/details?id=com.sd.nithyadharma&pcampaignid=web_share">Download on Google Play</a></li>
+  <li>Android App (New): <a href="https://play.google.com/store/apps/details?id=com.sd.nithyadharma&pcampaignid=web_share">Download on Google Play</a></li>
 </ol>
