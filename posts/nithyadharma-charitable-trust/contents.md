@@ -22,7 +22,8 @@ A contribution of say ₹300, lights lamps in a mid sized temple for 2 days fyi.
   <tr style="display: flex; flex-wrap: wrap;">
     <td style="flex: 1 1 300px; padding: 15px; vertical-align: top;">
       About the author..<br>
-      I am Sriram Seetharaman, a software consultant by profession and passionate about our tradition and dharma. I have been visiting temples for more than 30 years and have personally visited over 2000 temples, mostly within the state of Tamil Nadu. I have seen the way temples are kept, their struggles and the plight of the people that still serve with a ray of hope that the served will serve them one day.
+      I am Sriram Seetharaman, a software consultant by profession and passionate about our tradition and dharma. I have been visiting temples for more than 30 years and have personally visited over 2000 temples, mostly within the state of Tamil Nadu. I have seen the way temples are kept, their struggles and the plight of the people that still serve them with a ray of hope that the served will serve them one day.<br>
+      Visiting temples is my passion. Wanna Join ?? Download our mobile app listed below & click "Feedback" to send a whatsapp.
     </td>
     <td style="flex: 1 1 300px; padding: 15px; text-align: center;">
       <img src="/posts/nithyadharma-charitable-trust/ss.jpg" class="card-img-top object-fit-cover" style="width:100%; max-width: 400px; height:auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -34,9 +35,10 @@ We have a mobile app developed ( Presently in Google Android Play Store only ) t
 
 If you want to know more about me and what happens, please visit 
 
-our primary webiste https://www.templepages.com ( this! )<br>
-on facebook @ https://facebook.com/templepages , <br>
-on youtube @  https://youtube.com/c/templepages , <br>
-on instagram @  https://instagram.com/templepages<br>
-Android App @ https://play.google.com/store/apps/details?id=com.sd.nithyadharma&pcampaignid=web_share
- 
+<ol>
+  <li>Our primary website: <a href="https://www.templepages.com">https://www.templepages.com</a></li>
+  <li>On Facebook: <a href="https://facebook.com/templepages">https://facebook.com/templepages</a></li>
+  <li>On YouTube: <a href="https://youtube.com/c/templepages">https://youtube.com/c/templepages</a></li>
+  <li>On Instagram: <a href="https://instagram.com/templepages">https://instagram.com/templepages</a></li>
+  <li>Android App: <a href="https://play.google.com/store/apps/details?id=com.sd.nithyadharma&pcampaignid=web_share">Download on Google Play</a></li>
+</ol>

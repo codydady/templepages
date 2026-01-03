@@ -252,7 +252,12 @@
             background: linear-gradient(135deg, #c28b00, #966d00);
             color: white;
         }
-        
+
+        .trust-btn {
+            background: linear-gradient(135deg, #283650, #344195);
+            color: white;
+        }
+
         .loko-btn {
             background: linear-gradient(135deg, #502830, #953e34);
             color: white;
@@ -621,8 +626,15 @@
         <div id="pinnedPostsContainer" class="pinned-posts-container d-flex flex-row">
             <!-- Pinned posts will be dynamically inserted here -->
         </div>
+
+        <a href="#" class="action-container" onclick="navigateToPost('nithyadharma-charitable-trust')">
+            <span class="action-text">NithyaDharma Charitable Trust</span>
+            <button class="action-btn trust-btn">
+                <i class="fa-solid fa-dharmachakra"></i>
+            </button>
+        </a>
         <a href="#" class="action-container" onclick="navigateToPost('lokamotiv')">
-            <span class="action-text">lokamotiv technology solutions</span>
+            <span class="action-text">Lokamotiv Technology Solutions</span>
             <button class="action-btn loko-btn">
                 <i class="fas fa-receipt"></i>
             </button>
